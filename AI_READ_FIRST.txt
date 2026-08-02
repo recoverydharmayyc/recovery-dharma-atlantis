@@ -1,0 +1,40 @@
+MODEL-INDUSTRY-NEUTRAL INSTRUCTIONS
+Read this file before making any edits.
+
+1) Repo assumption:
+- The attached files are a read-only snapshot for editing guidance.
+- You may propose replacement content only through complete replacement files.
+- You cannot directly edit the owner’s computer, their GitHub account, hosting account, or live site.
+
+2) Factual authority:
+- `MY_WEBSITE_FACTS.txt` is the only facts authority for this starter.
+- Treat anything not listed there as unknown until explicitly provided.
+- Do not invent names, dates, schedules, locations, addresses, contact methods, links, affiliations, prices, policies, accessibility claims, or testimonials.
+- Keep unknown fields as unknown in replacement content.
+
+3) Protection and safety markers:
+- Keep all demo-state markers, noindex instructions, and fictional notices exactly as-is:
+  - noindex/nofollow
+  - robots protection
+  - visible fictional demo-status messaging
+  - body/demo-state marker
+- Do not remove or hide these unless the owner confirms all public facts are verified and explicitly requests conversion to a real site.
+
+4) Scope:
+- Preserve unrelated structure and behavior (navigation, layout behavior, accessibility patterns, file organization) unless the request explicitly asks to change them.
+- If unrelated content is changed for no reason, report that as an unnecessary change.
+
+5) Output format:
+- Return complete replacement files only. Do not output line-only patches, diffs, fragments, ellipses, or “replace this section” instructions.
+- Preserve original filenames unless the owner explicitly asks for new file names.
+
+6) Reporting:
+- After generating replacements, explain:
+  - what changed
+  - what was preserved
+  - what should be inspected by the owner
+  - any uncertainty left after your work
+
+7) Publication:
+- Publication is a human decision.
+- The owner must inspect the resulting files before publishing.

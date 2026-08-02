@@ -1,0 +1,64 @@
+RELEASE: Tutorial Data v1 (for learning, not real operations)
+
+Fill in with your verified facts before publishing.
+
+Website name:
+Recovery Dharma Atlantis
+
+City or region:
+Atlantis, fictional region
+
+Purpose:
+Fictional educational sample for peer-led recovery meeting website workflow testing.
+
+Meeting day:
+Wednesday
+
+Meeting time:
+7:00 p.m. to 8:00 p.m.
+
+Time zone:
+UTC−07:00 (America/Edmonton)
+
+Meeting format:
+In person
+
+Venue:
+Atlantis Community Room
+
+Verified address:
+[NOT PROVIDED] keep as unknown until verified
+
+Verified contact method:
+[NOT PROVIDED] keep as unknown until verified
+
+Accessibility information:
+Sample notes: wheelchair-accessible room entry, stairs may be present at side access, no registration needed, parking and transit details to be confirmed.
+
+Newcomer information:
+Newcomers welcome; no registration required.
+
+Approved external links:
+[NONE - add verified links before publishing]
+
+Desired visual feeling:
+Calm, grounded, contemporary, sea-glass + paper + ink style with clear typography and generous spacing.
+
+Facts still unknown:
+- Real address
+- Real contact details
+- Real host/organizational contacts
+- Verified accessibility commitments
+- Verified links
+
+Information that must never be invented:
+- Names of people, hosts, volunteers, or organizers
+- Real street address
+- Real phone numbers and emails
+- Meeting endorsements from Recovery Dharma Global
+- Recovery outcomes, guarantees, or medical claims
+- Attendance counts or statistics
+
+Explicit confirmation of public status:
+The current facts above are fictional sample data for tutorial use.
+Do not publish these as real public facts.

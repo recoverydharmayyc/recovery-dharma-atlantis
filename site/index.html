@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Recovery Dharma Atlantis</title>
+    <style>
+      :root {
+        --ink: #17313a;
+        --ink-soft: #315461;
+        --paper: #fbf9f4;
+        --paper-2: #f4f1e7;
+        --sea: #6ca7b2;
+        --sea-deep: #2d7280;
+        --sea-soft: #d3ecef;
+        --accent: #224d57;
+        --border: #c8d9de;
+        --line: #c4d4d8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", "Helvetica Neue", Arial, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 0%, #eef6f7 0%, transparent 36%),
+          linear-gradient(180deg, #f8fcfd 0%, #f4f6f2 100%);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: var(--sea-deep);
+      }
+
+      a:hover,
+      a:focus-visible {
+        color: var(--accent);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--sea);
+        outline-offset: 2px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 0.5rem;
+        top: -3.5rem;
+        background: #16363f;
+        color: #f6fcff;
+        padding: 0.7rem 0.9rem;
+        border-radius: 0.35rem;
+        transition: top 0.2s ease;
+        z-index: 5;
+      }
+
+      .skip-link:focus,
+      .skip-link:focus-visible {
+        top: 0.5rem;
+        outline: 3px solid #b6d7dd;
+      }
+
+      .page-wrap {
+        width: min(920px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .demo-banner {
+        margin: 0;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        background: linear-gradient(180deg, #e3f4f2 0%, #d3ebe4 100%);
+        border-bottom: 1px solid var(--line);
+        color: #153d43;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .site-header {
+        padding: 1rem 0 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .site-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        min-width: 0;
+      }
+
+      .brand img {
+        width: 56px;
+        height: 56px;
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper-2);
+        padding: 0.28rem;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(1.15rem, 2.3vw, 1.6rem);
+        letter-spacing: 0.01em;
+        color: var(--ink);
+      }
+
+      .brand p {
+        margin: 0.2rem 0 0;
+        color: var(--ink-soft);
+      }
+
+      .site-nav {
+        font-size: 0.98rem;
+      }
+
+      .menu {
+        margin: 0;
+        border: 0;
+      }
+
+      .menu > summary {
+        list-style: none;
+        cursor: pointer;
+        background: #f5fafb;
+        border: 1px solid var(--line);
+        border-radius: 0.55rem;
+        color: var(--ink);
+        padding: 0.55rem 0.8rem;
+        font-size: 0.95rem;
+        min-height: 44px;
+      }
+
+      .menu > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .menu-list {
+        margin: 0.5rem 0 0;
+        padding: 0.45rem;
+        list-style: none;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 0.75rem;
+      }
+
+      .menu-list li {
+        margin: 0;
+      }
+
+      .menu-list a {
+        display: block;
+        padding: 0.65rem 0.55rem;
+        text-decoration: none;
+        border-radius: 0.45rem;
+      }
+
+      .menu-list a:focus-visible,
+      .menu-list a:hover {
+        background: var(--sea-soft);
+      }
+
+      .hero {
+        padding: 1.6rem 0;
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: clamp(1.8rem, 5vw, 2.65rem);
+        line-height: 1.14;
+      }
+
+      .hero p.lead {
+        max-width: 65ch;
+        font-size: 1.05rem;
+      }
+
+      .pill {
+        display: inline-block;
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--sea-deep);
+        background: #f3fafb;
+        border-radius: 999px;
+        padding: 0.35rem 0.8rem;
+        margin-top: 0.4rem;
+        font-weight: 600;
+        color: #20444f;
+      }
+
+      .panel {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 0.95rem;
+        padding: 1rem 1.05rem;
+        margin: 1rem 0;
+      }
+
+      section {
+        padding: 0.4rem 0;
+      }
+
+      h2 {
+        margin: 0.2rem 0 0.6rem;
+        font-size: clamp(1.25rem, 3vw, 1.65rem);
+        color: var(--accent);
+      }
+
+      h3 {
+        margin: 0.8rem 0 0.3rem;
+        font-size: 1.05rem;
+      }
+
+      .meeting-grid {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 0.4rem 1rem;
+      }
+
+      .meeting-grid dt {
+        font-weight: 700;
+        color: #294a56;
+      }
+
+      .meeting-grid dd {
+        margin: 0;
+      }
+
+      .notes {
+        border-left: 4px solid var(--sea-deep);
+        padding-left: 0.85rem;
+        margin-top: 0.5rem;
+        background: #f5fafb;
+      }
+
+      .faq details {
+        margin: 0.6rem 0;
+        border: 1px solid var(--line);
+        border-radius: 0.6rem;
+        padding: 0.5rem 0.75rem;
+        background: #fdfcfa;
+      }
+
+      .faq summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .faq summary:focus-visible,
+      .faq summary:hover {
+        color: #11353f;
+      }
+
+      .notice {
+        display: block;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 0.7rem;
+        padding: 0.8rem;
+      }
+
+      .cta {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .card {
+        border: 1px dashed var(--line);
+        border-radius: 0.7rem;
+        padding: 0.85rem;
+        background: #fefdfa;
+      }
+
+      .card p,
+      .card ul {
+        margin-top: 0.35rem;
+      }
+
+      .small-list {
+        margin: 0.4rem 0;
+        padding-left: 1.1rem;
+      }
+
+      .small-list li {
+        margin-bottom: 0.35rem;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 1.5rem;
+        padding: 1rem 0 2rem;
+        font-size: 0.93rem;
+        color: #2f4950;
+      }
+
+      .footer-note {
+        border-left: 4px solid var(--sea-deep);
+        padding: 0.45rem 0.7rem;
+        background: #f4fafb;
+      }
+
+      .site-footer-grid {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+      }
+
+      .site-footer-grid a {
+        margin-right: 0.7rem;
+      }
+
+      @media (max-width: 720px) {
+        .site-top {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .menu {
+          width: 100%;
+        }
+
+        .menu-list {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0.25rem;
+        }
+
+        .meeting-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 721px) {
+        .menu-list {
+          display: grid;
+          grid-template-columns: repeat(3, auto);
+          gap: 0.3rem 0.8rem;
+          justify-content: end;
+        }
+      }
+
+      @media (min-width: 900px) {
+        .hero {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 1.4rem;
+          align-items: start;
+        }
+
+        .hero .panel {
+          margin-top: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body data-demo-mode="fictional" data-project="recovery-dharma-atlantis">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <p class="demo-banner" role="status" aria-live="polite">
+      Fictional tutorial website only: this content is sample material and is not a real meeting or group.
+    </p>
+
+    <header class="site-header">
+      <div class="page-wrap">
+        <div class="site-top">
+          <div class="brand">
+            <img src="assets/mark.svg" alt="Recovery Dharma Atlantis abstract mark" />
+            <div>
+              <h1>Recovery Dharma Atlantis</h1>
+              <p>Educational static starter for community-learning workflows</p>
+            </div>
+          </div>
+
+          <nav class="site-nav" aria-label="Primary">
+            <details id="site-navigation" class="menu">
+              <summary id="menu-toggle">Menu</summary>
+              <ul id="site-nav-links" class="menu-list">
+                <li><a href="#meeting">Meeting</a></li>
+                <li><a href="#newcomers">Newcomers</a></li>
+                <li><a href="#accessibility">Accessibility</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#next-step">Next step</a></li>
+              </ul>
+            </details>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <div class="page-wrap">
+        <section class="hero">
+          <div>
+            <p class="pill">Fictional sample for tutorial use</p>
+            <h2>One folder, one page, and a clear way to practice AI-assisted updates.</h2>
+            <p class="lead">
+              This starter shows a calm, low-friction community page that you can open in any browser by
+              double-clicking <code>site/index.html</code>. You can use it as the first practical project in a
+              low-technicality workflow.
+            </p>
+            <p>
+              You can also test plain-language change requests with AI and keep your own approved copy separate from
+              candidates you review.
+            </p>
+            <p>
+              The page works if JavaScript is disabled; the menu can still be opened and read through normal HTML details.
+            </p>
+          </div>
+
+          <section class="panel" id="meeting" aria-labelledby="meeting-title">
+            <h2 id="meeting-title">Sample meeting</h2>
+            <div class="meeting-grid">
+              <dt>Day</dt>
+              <dd>Wednesday</dd>
+              <dt>Time</dt>
+              <dd>7:00 p.m. to 8:00 p.m.</dd>
+              <dt>Venue</dt>
+              <dd>Atlantis Community Room</dd>
+              <dt>Format</dt>
+              <dd>In person</dd>
+              <dt>Newcomers</dt>
+              <dd>Welcome</dd>
+              <dt>Registration</dt>
+              <dd>No registration required</dd>
+            </div>
+          </section>
+        </section>
+
+        <section id="what-is" aria-labelledby="what-is-title">
+          <h2 id="what-is-title">What this meeting is</h2>
+          <p>
+            This is a fictional educational sample for a peer-led, community-style page. The purpose is practical: to show
+            how a non-technical steward can own a site from static files and review AI-generated revisions before approving
+            publication.
+          </p>
+          <div class="panel">
+            <h3>What the page prioritizes</h3>
+            <ul class="small-list">
+              <li>Clear meeting details that are easy to replace with verified facts.</li>
+              <li>Readable structure for all screen sizes.</li>
+              <li>Simple interaction patterns and visible focus states.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="newcomers" aria-labelledby="newcomers-title">
+          <h2 id="newcomers-title">What a newcomer can expect</h2>
+          <div class="card">
+            <h3>First visit flow</h3>
+            <ul class="small-list">
+              <li>Read the meeting time, place, and format first.</li>
+              <li>Review newcomer guidance before arriving.</li>
+              <li>Take action with a simple, verified contact method before attending (if one exists).</li>
+            </ul>
+          </div>
+          <div class="panel notes">
+            <strong>Important:</strong> This starter is fictional. It must not be interpreted as an operating meeting site until
+            all facts are replaced with verified information from the maintainer.
+          </div>
+        </section>
+
+        <section id="accessibility" aria-labelledby="accessibility-title">
+          <h2 id="accessibility-title">Accessibility and participation notes</h2>
+          <ul class="small-list">
+            <li>Plain language and short sections for easier reading.</li>
+            <li>Keyboard focus is visible on all key controls and links.</li>
+            <li>Page uses semantic structure and landmark regions for screen-reader navigation.</li>
+            <li>No autoplay media or hidden-time-only information.</li>
+            <li>Touch-friendly target sizes for mobile interaction.</li>
+          </ul>
+          <p class="card">
+            If these sections are adapted for a real group, add specific accessibility commitments only when confirmed
+            and documented in <strong>MY_WEBSITE_FACTS.txt</strong>.
+          </p>
+        </section>
+
+        <section id="faq" class="faq" aria-labelledby="faq-title">
+          <h2 id="faq-title">Frequently asked questions</h2>
+          <details>
+            <summary>Can this be edited without installing anything?</summary>
+            <p>
+              Yes. The starter is one folder of plain files. You can edit it with a basic text editor and a browser preview.
+            </p>
+          </details>
+          <details>
+            <summary>Does this version require a server?</summary>
+            <p>No. Open <code>site/index.html</code> directly from your file system.</p>
+          </details>
+          <details>
+            <summary>What should be changed before real publication?</summary>
+            <p>
+              All public facts in <strong>MY_WEBSITE_FACTS.txt</strong>, plus any external links and contact methods, must be
+              verified and replaced.
+            </p>
+          </details>
+        </section>
+
+        <section id="resources" aria-labelledby="resources-title">
+          <h2 id="resources-title">Resources</h2>
+          <div class="panel">
+            <p>
+              This is a starter resource area. Keep only verified external links here before publication.
+            </p>
+            <ul class="small-list">
+              <li>Verified local community contacts (fill in from <strong>MY_WEBSITE_FACTS.txt</strong>)</li>
+              <li>Verified accessibility notes and policies</li>
+              <li>Verified venue and logistics pages</li>
+            </ul>
+            <p class="notice">
+              If no verified links are available yet, keep this list intentionally sparse.
+            </p>
+          </div>
+        </section>
+
+        <section id="next-step" aria-labelledby="next-step-title">
+          <h2 id="next-step-title">Next step for real adoption</h2>
+          <div class="cta">
+            <div class="card">
+              <h3>Keep demo markers until facts are verified</h3>
+              <p>
+                Before making this a live community site, replace placeholders with confirmed public facts. This includes
+                venue details, official contact method, accessibility commitments, and approved external links.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Contact or publication details</h3>
+              <p>
+                Do not use placeholder identity or contact data for public use. Add your verified email, form, or phone method
+                only from your approved source file.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="page-wrap">
+        <p class="footer-note">
+          Fictional status: Recovery Dharma Atlantis is an educational sample and not a real meeting site.
+        </p>
+        <p class="site-footer-grid">
+          <strong>Demo-state marker:</strong>
+          <span>demo-mode active</span>
+          <span>noindex / nofollow</span>
+          <span>robots disallow</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("site-navigation");
+        if (!nav) {
+          return;
+        }
+
+        const summary = nav.querySelector("summary");
+        if (!summary) {
+          return;
+        }
+
+        const setNavState = (isOpen) => {
+          nav.setAttribute("aria-expanded", String(Boolean(isOpen)));
+        };
+
+        nav.setAttribute("aria-expanded", "false");
+        summary.setAttribute("aria-controls", "site-nav-links");
+        summary.setAttribute("role", "button");
+        summary.setAttribute("aria-expanded", "false");
+
+        nav.addEventListener("toggle", function () {
+          const isOpen = nav.open;
+          setNavState(isOpen);
+          summary.setAttribute("aria-expanded", String(isOpen));
+          if (isOpen) {
+            const firstLink = nav.querySelector("a");
+            if (firstLink) {
+              firstLink.focus();
+            }
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && nav.open) {
+            nav.open = false;
+            summary.setAttribute("aria-expanded", "false");
+            setNavState(false);
+            summary.focus();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

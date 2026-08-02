@@ -1,0 +1,37 @@
+START HERE — Build a new website copy with confidence
+
+Use this only in plain language. No code tools required.
+
+1) Keep an untouched copy
+- Keep this folder as your approved original.
+
+2) Make a candidate copy
+- Copy the folder once to a separate folder for edits.
+
+3) Open and inspect the current page
+- Double-click `site/index.html` in your file manager to open in a browser.
+
+4) Ask an AI for one-file changes
+- Attach these files to the AI:
+  - AI_READ_FIRST.txt
+  - MY_WEBSITE_FACTS.txt
+  - CHANGE_REQUEST.txt
+  - the current `site/index.html`
+- Ask for a complete replacement `site/index.html` using your request.
+
+5) Insert only the returned file
+- Save only the new full `site/index.html` into your candidate copy.
+
+6) Open and inspect
+- Open the candidate `site/index.html`.
+- Check: text, links, spacing, readable on small screen, and demo notices.
+
+7) Correct, approve, or delete
+- If you need edits, send a new request.
+- If it looks correct, save it as your approved copy.
+- If it feels wrong, delete it and try again.
+
+8) Publish only what you approve
+- Never publish a file you have not personally opened and checked.
+- Remember: this starter is fictional by design.
+- Verify public facts before publishing any live version.

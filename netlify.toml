@@ -1,0 +1,13 @@
+[build]
+  publish = "site"
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), usb=(), accelerometer=(), gyroscope=()"
+    X-XSS-Protection = "0"
+    Cache-Control = "public, max-age=0, must-revalidate"

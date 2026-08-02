@@ -1,0 +1,80 @@
+CHANGE REQUEST TEMPLATE
+Use this with AI READ FIRST instructions and approved facts.
+
+Current approved file:
+- [ ]
+
+Goal:
+- [ ] What should this change achieve?
+
+Approved facts to keep:
+- [ ] Copy exactly from MY_WEBSITE_FACTS.txt
+- [ ] Do not invent new facts
+
+Requested visual or behavioral changes:
+- [ ] Change [ ] to [ ]
+- [ ] Update [ ]
+- [ ] Keep accessibility and demo-safety markers intact
+
+Things not to change:
+- [ ] Keep noindex/nofollow active
+- [ ] Keep robots.txt disallowing indexing
+- [ ] Keep demo-state notice visible
+- [ ] Keep site readable with JavaScript disabled
+- [ ] Keep original file names unless a new filename is explicitly requested
+
+Definition of done:
+- [ ] Replacement file is complete and valid HTML in one file
+- [ ] No missing required assets
+- [ ] Facts still match MY_WEBSITE_FACTS.txt
+- [ ] Accessibility structure is preserved (headings, landmarks, links, focus states, keyboard nav)
+
+Required output:
+- One complete replacement file: `site/index.html`
+
+Browser checks the owner will perform:
+- Open by double-clicking `site/index.html`
+- Check heading order and section flow
+- Test Tab navigation and skip link
+- Test mobile menu open/close
+- Confirm fictional status is visible in header and footer
+- Confirm no hidden instructions or missing content
+
+--------------------------------------------------------------------------------
+Example request (complete):
+
+Please update the fictional meeting day and time using the approved facts in MY_WEBSITE_FACTS.txt.
+
+Current approved file:
+- site/index.html
+
+Goal:
+- Change the hero and meeting details to show:
+  - Meeting day: Wednesday
+  - Time: 7:00 p.m. to 8:00 p.m.
+- Do not change anything else unless needed for layout.
+
+Approved facts to keep:
+- Meeting day/time, city/region, venue, and newcomer policy from MY_WEBSITE_FACTS.txt.
+- Demo-state and safety markers (fictional banner, noindex, robots disallow, footer status).
+
+Requested visual or behavioral changes:
+- Update only the visible meeting schedule text in the hero and meeting details block.
+- Keep mobile navigation and skip link behavior unchanged.
+
+Things not to change:
+- All factual safety markers.
+- File structure.
+- Accessibility improvements already present.
+
+Definition of done:
+- Return a complete replacement `site/index.html` with the updated day/time in all relevant places.
+
+Required output filename:
+- site/index.html
+
+Browser checks the owner will perform:
+- Open `site/index.html`
+- Confirm updated date/time appears in hero and details sections
+- Confirm fictitious status banner is present
+- Verify keyboard navigation still works and no console errors appear
