@@ -1,6 +1,0 @@
-/*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Referrer-Policy: no-referrer
-  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), accelerometer=(), gyroscope=()
-  Cache-Control: public, max-age=0, must-revalidate

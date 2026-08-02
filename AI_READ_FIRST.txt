@@ -1,54 +1,12 @@
-MODEL-INDUSTRY-NEUTRAL INSTRUCTIONS
-Read this file before making edits.
+MODEL-INDEPENDENT INSTRUCTIONS — READ BEFORE EDITING
 
-1) Snapshot and scope
-- The attached files are a read-only snapshot for AI-assisted editing guidance.
-- The AI must not change your local environment, Git settings, or any other repository.
-- This repository contains an ordinary static site design for educational use.
+The attached project is a read-only snapshot. You cannot directly change the owner’s computer, Git account, hosting account, or live website. Publication remains a human decision.
 
-2) Factual authority
-- `MY_WEBSITE_FACTS.txt` is the only factual source for public content.
-- If a field is marked unknown, the AI must keep it unknown in output.
-- Do not invent names, schedules, addresses, contacts, links, affiliations, outcomes, testimonials, or statistics.
-
-3) Mandatory demo constraints
-- Keep all demo-safety states unless the owner explicitly requests conversion after full verification:
-  - `noindex, nofollow`
-  - robots blocking
-  - clear fictional notice on every page
-  - `data-demo-state="fictional"` in body
-- Do not remove or hide these markers.
-
-4) Working structure to preserve
-- Do not remove the complete file-and-page structure: `site/index.html`, `site/meetings.html`, `site/about.html`,
-  `site/newcomers.html`, `site/resources.html`, `site/connect.html`, `site/404.html`.
-- Preserve shared shell classes and page files unless a request explicitly changes design/system.
-- Preserve:
-  - shared navigation behavior,
-  - footer/forest structure,
-  - keyboard behaviors,
-  - skip link,
-  - focus-visible styles,
-  - no-JS usability.
-
-5) Output requirements
-- Return complete replacement files, not patch snippets.
-- Do not return only diffs, fragments, ellipses, or directions like "replace this section".
-- Preserve original filenames unless the request explicitly asks for different names.
-
-6) Required report format after generation
-The AI must state:
-- what changed,
-- what was preserved,
-- which files changed,
-- what the owner should inspect,
-- any open uncertainty,
-- what to verify before publishing.
-
-7) Multi-page workflow requirement
-- Keep all pages requested by the adopter, and preserve unchanged navigation and shared assets unless explicitly requested.
-- If the request is for a single-page update, update only requested pages while preserving the rest of the site shell.
-
-8) Publication boundary
-- Publishing remains a human decision.
-- The owner must open and approve resulting files before deployment.
+1. Inspect the whole project before editing. Preserve the React, TypeScript, Vite, React Router, shared-layout, page-component, and content-module architecture unless the owner explicitly asks for a redesign.
+2. MY_WEBSITE_FACTS.txt is the factual authority. Unknown information must remain unknown. Never invent names, dates, schedules, locations, addresses, contact details, links, affiliations, prices, policies, accessibility claims, testimonials, statistics, outcomes, or medical claims.
+3. Put factual changes in src/content/ where appropriate. Keep components responsible for presentation and behavior. Preserve routes, working navigation, responsive behavior, keyboard access, focus visibility, and the forest/site-shell composition.
+4. Preserve the fictional state until the owner explicitly confirms that all public facts have been verified and explicitly requests conversion from fictional demo to a real site. Do not remove noindex/nofollow, public/robots.txt blocking, the visible tutorial notice, the footer fictional notice, or the durable fictional demo state.
+5. Do not add a real contact endpoint, form, newsletter, analytics, backend, payment flow, environment-variable requirement, private integration, or external dependency unless expressly requested and verified.
+6. Return a complete clean source ZIP when the tool supports it. Never include node_modules, dist, PUBLISH-THIS-FOLDER, AI-COPY, .git, .env files, logs, or editor caches. Otherwise return every complete changed file.
+7. Never return only diffs, patches, fragments, ellipses, or line-number instructions. Preserve filenames unless the owner asks for a new file.
+8. After producing files, list every changed file; explain what changed and what was preserved; state exactly what the owner must inspect; and name any uncertainty. The owner must preview and approve the result before publication.

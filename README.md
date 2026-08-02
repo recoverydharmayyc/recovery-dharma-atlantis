@@ -1,49 +1,17 @@
 # Recovery Dharma Atlantis
 
-This is an independent fictional educational repository for a plain static website training flow.
+Recovery Dharma Atlantis is an independent fictional educational project. It is not the Recovery Dharma YYC website, contains no YYC meeting operations or private information, and is not an official Recovery Dharma Global product.
 
-It is **not** the Recovery Dharma YYC website, not an official Recovery Dharma Global product, and not a replacement for any existing site.
+It demonstrates ownership of a small community website. React and Vite are internal implementation tools; beginners use the provided Windows batch files and do not need to learn commands first. The entire editable project remains one ordinary folder.
 
-The public site is the `site/` folder and is intentionally designed as a no-friction, static learning starter.
+The untouched starter is fictional, blocked from indexing, and contains no active contact method. Adopters are responsible for verifying every public fact before choosing to publish. This project does not promise individualized technical support.
 
-## What this repository provides
+## Beginner path
 
-- A complete fictional community site built with static HTML, CSS, and minimal JavaScript.
-- A reusable reference visual system adapted for static delivery.
-- Beginner-safe workflows for safe content updates before publishing.
+Read `START_HERE.txt`, then double-click `START-WEBSITE.bat` to preview the project. `MAKE-AI-COPY.bat` creates a clean ZIP for an ordinary AI tool. `BUILD-WEBSITE.bat` creates `PUBLISH-THIS-FOLDER` for manual hosting after you have personally inspected the result.
 
-## Requirements
+The primary AI workflow is model-independent. The project includes `AI_READ_FIRST.txt`, `MY_WEBSITE_FACTS.txt`, and `CHANGE_REQUEST.txt` to help an AI make complete, safe candidate updates.
 
-- No installation required.
-- No package manager or build step required.
-- No server required for preview.
-- Open `site/index.html` directly in a browser.
+## Technical note
 
-## Current starter state
-
-The `site/` folder is currently in demo mode and must not be presented as a real meeting.
-
-- `site/index.html`
-- `site/meetings.html`
-- `site/about.html`
-- `site/newcomers.html`
-- `site/resources.html`
-- `site/connect.html`
-- `site/404.html`
-- `site/styles.css`
-- `site/script.js`
-- `site/robots.txt`
-
-## Safety and ownership notes
-
-- Every page is tagged with `noindex, nofollow`.
-- A fictional demo marker is preserved on every page.
-- The contact state is non-live in the starter (no real email/phone/address is included).
-
-Before using this for a real group:
-
-- verify facts in `MY_WEBSITE_FACTS.txt` for accuracy,
-- replace demo contacts and links with verified public information,
-- confirm all community policies and accessibility notices.
-
-Publication remains a human decision.
+This is a React, TypeScript, Vite, and React Router application. The normal production command is `npm run build`; Netlify is configured to publish `dist`. No backend, analytics, newsletter, forms, payment flow, or environment variables are required for the public starter.

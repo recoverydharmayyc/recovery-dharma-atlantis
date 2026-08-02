@@ -1,30 +1,30 @@
-RECOVERY DHARMA ATLANTIS — WORKBOOK (Fictional starter data)
+RECOVERY DHARMA ATLANTIS — PUBLIC FACTS WORKSHEET
 
-Use this file as the factual authority for any AI-generated replacement files.
+This starter is filled with fictional tutorial data. Use this file as the factual authority for any AI update.
 
 website name:
-Recovery Dharma Atlantis
+Recovery Dharma Atlantis [FICTIONAL TUTORIAL DATA]
 
 city or region:
-Atlantis, fictional region
+Atlantis, fictional region [FICTIONAL TUTORIAL DATA]
 
 purpose:
-Fictional educational sample for a community website design workflow
+Fictional peer-led recovery community website for an educational tutorial.
 
 meeting day:
-Wednesday
+Wednesday [FICTIONAL TUTORIAL DATA]
 
 meeting time:
-7:00 p.m. to 8:00 p.m.
+7:00 p.m. to 8:00 p.m. [FICTIONAL TUTORIAL DATA]
 
 time zone:
-America/Edmonton
+[UNKNOWN — do not invent]
 
 meeting format:
-In person
+In person [FICTIONAL TUTORIAL DATA]
 
 venue:
-Atlantis Community Room
+Atlantis Community Room [FICTIONAL TUTORIAL DATA]
 
 verified address:
 [NOT PROVIDED]
@@ -33,50 +33,29 @@ verified contact method:
 [NOT PROVIDED]
 
 accessibility information:
-To be verified before publication. Do not imply guaranteed access methods or facilities yet.
+[UNKNOWN — do not imply guarantees]
 
 newcomer information:
-Newcomers welcome. No registration required.
+Newcomers welcome. No registration required. [FICTIONAL TUTORIAL DATA]
 
 approved external links:
-[NONE - add verified links in the adopting environment]
+[NONE]
 
 desired visual feeling:
-Dark, grounded, contemporary, calm peer-support atmosphere with compact structured sections and clear hierarchy.
+Dark forest, cream type, orange and green actions, compact and grounded peer-led community atmosphere.
 
 facts still unknown:
 - Real address
-- Real contact details
-- Accessibility guarantees
-- Verified links
-- Official affiliations and permissions
-- Local policies and meeting procedures
+- Time zone
+- Contact method
+- Accessibility details
+- Public links
+- Policies, organizers, and local procedures
 
 information that must never be invented:
-- real addresses
-- real phone numbers
-- real emails
-- real organizers or personal names
-- real testimonials
-- medical claims or recovery guarantees
-- attendance counts
-- operational history
+- addresses, contact details, names, affiliations, testimonials, accessibility claims
+- schedules or locations beyond approved facts
+- treatment claims, outcomes, attendance figures, or operational history
 
-explicit confirmation of public status:
-All content in this repository is fictional and for tutorial demonstration only.
-Do not publish these details as real community facts.
-
-current structure notes:
-- `site/index.html`
-- `site/meetings.html`
-- `site/about.html`
-- `site/newcomers.html`
-- `site/resources.html`
-- `site/connect.html`
-- `site/404.html`
-
-demo-safety must remain:
-- noindex/nofollow
-- visible fictional notice
-- no active contact endpoint
-- no private or operational YYC data
+explicit confirmation that the information is intended to be public:
+All current facts are fictional tutorial data. They are intended only as a clearly marked public demonstration, not as a real meeting listing.

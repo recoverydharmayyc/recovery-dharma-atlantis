@@ -1,0 +1,22 @@
+# Dependencies and generated website files
+node_modules/
+dist/
+PUBLISH-THIS-FOLDER/
+AI-COPY/
+
+# Local or private configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs and local editor metadata
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

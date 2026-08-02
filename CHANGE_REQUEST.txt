@@ -1,84 +1,63 @@
 CHANGE REQUEST TEMPLATE
-Use this with AI tools plus `AI_READ_FIRST.txt`, `MY_WEBSITE_FACTS.txt`, and current files.
 
-Current approved file:
-- [ ] site/index.html
-- [ ] site/meetings.html
-- [ ] site/about.html
-- [ ] site/newcomers.html
-- [ ] site/resources.html
-- [ ] site/connect.html
-- [ ] site/404.html
-- [ ] site/styles.css
-- [ ] site/script.js
+Attach this file with AI_READ_FIRST.txt, MY_WEBSITE_FACTS.txt, and the current project ZIP.
+
+Current approved project or files:
+- [ ] recovery-dharma-atlantis-source.zip
+- [ ] List any individual files supplied instead:
 
 Goal:
-- [ ] State the visible change requested in one clear sentence.
-- [ ] Keep the static architecture and shared shell unless explicitly changing it.
+- [ ] Describe the visible change in one clear sentence.
 
-Approved facts to keep:
-- [ ] website name
-- [ ] meeting day, time, format, venue
-- [ ] newcomer policy
-- [ ] demo-safety markers and restrictions
-- [ ] unknown status for unverified fields in `MY_WEBSITE_FACTS.txt`
+Approved facts:
+- [ ] List facts from MY_WEBSITE_FACTS.txt that may appear in the result.
 
 Requested visual or behavioral changes:
-- [ ] layout/spacing
-- [ ] typography
-- [ ] action/copy text
-- [ ] navigation behavior
-- [ ] connectivity or link behavior
+- [ ] Describe requested layout, wording, route, or interaction changes.
 
 Things not to change:
-- [ ] noindex, nofollow
-- [ ] robots blocking
-- [ ] fictional demo marker visibility
-- [ ] demo-state marker in `body`
-- [ ] 404 shell style continuity
-- [ ] no real contacts, no Calgary-specific facts
+- [ ] Preserve the React/Vite architecture and routes.
+- [ ] Preserve the fictional notice, noindex/nofollow, robots block, and fictional demo state.
+- [ ] Preserve facts that remain unknown.
+- [ ] Do not add contact forms, analytics, external services, or real contact data.
 
 Definition of done:
-- [ ] only approved files are changed
-- [ ] complete replacement files returned
-- [ ] accessibility structure preserved (skip link, headings, landmarks, focus-visible)
-- [ ] mobile navigation still usable
-- [ ] no external requests added
-- [ ] no real contact endpoint added
+- [ ] Return a complete clean updated source ZIP, or every complete changed file.
+- [ ] List every changed file.
+- [ ] Keep all routes usable on phone and desktop sizes.
+- [ ] State exactly what the owner should inspect.
 
-Required output format:
-- Return complete updated files, not patch snippets.
-- State exactly which files changed and what was preserved.
-- State exactly what the owner should inspect before publishing.
+Required output filename:
+- [ ] recovery-dharma-atlantis-updated-source.zip
 
-Example request:
+Browser checks the owner will perform:
+- [ ] Start the candidate with START-WEBSITE.bat.
+- [ ] Check Home, Meeting, About, New Here, Resources, and Connect.
+- [ ] Check the menu, keyboard focus, fictional notice, and meeting facts.
 
-Please update the fictional meeting heading and time for the homepage hero and meetings page.
+COMPLETE EXAMPLE REQUEST
 
-Current approved files:
-- site/index.html
-- site/meetings.html
+Current approved project:
+- recovery-dharma-atlantis-source.zip
 
 Goal:
-- Keep all structure and styling intact while changing only these facts:
-  - Meeting day
-  - Meeting time
+- Change the fictional meeting day from Wednesday to Thursday and the time from 7:00 p.m. to 8:00 p.m. to 6:30 p.m. to 7:30 p.m.
 
-Approved facts to keep:
-- Meeting day: Wednesday
-- Meeting time: 7:00 p.m. to 8:00 p.m.
+Approved facts:
+- Website name: Recovery Dharma Atlantis
+- Day: Thursday
+- Time: 6:30 p.m. to 7:30 p.m.
+- Format: In person
 - Venue: Atlantis Community Room
+- Newcomers welcome; no registration required
 
-Requested visual or behavioral changes:
-- Update the meeting details in:
-  - hero and CTA copy on `site/index.html`
-  - meeting card content in `site/meetings.html`
+Requested changes:
+- Update the factual content module and all affected page wording.
+- Do not redesign the dark forest interface.
 
 Things not to change:
-- Keep nav shell, footer, skip link, focus handling, and mobile menu behavior.
-- Keep demo notice visible in both pages.
+- Keep every route, fictional notice, noindex/nofollow, robots block, and no-contact state.
 
 Definition of done:
-- Return complete updated `site/index.html` and `site/meetings.html`.
-- Preserve all demo-safety markers and noindex directives.
-- No new real links, contacts, or operational data introduced.
+- Return a complete clean source ZIP named recovery-dharma-atlantis-updated-source.zip.
+- List every changed file and tell me which pages to inspect.

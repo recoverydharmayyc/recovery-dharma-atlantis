@@ -1,50 +1,21 @@
-START HERE — publish safely
+START HERE — work safely with your website
 
-This process does not require any coding tools or terminal commands.
+You do not need to learn programming words to use this starter.
 
-1) Keep an untouched verified copy
-- Keep one copy of this repository as your approved reference.
-- Keep a second copy for edits and review.
+1. Install Node.js LTS once. Go to https://nodejs.org/ and choose the LTS download.
+2. Keep one untouched approved copy of this whole project folder.
+3. Make a separate candidate copy before every change.
+4. In the candidate, double-click START-WEBSITE.bat. A browser preview opens. Closing the command window stops it.
+5. Double-click MAKE-AI-COPY.bat. It creates AI-COPY\recovery-dharma-atlantis-source.zip.
+6. Attach that ZIP, AI_READ_FIRST.txt, MY_WEBSITE_FACTS.txt, and CHANGE_REQUEST.txt to an AI tool that accepts files.
+7. Ask for a complete updated project ZIP, or every complete changed file if it cannot make a ZIP.
+8. Extract the returned candidate separately. Do not overwrite your approved copy.
+9. Double-click START-WEBSITE.bat in the returned candidate. Check Home, Meeting, About, New Here, Resources, and Connect.
+10. Correct it, approve it, or delete it. Keep only versions you have personally inspected.
+11. Publish only a version you personally inspected. For manual hosting, run BUILD-WEBSITE.bat and upload the contents of PUBLISH-THIS-FOLDER.
 
-2) Make a candidate copy
-- Work only in the candidate copy during revision cycles.
+Important: this untouched starter is fictional. It is not a real meeting listing. Do not remove the fictional notices, indexing block, or placeholder state until every public fact has been verified and you knowingly decide to convert it.
 
-3) Ask for updates using the right files
-- Attach:
-  - `AI_READ_FIRST.txt`
-  - `MY_WEBSITE_FACTS.txt`
-  - `CHANGE_REQUEST.txt`
-  - the current complete site folder contents (`site/`)
-- Ask for one complete replacement file set.
+ADVANCED TROUBLESHOOTING
 
-4) Apply the result
-- Save only the files the AI returns to your candidate copy.
-- Keep all files as full, complete replacements.
-
-5) Review before publishing
-- Open `site/index.html` in a browser.
-- Open `site/meetings.html`, `site/about.html`, `site/newcomers.html`, `site/resources.html`, `site/connect.html`, and `site/404.html`.
-- Confirm:
-  - skip link works,
-  - keyboard focus is visible,
-  - mobile menu opens/closes,
-  - no broken local navigation,
-  - no missing files or broken images,
-  - demo notice is present on every page.
-
-6) Correct, approve, or repeat
-- If anything is wrong, request a new complete file set and repeat review.
-- Keep only an approved copy for publication.
-
-7) Publish decision
-- Never publish until all checks are approved by you personally.
-
-7) What to verify first before going live
-- `MY_WEBSITE_FACTS.txt` matches published copy,
-- no fictional/placeholder details remain as if real,
-- no real contact endpoint is shown unless verified,
-- header, footer, and mobile menu are visible and usable.
-
-Learner workflow reminder:
-- The site is a static folder (`site/`) that includes multiple pages.
-- No separate build step is required for local review.
+The batch files are the normal path. A technical helper can run `npm ci`, `npm run dev`, and `npm run verify` from this folder if they need to diagnose a problem.
