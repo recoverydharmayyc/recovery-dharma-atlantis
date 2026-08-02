@@ -1,4 +1,4 @@
-RELEASE: Tutorial Data v1 (for learning, not real operations)
+RELEASE: Tutorial Data v2 (for learning, not real operations)
 
 Fill in with your verified facts before publishing.
 
@@ -33,7 +33,7 @@ Verified contact method:
 [NOT PROVIDED] keep as unknown until verified
 
 Accessibility information:
-Sample notes: wheelchair-accessible room entry, stairs may be present at side access, no registration needed, parking and transit details to be confirmed.
+To be confirmed before publishing; do not claim accessibility commitments until verified.
 
 Newcomer information:
 Newcomers welcome; no registration required.
