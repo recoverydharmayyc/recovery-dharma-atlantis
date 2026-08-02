@@ -1,80 +1,84 @@
 CHANGE REQUEST TEMPLATE
-Use this with AI READ FIRST instructions and approved facts.
+Use this with AI tools plus `AI_READ_FIRST.txt`, `MY_WEBSITE_FACTS.txt`, and current files.
 
 Current approved file:
-- [ ]
+- [ ] site/index.html
+- [ ] site/meetings.html
+- [ ] site/about.html
+- [ ] site/newcomers.html
+- [ ] site/resources.html
+- [ ] site/connect.html
+- [ ] site/404.html
+- [ ] site/styles.css
+- [ ] site/script.js
 
 Goal:
-- [ ] What should this change achieve?
+- [ ] State the visible change requested in one clear sentence.
+- [ ] Keep the static architecture and shared shell unless explicitly changing it.
 
 Approved facts to keep:
-- [ ] Copy exactly from MY_WEBSITE_FACTS.txt
-- [ ] Do not invent new facts
+- [ ] website name
+- [ ] meeting day, time, format, venue
+- [ ] newcomer policy
+- [ ] demo-safety markers and restrictions
+- [ ] unknown status for unverified fields in `MY_WEBSITE_FACTS.txt`
 
 Requested visual or behavioral changes:
-- [ ] Change [ ] to [ ]
-- [ ] Update [ ]
-- [ ] Keep accessibility and demo-safety markers intact
+- [ ] layout/spacing
+- [ ] typography
+- [ ] action/copy text
+- [ ] navigation behavior
+- [ ] connectivity or link behavior
 
 Things not to change:
-- [ ] Keep noindex/nofollow active
-- [ ] Keep robots.txt disallowing indexing
-- [ ] Keep demo-state notice visible
-- [ ] Keep site readable with JavaScript disabled
-- [ ] Keep original file names unless a new filename is explicitly requested
+- [ ] noindex, nofollow
+- [ ] robots blocking
+- [ ] fictional demo marker visibility
+- [ ] demo-state marker in `body`
+- [ ] 404 shell style continuity
+- [ ] no real contacts, no Calgary-specific facts
 
 Definition of done:
-- [ ] Replacement file is complete and valid HTML in one file
-- [ ] No missing required assets
-- [ ] Facts still match MY_WEBSITE_FACTS.txt
-- [ ] Accessibility structure is preserved (headings, landmarks, links, focus states, keyboard nav)
+- [ ] only approved files are changed
+- [ ] complete replacement files returned
+- [ ] accessibility structure preserved (skip link, headings, landmarks, focus-visible)
+- [ ] mobile navigation still usable
+- [ ] no external requests added
+- [ ] no real contact endpoint added
 
-Required output:
-- One complete replacement file: `site/index.html`
+Required output format:
+- Return complete updated files, not patch snippets.
+- State exactly which files changed and what was preserved.
+- State exactly what the owner should inspect before publishing.
 
-Browser checks the owner will perform:
-- Open by double-clicking `site/index.html`
-- Check heading order and section flow
-- Test Tab navigation and skip link
-- Test mobile menu open/close
-- Confirm fictional status is visible in header and footer
-- Confirm no hidden instructions or missing content
+Example request:
 
---------------------------------------------------------------------------------
-Example request (complete):
+Please update the fictional meeting heading and time for the homepage hero and meetings page.
 
-Please update the fictional meeting day and time using the approved facts in MY_WEBSITE_FACTS.txt.
-
-Current approved file:
+Current approved files:
 - site/index.html
+- site/meetings.html
 
 Goal:
-- Change the hero and meeting details to show:
-  - Meeting day: Wednesday
-  - Time: 7:00 p.m. to 8:00 p.m.
-- Do not change anything else unless needed for layout.
+- Keep all structure and styling intact while changing only these facts:
+  - Meeting day
+  - Meeting time
 
 Approved facts to keep:
-- Meeting day/time, city/region, venue, and newcomer policy from MY_WEBSITE_FACTS.txt.
-- Demo-state and safety markers (fictional banner, noindex, robots disallow, footer status).
+- Meeting day: Wednesday
+- Meeting time: 7:00 p.m. to 8:00 p.m.
+- Venue: Atlantis Community Room
 
 Requested visual or behavioral changes:
-- Update only the visible meeting schedule text in the hero and meeting details block.
-- Keep mobile navigation and skip link behavior unchanged.
+- Update the meeting details in:
+  - hero and CTA copy on `site/index.html`
+  - meeting card content in `site/meetings.html`
 
 Things not to change:
-- All factual safety markers.
-- File structure.
-- Accessibility improvements already present.
+- Keep nav shell, footer, skip link, focus handling, and mobile menu behavior.
+- Keep demo notice visible in both pages.
 
 Definition of done:
-- Return a complete replacement `site/index.html` with the updated day/time in all relevant places.
-
-Required output filename:
-- site/index.html
-
-Browser checks the owner will perform:
-- Open `site/index.html`
-- Confirm updated date/time appears in hero and details sections
-- Confirm fictitious status banner is present
-- Verify keyboard navigation still works and no console errors appear
+- Return complete updated `site/index.html` and `site/meetings.html`.
+- Preserve all demo-safety markers and noindex directives.
+- No new real links, contacts, or operational data introduced.

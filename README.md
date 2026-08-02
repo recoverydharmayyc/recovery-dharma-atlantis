@@ -1,27 +1,49 @@
-# Recovery Dharma Atlantis Starter
+# Recovery Dharma Atlantis
 
-This repository is an independent fictional educational starter, built to help learners own a simple, static one-page website.  
-It is **not** the Recovery Dharma YYC website, does not represent any real community operations, and does not contain private or operational YYC information.
+This is an independent fictional educational repository for a plain static website training flow.
 
-The files are intentionally plain and dependency-free:
+It is **not** the Recovery Dharma YYC website, not an official Recovery Dharma Global product, and not a replacement for any existing site.
 
-- `index.html` is a single-file static page (HTML/CSS/JS).
-- No package manager, build pipeline, or server is required.
-- Preview by opening `site/index.html` directly.
-- The untouched starter remains in clearly marked demo mode for workshop safety.
+The public site is the `site/` folder and is intentionally designed as a no-friction, static learning starter.
 
-This project is not an official Recovery Dharma Global product and is not a copy or replacement of any existing website.
+## What this repository provides
 
-If you adopt this starter for a real community site, you must verify every public fact before publishing.
+- A complete fictional community site built with static HTML, CSS, and minimal JavaScript.
+- A reusable reference visual system adapted for static delivery.
+- Beginner-safe workflows for safe content updates before publishing.
 
-## Included learner workflow files
+## Requirements
 
-- `README.md` (this file)
-- `AI_READ_FIRST.txt`
-- `MY_WEBSITE_FACTS.txt`
-- `CHANGE_REQUEST.txt`
-- `START_HERE.txt`
-- `netlify.toml`
-- `site/` static files
+- No installation required.
+- No package manager or build step required.
+- No server required for preview.
+- Open `site/index.html` directly in a browser.
 
-This starter is intended for AI-assisted website ownership workflows. No individual technical support is promised by this repository.
+## Current starter state
+
+The `site/` folder is currently in demo mode and must not be presented as a real meeting.
+
+- `site/index.html`
+- `site/meetings.html`
+- `site/about.html`
+- `site/newcomers.html`
+- `site/resources.html`
+- `site/connect.html`
+- `site/404.html`
+- `site/styles.css`
+- `site/script.js`
+- `site/robots.txt`
+
+## Safety and ownership notes
+
+- Every page is tagged with `noindex, nofollow`.
+- A fictional demo marker is preserved on every page.
+- The contact state is non-live in the starter (no real email/phone/address is included).
+
+Before using this for a real group:
+
+- verify facts in `MY_WEBSITE_FACTS.txt` for accuracy,
+- replace demo contacts and links with verified public information,
+- confirm all community policies and accessibility notices.
+
+Publication remains a human decision.

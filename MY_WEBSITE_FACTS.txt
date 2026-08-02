@@ -1,64 +1,82 @@
-RELEASE: Tutorial Data v2 (for learning, not real operations)
+RECOVERY DHARMA ATLANTIS — WORKBOOK (Fictional starter data)
 
-Fill in with your verified facts before publishing.
+Use this file as the factual authority for any AI-generated replacement files.
 
-Website name:
+website name:
 Recovery Dharma Atlantis
 
-City or region:
+city or region:
 Atlantis, fictional region
 
-Purpose:
-Fictional educational sample for peer-led recovery meeting website workflow testing.
+purpose:
+Fictional educational sample for a community website design workflow
 
-Meeting day:
+meeting day:
 Wednesday
 
-Meeting time:
+meeting time:
 7:00 p.m. to 8:00 p.m.
 
-Time zone:
-UTC−07:00 (America/Edmonton)
+time zone:
+America/Edmonton
 
-Meeting format:
+meeting format:
 In person
 
-Venue:
+venue:
 Atlantis Community Room
 
-Verified address:
-[NOT PROVIDED] keep as unknown until verified
+verified address:
+[NOT PROVIDED]
 
-Verified contact method:
-[NOT PROVIDED] keep as unknown until verified
+verified contact method:
+[NOT PROVIDED]
 
-Accessibility information:
-To be confirmed before publishing; do not claim accessibility commitments until verified.
+accessibility information:
+To be verified before publication. Do not imply guaranteed access methods or facilities yet.
 
-Newcomer information:
-Newcomers welcome; no registration required.
+newcomer information:
+Newcomers welcome. No registration required.
 
-Approved external links:
-[NONE - add verified links before publishing]
+approved external links:
+[NONE - add verified links in the adopting environment]
 
-Desired visual feeling:
-Calm, grounded, contemporary, sea-glass + paper + ink style with clear typography and generous spacing.
+desired visual feeling:
+Dark, grounded, contemporary, calm peer-support atmosphere with compact structured sections and clear hierarchy.
 
-Facts still unknown:
+facts still unknown:
 - Real address
 - Real contact details
-- Real host/organizational contacts
-- Verified accessibility commitments
+- Accessibility guarantees
 - Verified links
+- Official affiliations and permissions
+- Local policies and meeting procedures
 
-Information that must never be invented:
-- Names of people, hosts, volunteers, or organizers
-- Real street address
-- Real phone numbers and emails
-- Meeting endorsements from Recovery Dharma Global
-- Recovery outcomes, guarantees, or medical claims
-- Attendance counts or statistics
+information that must never be invented:
+- real addresses
+- real phone numbers
+- real emails
+- real organizers or personal names
+- real testimonials
+- medical claims or recovery guarantees
+- attendance counts
+- operational history
 
-Explicit confirmation of public status:
-The current facts above are fictional sample data for tutorial use.
-Do not publish these as real public facts.
+explicit confirmation of public status:
+All content in this repository is fictional and for tutorial demonstration only.
+Do not publish these details as real community facts.
+
+current structure notes:
+- `site/index.html`
+- `site/meetings.html`
+- `site/about.html`
+- `site/newcomers.html`
+- `site/resources.html`
+- `site/connect.html`
+- `site/404.html`
+
+demo-safety must remain:
+- noindex/nofollow
+- visible fictional notice
+- no active contact endpoint
+- no private or operational YYC data

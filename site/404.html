@@ -5,52 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Page not found — Recovery Dharma Atlantis</title>
-    <style>
-      :root {
-        --ink: #17313a;
-        --sea-soft: #d3ecef;
-        --line: #c4d4d8;
-      }
-
-      body {
-        font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(180deg, #f7fbfc 0%, #f4f8f2 100%);
-        color: var(--ink);
-        padding: 1rem;
-      }
-
-      .wrap {
-        max-width: 42ch;
-        background: #fcfdf9;
-        border: 1px solid var(--line);
-        padding: 1.5rem;
-        border-radius: 0.8rem;
-      }
-
-      a {
-        color: #2d7280;
-      }
-
-      :focus-visible {
-        outline: 3px solid #6ca7b2;
-        outline-offset: 2px;
-      }
-    </style>
+    <link rel="icon" href="assets/faviconTarget.ico" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body data-demo-mode="fictional" data-project="recovery-dharma-atlantis">
-    <main class="wrap">
-      <p class="demo" role="status" aria-live="polite">
-        Fictional tutorial website only: this route is a sample not a live meeting page.
-      </p>
-      <h1>Page not found</h1>
-      <p>
-        You reached a route that does not exist in this starter.
-      </p>
-      <a href="index.html">Return to Recovery Dharma Atlantis home</a>
-    </main>
+  <body data-demo-state="fictional">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container">
+          <div class="header-bar">
+            <h1 class="site-title">
+              <a class="site-title-link" href="index.html">
+                <span class="site-title-icon" aria-hidden="true"></span>
+                Recovery Dharma Atlantis
+              </a>
+            </h1>
+            <div class="header-actions">
+              <nav class="nav-inline" aria-label="Primary">
+                <a href="meetings.html">Meeting</a>
+                <a href="about.html">About</a>
+                <a href="newcomers.html">New Here</a>
+                <a href="resources.html">Resources</a>
+                <a href="connect.html">Connect</a>
+              </nav>
+              <nav class="nav-pop" aria-label="Site menu">
+                <details id="mobile-nav">
+                  <summary id="mobile-nav-toggle" class="nav-toggle" aria-controls="mobile-nav-links">
+                    <span class="nav-toggle-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Open menu</span>
+                  </summary>
+                  <div id="mobile-nav-links" class="nav-sheet">
+                    <a href="index.html">Home</a>
+                    <a href="meetings.html">Meeting</a>
+                    <a href="about.html">About</a>
+                    <a href="newcomers.html">New Here</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="connect.html">Connect</a>
+                  </div>
+                </details>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="route-transition-surface">
+        <section class="site-status-banner" aria-label="Tutorial status">
+          <div class="site-status-banner-container">
+            <div class="site-status-banner-inner">
+              <span class="site-status-banner-accent" aria-hidden="true"></span>
+              <div class="site-status-banner-copy">
+                <p class="site-status-banner-label site-status-banner-label--quiet">Tutorial demonstration</p>
+                <div class="site-status-banner-main">
+                  <p class="site-status-banner-title">
+                    Recovery Dharma Atlantis is fictional and is not a real meeting.
+                  </p>
+                  <p class="site-status-banner-meta">
+                    This sample keeps all navigation and states in the same shared visual shell.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <main class="site-main" id="main-content">
+            <section class="container error-page" aria-labelledby="error-page-title">
+            <div class="error-hero">
+              <p class="error-eyebrow">Route not found</p>
+              <h2 class="error-title" id="error-page-title">Page not found</h2>
+              <p class="error-lede">
+                This route does not exist in this demonstration repository.
+                This demo includes only the canonical pages in this starter.
+              </p>
+              <p class="about-copy">
+                <a class="about-book-link" href="index.html">Return to homepage</a>
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="footer" aria-label="Site background">
+        <img
+          src="assets/forest_deep_two.png"
+          alt=""
+          class="forest-image"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <p class="site-footer-note">
+          Tutorial sample for educational use — Recovery Dharma Atlantis is fictional and is not a
+          real meeting.
+        </p>
+      </footer>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>

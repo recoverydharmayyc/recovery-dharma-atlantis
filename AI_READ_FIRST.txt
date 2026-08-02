@@ -1,40 +1,54 @@
 MODEL-INDUSTRY-NEUTRAL INSTRUCTIONS
-Read this file before making any edits.
+Read this file before making edits.
 
-1) Repo assumption:
-- The attached files are a read-only snapshot for editing guidance.
-- You may propose replacement content only through complete replacement files.
-- You cannot directly edit the owner’s computer, their GitHub account, hosting account, or live site.
+1) Snapshot and scope
+- The attached files are a read-only snapshot for AI-assisted editing guidance.
+- The AI must not change your local environment, Git settings, or any other repository.
+- This repository contains an ordinary static site design for educational use.
 
-2) Factual authority:
-- `MY_WEBSITE_FACTS.txt` is the only facts authority for this starter.
-- Treat anything not listed there as unknown until explicitly provided.
-- Do not invent names, dates, schedules, locations, addresses, contact methods, links, affiliations, prices, policies, accessibility claims, or testimonials.
-- Keep unknown fields as unknown in replacement content.
+2) Factual authority
+- `MY_WEBSITE_FACTS.txt` is the only factual source for public content.
+- If a field is marked unknown, the AI must keep it unknown in output.
+- Do not invent names, schedules, addresses, contacts, links, affiliations, outcomes, testimonials, or statistics.
 
-3) Protection and safety markers:
-- Keep all demo-state markers, noindex instructions, and fictional notices exactly as-is:
-  - noindex/nofollow
-  - robots protection
-  - visible fictional demo-status messaging
-  - body/demo-state marker
-- Do not remove or hide these unless the owner confirms all public facts are verified and explicitly requests conversion to a real site.
+3) Mandatory demo constraints
+- Keep all demo-safety states unless the owner explicitly requests conversion after full verification:
+  - `noindex, nofollow`
+  - robots blocking
+  - clear fictional notice on every page
+  - `data-demo-state="fictional"` in body
+- Do not remove or hide these markers.
 
-4) Scope:
-- Preserve unrelated structure and behavior (navigation, layout behavior, accessibility patterns, file organization) unless the request explicitly asks to change them.
-- If unrelated content is changed for no reason, report that as an unnecessary change.
+4) Working structure to preserve
+- Do not remove the complete file-and-page structure: `site/index.html`, `site/meetings.html`, `site/about.html`,
+  `site/newcomers.html`, `site/resources.html`, `site/connect.html`, `site/404.html`.
+- Preserve shared shell classes and page files unless a request explicitly changes design/system.
+- Preserve:
+  - shared navigation behavior,
+  - footer/forest structure,
+  - keyboard behaviors,
+  - skip link,
+  - focus-visible styles,
+  - no-JS usability.
 
-5) Output format:
-- Return complete replacement files only. Do not output line-only patches, diffs, fragments, ellipses, or “replace this section” instructions.
-- Preserve original filenames unless the owner explicitly asks for new file names.
+5) Output requirements
+- Return complete replacement files, not patch snippets.
+- Do not return only diffs, fragments, ellipses, or directions like "replace this section".
+- Preserve original filenames unless the request explicitly asks for different names.
 
-6) Reporting:
-- After generating replacements, explain:
-  - what changed
-  - what was preserved
-  - what should be inspected by the owner
-  - any uncertainty left after your work
+6) Required report format after generation
+The AI must state:
+- what changed,
+- what was preserved,
+- which files changed,
+- what the owner should inspect,
+- any open uncertainty,
+- what to verify before publishing.
 
-7) Publication:
-- Publication is a human decision.
-- The owner must inspect the resulting files before publishing.
+7) Multi-page workflow requirement
+- Keep all pages requested by the adopter, and preserve unchanged navigation and shared assets unless explicitly requested.
+- If the request is for a single-page update, update only requested pages while preserving the rest of the site shell.
+
+8) Publication boundary
+- Publishing remains a human decision.
+- The owner must open and approve resulting files before deployment.
