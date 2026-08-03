@@ -1,6 +1,5 @@
-// Pure time-zone helpers for the editable Atlantis meeting configuration.
 export const ATLANTIS_TIME_ZONE = "Etc/GMT+3";
-export const MINUTE_MS = 60 * 1000;
+export const MINUTE_MS = 60 * 1_000;
 export const HOUR_MS = 60 * MINUTE_MS;
 export const DAY_MS = 24 * HOUR_MS;
 
@@ -37,23 +36,45 @@ export function parseClockTime(value: unknown): ClockTime | null {
 }
 
 export function parsePlainDate(value: unknown): PlainDate | null {
-  const parts = String(value || "")
-    .split("-")
-    .map(Number);
-  if (parts.length !== 3 || parts.some((part) => !Number.isInteger(part))) return null;
-  const [year, month, day] = parts;
-  if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+  if (typeof value !== "string") return null;
+  const match = value.trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const candidate = new Date(Date.UTC(year, month - 1, day, 12));
+  if (
+    candidate.getUTCFullYear() !== year ||
+    candidate.getUTCMonth() + 1 !== month ||
+    candidate.getUTCDate() !== day
+  )
+    return null;
   return { year, month, day };
 }
 
-export function safeTimeZone(value: unknown, fallback = ATLANTIS_TIME_ZONE): string {
-  const timeZone = typeof value === "string" && value.trim() ? value.trim() : fallback;
+export function isValidTimeZone(value: unknown): value is string {
+  if (typeof value !== "string" || !value.trim()) return false;
   try {
-    new Intl.DateTimeFormat("en-US", { timeZone }).format(new Date());
-    return timeZone;
+    new Intl.DateTimeFormat("en-US", { timeZone: value.trim() }).format(new Date());
+    return true;
   } catch {
-    return fallback;
+    return false;
   }
+}
+
+export function safeTimeZone(value: unknown, fallback = ATLANTIS_TIME_ZONE): string {
+  return isValidTimeZone(value) ? value.trim() : fallback;
+}
+
+export function clockMinutes(value: unknown): number | null {
+  const parsed = parseClockTime(value);
+  return parsed ? parsed.hour * 60 + parsed.minute : null;
+}
+
+export function isForwardClockRange(startTime: unknown, endTime: unknown): boolean {
+  const start = clockMinutes(startTime);
+  const end = clockMinutes(endTime);
+  return start !== null && end !== null && end > start;
 }
 
 export function getZonedDateTimeParts(date: Date, timeZone: string): ZonedDateParts {

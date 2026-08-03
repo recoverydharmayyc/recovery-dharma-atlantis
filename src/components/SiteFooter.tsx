@@ -1,6 +1,6 @@
-import { SITE } from "../../content/site";
+import { SITE } from "../content/site";
 
-export default function Footer() {
+export default function SiteFooter() {
   return (
     <>
       <footer className="site-footer" aria-label="Fictional site status">

@@ -1,3 +1,5 @@
+import { ROUTE_PATHS } from "../config/site";
+
 export type Resource = {
   title: string;
   description: string;
@@ -70,7 +72,7 @@ export const RESOURCES_CONTENT = {
           description:
             "See the two fictional Atlantis gatherings used throughout this tutorial project.",
           action: "View fictional meetings",
-          href: "/meetings",
+          href: ROUTE_PATHS.meetings,
           internal: true,
         },
       ],

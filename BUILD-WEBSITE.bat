@@ -17,12 +17,14 @@ if not exist "node_modules\" (
 )
 
 echo.
-echo Building the website for publication...
-call npm run build
+echo Checking and building the website for publication...
+call npm run verify
 if errorlevel 1 goto :build_failed
 
 if exist "%PUBLISH_DIR%\" rmdir /s /q "%PUBLISH_DIR%"
+if exist "%PUBLISH_DIR%\" goto :copy_failed
 mkdir "%PUBLISH_DIR%"
+if errorlevel 1 goto :copy_failed
 xcopy "%PROJECT_DIR%dist\*" "%PUBLISH_DIR%\" /E /I /H /Y >nul
 if errorlevel 1 goto :copy_failed
 
@@ -47,7 +49,7 @@ exit /b 1
 
 :build_failed
 echo.
-echo The website could not be built. Nothing has been published.
+echo The website checks or production build did not finish. Nothing has been published.
 pause
 exit /b 1
 

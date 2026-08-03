@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { SITE_CONFIG } from "../config/site";
 import { LOCAL_MEETINGS } from "../content/meetings";
 import { SITE } from "../content/site";
 
 test("starter facts remain fictional and contain two recurring local meetings", () => {
+  assert.equal(SITE_CONFIG.demoMode, true);
   assert.equal(SITE.demoState, "fictional");
   assert.match(SITE.footerNotice, /fictional tutorial community/i);
   assert.equal(LOCAL_MEETINGS.length, 2);

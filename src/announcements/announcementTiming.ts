@@ -1,3 +1,4 @@
+import { ROUTE_PATHS, isSafeSiteHref } from "../config/site";
 import {
   COMMUNITY_ANNOUNCEMENT,
   TEMPORARY_MEETING_ANNOUNCEMENT,
@@ -5,18 +6,16 @@ import {
   type ScheduledCommunityAnnouncement,
 } from "../content/announcements";
 import type { TemporaryMeeting, TemporaryMeetingOccurrence } from "../content/meetings";
+import { validateTemporaryMeeting } from "../meetings/localMeetings";
 import {
-  DAY_MS,
-  HOUR_MS,
   MINUTE_MS,
   formatClockInZone,
   formatRelativeDay,
   getTimeZoneShortName,
   parseClockTime,
   parsePlainDate,
-  safeTimeZone,
   zonedTimeToUtc,
-} from "../meetings/time";
+} from "../meetings/meetingTime";
 
 export type AnnouncementTone = "early" | "soon" | "late";
 export type ActiveAnnouncement = {
@@ -33,22 +32,27 @@ type DatedTemporaryOccurrence = TemporaryMeetingOccurrence & {
   endsAt: Date;
 };
 
+function hasText(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
 function makeDatedTime(value: ScheduledAnnouncementTime | null): Date | null {
   if (!value) return null;
   const date = parsePlainDate(value.date);
   const time = parseClockTime(value.time);
-  if (!date || !time) return null;
-  return zonedTimeToUtc(
-    { ...date, hour: time.hour, minute: time.minute },
-    safeTimeZone(value.timeZone),
-  );
+  if (!date || !time || !value.timeZone) return null;
+  try {
+    return zonedTimeToUtc({ ...date, hour: time.hour, minute: time.minute }, value.timeZone);
+  } catch {
+    return null;
+  }
 }
 
 export function findTemporaryMeetingOccurrence(
   now: Date,
   temporaryMeeting: TemporaryMeeting = TEMPORARY_MEETING_ANNOUNCEMENT,
 ): DatedTemporaryOccurrence | null {
-  if (!temporaryMeeting.enabled || !Array.isArray(temporaryMeeting.occurrences)) return null;
+  if (validateTemporaryMeeting(temporaryMeeting).length > 0) return null;
 
   return (
     temporaryMeeting.occurrences
@@ -56,16 +60,15 @@ export function findTemporaryMeetingOccurrence(
         const date = parsePlainDate(occurrence.date);
         const start = parseClockTime(occurrence.startTime);
         const end = parseClockTime(occurrence.endTime);
-        const timeZone = safeTimeZone(occurrence.timeZone);
-        if (!date || !start) return null;
+        if (!date || !start || !end) return null;
         const startsAt = zonedTimeToUtc(
           { ...date, hour: start.hour, minute: start.minute },
-          timeZone,
+          occurrence.timeZone,
         );
-        let endsAt = end
-          ? zonedTimeToUtc({ ...date, hour: end.hour, minute: end.minute }, timeZone)
-          : new Date(startsAt.getTime() + HOUR_MS);
-        if (endsAt <= startsAt) endsAt = new Date(endsAt.getTime() + DAY_MS);
+        const endsAt = zonedTimeToUtc(
+          { ...date, hour: end.hour, minute: end.minute },
+          occurrence.timeZone,
+        );
         return endsAt > now ? { ...occurrence, startsAt, endsAt } : null;
       })
       .filter((occurrence): occurrence is DatedTemporaryOccurrence => occurrence !== null)
@@ -77,11 +80,18 @@ export function isScheduledAnnouncementActive(
   now: Date,
   announcement: ScheduledCommunityAnnouncement = COMMUNITY_ANNOUNCEMENT,
 ): boolean {
-  if (!announcement.enabled) return false;
+  if (
+    !announcement.enabled ||
+    !hasText(announcement.label) ||
+    !hasText(announcement.title) ||
+    !hasText(announcement.text) ||
+    !isSafeSiteHref(announcement.href)
+  )
+    return false;
   const startsAt = makeDatedTime(announcement.startsAt);
   const expiresAt = makeDatedTime(announcement.expiresAt);
-  if (startsAt && now < startsAt) return false;
-  return !(expiresAt && now >= expiresAt);
+  if (!startsAt || !expiresAt || expiresAt <= startsAt) return false;
+  return now >= startsAt && now < expiresAt;
 }
 
 function formatTimeUntil(startsAt: Date, now: Date): { label: string; tone: AnnouncementTone } {
@@ -103,25 +113,23 @@ export function getActiveAnnouncement(
   const occurrence = findTemporaryMeetingOccurrence(now, temporaryMeeting);
 
   if (occurrence) {
-    const timeZone = safeTimeZone(occurrence.timeZone);
     const timing = formatTimeUntil(occurrence.startsAt, now);
-    const zone = getTimeZoneShortName(occurrence.startsAt, timeZone);
+    const zone = getTimeZoneShortName(occurrence.startsAt, occurrence.timeZone);
     return {
-      label:
-        (temporaryMeeting.shortBannerLabel ? temporaryMeeting.shortBannerLabel + " · " : "") +
-        timing.label,
+      label: `${temporaryMeeting.shortBannerLabel} · ${timing.label}`,
       title: temporaryMeeting.title,
       details:
-        (temporaryMeeting.shortBannerText ? temporaryMeeting.shortBannerText + " " : "") +
-        formatRelativeDay(occurrence.startsAt, now, timeZone) +
+        temporaryMeeting.shortBannerText +
+        " " +
+        formatRelativeDay(occurrence.startsAt, now, occurrence.timeZone) +
         " · " +
-        formatClockInZone(occurrence.startsAt, timeZone) +
+        formatClockInZone(occurrence.startsAt, occurrence.timeZone) +
         (zone ? " " + zone : "") +
         " · " +
         temporaryMeeting.venueOrOnlineDescription,
-      href: "/meetings",
+      href: `${ROUTE_PATHS.meetings}#local-schedule`,
       tone: timing.tone,
-      ariaLabel: temporaryMeeting.shortBannerLabel || temporaryMeeting.title,
+      ariaLabel: temporaryMeeting.shortBannerLabel,
     };
   }
 
@@ -130,15 +138,11 @@ export function getActiveAnnouncement(
       label: communityAnnouncement.label,
       title: communityAnnouncement.title,
       details: communityAnnouncement.text,
-      href: communityAnnouncement.href || "/meetings",
+      href: communityAnnouncement.href,
       tone: "early",
-      ariaLabel: communityAnnouncement.title || communityAnnouncement.label,
+      ariaLabel: communityAnnouncement.title,
     };
   }
 
   return null;
-}
-
-export function shouldRenderAnnouncementBanner(announcement: ActiveAnnouncement | null): boolean {
-  return announcement !== null;
 }

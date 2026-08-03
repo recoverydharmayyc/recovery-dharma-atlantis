@@ -1,4 +1,5 @@
 import type { TemporaryMeeting } from "./meetings";
+import { ROUTE_PATHS } from "../config/site";
 
 export type ScheduledAnnouncementTime = {
   date: string;
@@ -20,6 +21,7 @@ export type ScheduledCommunityAnnouncement = {
 // tutorial, an owner can enable this object and add a verified future occurrence.
 export const TEMPORARY_MEETING_ANNOUNCEMENT: TemporaryMeeting = {
   enabled: false,
+  derivedFromMeetingId: null,
   title: "Temporary community meeting",
   shortBannerLabel: "Extra meeting",
   shortBannerText: "A one-time gathering has been added.",
@@ -36,7 +38,7 @@ export const COMMUNITY_ANNOUNCEMENT: ScheduledCommunityAnnouncement = {
   label: "Community update",
   title: "",
   text: "",
-  href: "/meetings",
+  href: ROUTE_PATHS.meetings,
   startsAt: null,
   expiresAt: null,
 };

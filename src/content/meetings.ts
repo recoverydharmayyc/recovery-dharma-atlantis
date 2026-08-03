@@ -1,4 +1,4 @@
-import { ATLANTIS_TIME_ZONE, type DayIndex } from "../meetings/time";
+import { ATLANTIS_TIME_ZONE, type DayIndex } from "../meetings/meetingTime";
 
 export type LocalMeeting = {
   id: string;
@@ -13,7 +13,7 @@ export type LocalMeeting = {
   timeZoneLabel: string;
   format: "In person";
   venue: string;
-  verifiedPublicLink: null;
+  verifiedPublicLink: string | null;
   description: string;
   recurrence: "weekly";
   newcomerNote: string;
@@ -29,6 +29,7 @@ export type TemporaryMeetingOccurrence = {
 
 export type TemporaryMeeting = {
   enabled: boolean;
+  derivedFromMeetingId: string | null;
   title: string;
   shortBannerLabel: string;
   shortBannerText: string;

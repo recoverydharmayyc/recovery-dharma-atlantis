@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { ROUTE_PATHS } from "../config/site";
 import { NEWCOMERS_CONTENT } from "../content/newcomers";
 import "./About.css";
 import "./Newcomers.css";
@@ -43,7 +44,7 @@ export default function Newcomers() {
               </li>
             ))}
           </ol>
-          <NavLink className="about-meetings-link" to="/meetings">
+          <NavLink className="about-meetings-link" to={ROUTE_PATHS.meetings}>
             {NEWCOMERS_CONTENT.rhythm.actionLabel}
           </NavLink>
         </div>

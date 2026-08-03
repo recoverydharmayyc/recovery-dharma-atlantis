@@ -14,13 +14,14 @@ const checks = [
   ["src/content/meetings.ts", "Atlantis Community Room"],
   ["src/content/announcements.ts", "enabled: false"],
   [
-    "src/meetings/meetingData.ts",
+    "src/config/externalSources.ts",
     "https://recoverydharma.org/wp-admin/admin-ajax.php?action=meetings",
   ],
-  ["src/meetings/meetingData.ts", "https://recoverydharma.org/meetings/"],
-  ["src/meetings/globalDirectory.ts", "recovery-dharma-atlantis-global-meetings-v1"],
+  ["src/config/externalSources.ts", "https://recoverydharma.org/meetings/"],
+  ["src/config/externalSources.ts", "recovery-dharma-atlantis-global-meetings-v2"],
   ["src/theme.css", "Atlantis visual identity"],
-  ["src/App.tsx", 'path="/newcomers"'],
+  ["src/config/site.ts", 'newcomers: "/newcomers"'],
+  ["src/app/routes.tsx", 'path="*"'],
 ];
 
 for (const [file, expected] of checks) {

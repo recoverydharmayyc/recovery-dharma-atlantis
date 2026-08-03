@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { ROUTE_PATHS } from "../config/site";
 import { ABOUT_CONTENT } from "../content/about";
 import "./About.css";
 
@@ -49,7 +50,7 @@ export default function About() {
               </li>
             ))}
           </ol>
-          <NavLink className="about-meetings-link" to="/meetings">
+          <NavLink className="about-meetings-link" to={ROUTE_PATHS.meetings}>
             {ABOUT_CONTENT.rhythm.actionLabel}
           </NavLink>
         </div>

@@ -17,7 +17,8 @@ if not exist "node_modules\" (
 
 echo.
 echo Opening the local website preview. Closing this window stops the preview.
-call npm run dev -- --open
+echo The browser will open at the address printed below.
+call npm run dev -- --host 127.0.0.1 --open
 echo.
 echo The local preview has stopped.
 pause

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { ROUTE_PATHS } from "../config/site";
 import { HOME_CONTENT } from "../content/home";
 import "./Home.css";
 
@@ -12,10 +13,10 @@ export default function Home() {
           <p className="home-sub">{HOME_CONTENT.hero.subText}</p>
           <p className="home-blurb">{HOME_CONTENT.hero.blurb}</p>
           <div className="home-cta-row">
-            <NavLink to="/meetings" className="home-button home-button--primary">
+            <NavLink to={ROUTE_PATHS.meetings} className="home-button home-button--primary">
               {HOME_CONTENT.primaryButtonLabel}
             </NavLink>
-            <NavLink to="/newcomers" className="home-button home-button--secondary">
+            <NavLink to={ROUTE_PATHS.newcomers} className="home-button home-button--secondary">
               {HOME_CONTENT.secondaryButtonLabel}
             </NavLink>
           </div>
@@ -32,7 +33,7 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <NavLink to="/newcomers" className="home-text-link">
+          <NavLink to={ROUTE_PATHS.newcomers} className="home-text-link">
             {HOME_CONTENT.orientation.detailsLinkLabel}
           </NavLink>
         </aside>

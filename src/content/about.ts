@@ -1,3 +1,5 @@
+import { ROUTE_PATHS } from "../config/site";
+
 export const ABOUT_CONTENT = {
   hero: {
     eyebrow: "About the practice",
@@ -22,7 +24,7 @@ export const ABOUT_CONTENT = {
         "The practice leaves room for each person to decide what supports are right for their own circumstances.",
       ],
       actionRow: {
-        secondaryHref: "/resources",
+        secondaryHref: ROUTE_PATHS.resources,
         secondaryLabel: "Explore Recovery Dharma resources",
       },
     },

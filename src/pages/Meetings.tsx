@@ -1,22 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
+import { GLOBAL_DIRECTORY_SOURCE } from "../config/externalSources";
 import { MEETINGS_PAGE_CONTENT } from "../content/meetings";
 import {
-  GLOBAL_MEETINGS_URL,
-  type GlobalMeetingCardItem,
-  type LocalMeetingCardItem,
   buildLocalMeetings,
-  formatListedLocalTime,
   formatMeetingStartLabel,
-  getGlobalMeetingOccurrences,
   getMeetingStatus,
   getNearestLocalMeeting,
-  selectGlobalPreviewMeetings,
-} from "../meetings/meetingData";
+  type LocalMeetingItem,
+} from "../meetings/localMeetings";
 import {
   loadGlobalMeetingDirectory,
   readFreshGlobalMeetingCache,
 } from "../meetings/globalDirectory";
-import { MINUTE_MS } from "../meetings/time";
+import {
+  formatListedLocalTime,
+  getGlobalMeetingOccurrences,
+  selectGlobalPreviewMeetings,
+  type GlobalMeetingOccurrence,
+} from "../meetings/globalMeetingPreview";
+import { MINUTE_MS } from "../meetings/meetingTime";
 import "./Meetings.css";
 
 function useNow() {
@@ -29,20 +31,23 @@ function useNow() {
 }
 
 function useGlobalMeetings(now: Date) {
-  const [records, setRecords] = useState(() => readFreshGlobalMeetingCache() || []);
-  const [status, setStatus] = useState<"loading" | "ready" | "cached" | "fallback">(() =>
-    readFreshGlobalMeetingCache() ? "cached" : "loading",
-  );
+  const [initialCache] = useState(() => readFreshGlobalMeetingCache());
+  const [records, setRecords] = useState(() => initialCache || []);
+  const [status, setStatus] = useState<
+    "loading" | "live" | "cached" | "empty" | "unavailable" | "error"
+  >("loading");
 
   useEffect(() => {
+    const controller = new AbortController();
     let cancelled = false;
-    loadGlobalMeetingDirectory().then((result) => {
+    loadGlobalMeetingDirectory({ signal: controller.signal }).then((result) => {
       if (cancelled) return;
       setRecords(result.meetings);
       setStatus(result.status);
     });
     return () => {
       cancelled = true;
+      controller.abort();
     };
   }, []);
 
@@ -64,7 +69,7 @@ function MeetingStatusPill({ startsAt, now }: { startsAt: Date; now: Date }) {
   );
 }
 
-function LocalMeetingCard({ item, now }: { item: LocalMeetingCardItem; now: Date }) {
+function LocalMeetingCard({ item, now }: { item: LocalMeetingItem; now: Date }) {
   return (
     <article className="meeting-card meeting-card--local" aria-labelledby={"meeting-" + item.id}>
       <div className="meeting-card-topline">
@@ -97,7 +102,7 @@ function LocalMeetingCard({ item, now }: { item: LocalMeetingCardItem; now: Date
   );
 }
 
-function GlobalMeetingCard({ meeting, now }: { meeting: GlobalMeetingCardItem; now: Date }) {
+function GlobalMeetingCard({ meeting, now }: { meeting: GlobalMeetingOccurrence; now: Date }) {
   return (
     <article className="meeting-card meeting-card--global">
       <div className="meeting-card-topline">
@@ -151,7 +156,7 @@ export default function Meetings() {
 
   return (
     <section className="container meetings-page" aria-labelledby="meetings-heading">
-      <section className="meeting-section meeting-section--local">
+      <section className="meeting-section meeting-section--local" id="local-schedule">
         <div className="meeting-section-heading">
           <p className="meeting-section-kicker">{MEETINGS_PAGE_CONTENT.hero.kicker}</p>
           <h1 id="meetings-heading">{MEETINGS_PAGE_CONTENT.hero.title}</h1>
@@ -189,7 +194,7 @@ export default function Meetings() {
           <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
           <a
             className="meeting-directory-link"
-            href={GLOBAL_MEETINGS_URL}
+            href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -197,21 +202,27 @@ export default function Meetings() {
           </a>
         </div>
 
-        {globalStatus === "cached" && (
-          <p className="meeting-source-status">
-            Showing recently cached listings while the live directory is unavailable.
-          </p>
-        )}
-        {globalStatus === "loading" && (
-          <p className="meeting-source-status">
-            Loading a small preview from the public directory.
-          </p>
-        )}
-        {globalStatus === "fallback" && (
-          <p className="meeting-source-status">
-            The live directory is unavailable right now. Use the full directory link above.
-          </p>
-        )}
+        <div className="meeting-source-status" aria-live="polite" aria-atomic="true">
+          {globalStatus === "cached" && (
+            <p>Showing recently cached listings while the live directory is unavailable.</p>
+          )}
+          {globalStatus === "loading" && (
+            <p>
+              {globalMeetings.length > 0
+                ? "Refreshing recently cached listings."
+                : "Loading a small preview from the public directory."}
+            </p>
+          )}
+          {globalStatus === "empty" && (
+            <p>No suitable open online previews are available right now.</p>
+          )}
+          {globalStatus === "unavailable" && (
+            <p>The live directory is not available in this browser. Use the full directory link.</p>
+          )}
+          {globalStatus === "error" && (
+            <p>The live directory could not be reached. Use the full directory link.</p>
+          )}
+        </div>
         {globalMeetings.length > 0 && (
           <div className="meeting-card-list">
             {globalMeetings.map((meeting) => (
