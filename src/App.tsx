@@ -17,13 +17,62 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Page><Home /></Page>} />
-          <Route path="/meetings" element={<Page><Meetings /></Page>} />
-          <Route path="/about" element={<Page><About /></Page>} />
-          <Route path="/newcomers" element={<Page><Newcomers /></Page>} />
-          <Route path="/resources" element={<Page><Resources /></Page>} />
-          <Route path="/connect" element={<Page><Connect /></Page>} />
-          <Route path="*" element={<Page><Home /></Page>} />
+          <Route
+            path="/"
+            element={
+              <Page>
+                <Home />
+              </Page>
+            }
+          />
+          <Route
+            path="/meetings"
+            element={
+              <Page>
+                <Meetings />
+              </Page>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Page>
+                <About />
+              </Page>
+            }
+          />
+          <Route
+            path="/newcomers"
+            element={
+              <Page>
+                <Newcomers />
+              </Page>
+            }
+          />
+          <Route
+            path="/resources"
+            element={
+              <Page>
+                <Resources />
+              </Page>
+            }
+          />
+          <Route
+            path="/connect"
+            element={
+              <Page>
+                <Connect />
+              </Page>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Page>
+                <Home />
+              </Page>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

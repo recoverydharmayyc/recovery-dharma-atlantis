@@ -3,27 +3,27 @@ MEETINGS PAGE
 ========================= */
 
 .meetings-page {
-  --meeting-ink: #f5f1e8;
-  --meeting-muted: #b5c7bf;
+  --meeting-ink: #f4e8d4;
+  --meeting-muted: #adc8c7;
 
-  --meeting-card: #17382d;
-  --meeting-card-global: #132e27;
+  --meeting-card: #10333a;
+  --meeting-card-global: #0c2730;
 
-  --meeting-line: rgba(224, 238, 230, 0.13);
-  --meeting-line-soft: rgba(224, 238, 230, 0.085);
-  --meeting-line-strong: rgba(216, 135, 60, 0.38);
+  --meeting-line: rgba(190, 224, 220, 0.13);
+  --meeting-line-soft: rgba(190, 224, 220, 0.085);
+  --meeting-line-strong: rgba(223, 135, 106, 0.38);
 
-  --meeting-orange: #d8873c;
-  --meeting-orange-hover: #c67734;
-  --meeting-orange-pressed: #a9612b;
+  --meeting-orange: #df876a;
+  --meeting-orange-hover: #c66f55;
+  --meeting-orange-pressed: #9e5042;
 
-  --meeting-green: #4d9860;
-  --meeting-green-hover: #438754;
-  --meeting-green-pressed: #377247;
+  --meeting-green: #67aaa2;
+  --meeting-green-hover: #52938d;
+  --meeting-green-pressed: #3f7c77;
 
-  --meeting-zoom-blue: #2d8cff;
-  --meeting-zoom-blue-hover: #247be0;
-  --meeting-zoom-blue-pressed: #1d68bf;
+  --meeting-zoom-blue: #5b9eac;
+  --meeting-zoom-blue-hover: #4b8695;
+  --meeting-zoom-blue-pressed: #3d717e;
 
   --meeting-radius: 2px;
   --meeting-radius-small: 2px;
@@ -114,7 +114,7 @@ SECTIONS
 
 .meeting-section-kicker {
   margin-bottom: 4px;
-  color: rgb(245 241 232 / 0.58);
+  color: rgb(244 232 212 / 0.58);
   font-size: 0.68rem;
   font-weight: 850;
   letter-spacing: 0.16em;
@@ -124,7 +124,7 @@ SECTIONS
 
 .meeting-section-heading h2 {
   margin: 0 0 4px;
-  color: rgb(245 241 232 / 0.94);
+  color: rgb(244 232 212 / 0.94);
   font-size: clamp(1.05rem, 2.2vw, 1.18rem);
   font-weight: 790;
   letter-spacing: -0.028em;
@@ -133,22 +133,22 @@ SECTIONS
 .meeting-section-heading p {
   max-width: 58ch;
   margin: 0;
-  color: rgb(181 199 191 / 0.78);
+  color: rgb(173 200 199 / 0.78);
   font-size: 0.88rem;
   line-height: 1.44;
 }
 
 .meeting-section-heading a {
-  color: rgb(245 241 232 / 0.86);
+  color: rgb(244 232 212 / 0.86);
   font-weight: 820;
-  text-decoration-color: rgba(45, 140, 255, 0.62);
+  text-decoration-color: rgba(91, 158, 172, 0.62);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .meeting-section-heading a:hover {
-    color: rgb(245 241 232 / 0.98);
+    color: rgb(244 232 212 / 0.98);
     text-decoration-color: currentColor;
   }
 }
@@ -166,42 +166,42 @@ SECTIONS
     border-radius: var(--meeting-radius);
     background:
       radial-gradient(90% 115% at 0% 0%, rgba(255, 255, 255, 0.018), transparent 58%),
-      radial-gradient(110% 135% at 100% 0%, rgba(77, 152, 96, 0.05), transparent 56%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 72%), rgba(19, 46, 39, 0.5);
+      radial-gradient(110% 135% at 100% 0%, rgba(103, 170, 162, 0.05), transparent 56%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 72%), rgba(12, 39, 48, 0.5);
     box-shadow:
       0 1px 1px rgba(0, 0, 0, 0.22),
       inset 0 1px 0 rgba(255, 255, 255, 0.014);
   }
 
   .meeting-section--local {
-    border: 1px solid rgba(216, 135, 60, 0.24);
+    border: 1px solid rgba(223, 135, 106, 0.24);
   }
 
   .meeting-section--global {
     margin-top: 0;
     padding-top: 16px;
-    border: 1px solid rgba(45, 140, 255, 0.22);
+    border: 1px solid rgba(91, 158, 172, 0.22);
     background:
-      radial-gradient(90% 115% at 0% 0%, rgba(45, 140, 255, 0.055), transparent 58%),
-      radial-gradient(110% 135% at 100% 0%, rgba(77, 152, 96, 0.045), transparent 56%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 72%), rgba(19, 46, 39, 0.5);
+      radial-gradient(90% 115% at 0% 0%, rgba(91, 158, 172, 0.055), transparent 58%),
+      radial-gradient(110% 135% at 100% 0%, rgba(103, 170, 162, 0.045), transparent 56%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 72%), rgba(12, 39, 48, 0.5);
   }
 
   .meeting-section-heading {
     flex: 0 0 auto;
     margin-bottom: 12px;
     padding-bottom: 12px;
-    border-bottom: 1px solid rgba(224, 238, 230, 0.1);
+    border-bottom: 1px solid rgba(190, 224, 220, 0.1);
   }
 
   .meeting-section--local .meeting-section-kicker {
     margin-bottom: 7px;
-    color: rgb(216 135 60 / 0.86);
+    color: rgb(223 135 106 / 0.86);
   }
 
   .meeting-section--global .meeting-section-kicker {
     margin-bottom: 7px;
-    color: rgb(45 140 255 / 0.78);
+    color: rgb(91 158 172 / 0.78);
   }
 
   .meeting-section-heading h2 {
@@ -217,7 +217,7 @@ SECTIONS
 
   .meeting-section-heading p {
     max-width: 44ch;
-    color: rgb(181 199 191 / 0.8);
+    color: rgb(173 200 199 / 0.8);
     font-size: 0.9rem;
     line-height: 1.42;
   }
@@ -238,10 +238,6 @@ CARDS
   gap: 10px;
 }
 
-.meeting-section--global .meeting-card-list {
-  animation: meeting-global-arrive 0.18s ease-out both;
-}
-
 @media (min-width: 900px) {
   .meeting-section--global .meeting-card-list {
     flex: 1 1 auto;
@@ -257,7 +253,7 @@ CARDS
     padding-right: 4px;
     scrollbar-gutter: stable;
     scrollbar-width: thin;
-    scrollbar-color: rgba(181, 199, 191, 0.24) transparent;
+    scrollbar-color: rgba(173, 200, 199, 0.24) transparent;
   }
 
   .meeting-section--global .meeting-card-list::-webkit-scrollbar {
@@ -269,18 +265,8 @@ CARDS
   }
 
   .meeting-section--global .meeting-card-list::-webkit-scrollbar-thumb {
-    background: rgba(181, 199, 191, 0.22);
+    background: rgba(173, 200, 199, 0.22);
     border-radius: 999px;
-  }
-}
-
-@keyframes meeting-global-arrive {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }
 
@@ -309,45 +295,45 @@ CARDS
 }
 
 .meeting-card--local {
-  border-color: rgba(77, 152, 96, 0.28);
+  border-color: rgba(103, 170, 162, 0.28);
   background:
-    radial-gradient(105% 125% at 0% 0%, rgba(77, 152, 96, 0.08), transparent 56%),
+    radial-gradient(105% 125% at 0% 0%, rgba(103, 170, 162, 0.08), transparent 56%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 68%), var(--meeting-card);
 }
 
 .meeting-card--local::before {
   width: 3px;
-  background: rgb(77 152 96 / 0.72);
+  background: rgb(103 170 162 / 0.72);
 }
 
 .meeting-card--global {
   min-height: 100%;
   padding: 10px 12px 11px 14px;
-  border-color: rgba(224, 238, 230, 0.095);
+  border-color: rgba(190, 224, 220, 0.095);
   background:
-    radial-gradient(110% 130% at 0% 0%, rgba(45, 140, 255, 0.035), transparent 58%),
+    radial-gradient(110% 130% at 0% 0%, rgba(91, 158, 172, 0.035), transparent 58%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent 70%), var(--meeting-card-global);
 }
 
 .meeting-card--global::before {
-  background: rgb(45 140 255 / 0.48);
+  background: rgb(91 158 172 / 0.48);
 }
 
 .meeting-card--global-local {
-  border-color: rgba(216, 135, 60, 0.23);
+  border-color: rgba(223, 135, 106, 0.23);
   background:
-    radial-gradient(112% 132% at 0% 0%, rgba(216, 135, 60, 0.075), transparent 56%),
-    radial-gradient(105% 125% at 100% 0%, rgba(77, 152, 96, 0.055), transparent 58%),
+    radial-gradient(112% 132% at 0% 0%, rgba(223, 135, 106, 0.075), transparent 56%),
+    radial-gradient(105% 125% at 100% 0%, rgba(103, 170, 162, 0.055), transparent 58%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 70%), var(--meeting-card-global);
 }
 
 .meeting-card--global-local::before {
   width: 3px;
-  background: rgb(216 135 60 / 0.76);
+  background: rgb(223 135 106 / 0.76);
 }
 
 .meeting-card--global-local .meeting-card-eyebrow {
-  color: rgb(216 135 60 / 0.8);
+  color: rgb(223 135 106 / 0.8);
 }
 
 @media (min-width: 900px) {
@@ -404,7 +390,7 @@ CARDS
 }
 
 .meeting-card-time {
-  color: rgb(245 241 232 / 0.72);
+  color: rgb(244 232 212 / 0.72);
   font-size: 0.82rem;
   font-weight: 760;
   letter-spacing: 0.004em;
@@ -419,7 +405,7 @@ CARDS
 
 .meeting-card-eyebrow {
   margin-bottom: 2px;
-  color: rgb(181 199 191 / 0.74);
+  color: rgb(173 200 199 / 0.74);
   font-size: 0.7rem;
   font-weight: 820;
   letter-spacing: 0.115em;
@@ -443,7 +429,7 @@ CARDS
 .meeting-card h3 {
   max-width: 100%;
   margin: 0 0 7px;
-  color: rgb(245 241 232 / 0.96);
+  color: rgb(244 232 212 / 0.96);
   font-size: clamp(1.02rem, 2vw, 1.12rem);
   font-weight: 820;
   line-height: 1.25;
@@ -460,7 +446,7 @@ CARDS
   display: block;
   overflow: visible;
   margin-bottom: 6px;
-  color: rgb(245 241 232 / 0.96);
+  color: rgb(244 232 212 / 0.96);
   font-size: clamp(0.94rem, 1.55vw, 1rem);
   font-weight: 820;
   line-height: 1.18;
@@ -485,7 +471,7 @@ CARDS
 
 .meeting-card-description {
   margin: 0;
-  color: rgb(181 199 191 / 0.76);
+  color: rgb(173 200 199 / 0.76);
   font-size: 0.9rem;
   line-height: 1.42;
 }
@@ -503,7 +489,7 @@ CARDS
   gap: 4px;
   min-height: 1.38em;
   margin-bottom: 13px;
-  color: rgb(181 199 191 / 0.74);
+  color: rgb(173 200 199 / 0.74);
   font-size: 0.88rem;
   line-height: 1.34;
   overflow-wrap: break-word;
@@ -519,7 +505,7 @@ CARDS
 .meeting-card--global .meeting-card-meta {
   gap: 4px;
   margin-bottom: 8px;
-  color: rgb(181 199 191 / 0.7);
+  color: rgb(173 200 199 / 0.7);
   font-size: 0.76rem;
   font-weight: 650;
   line-height: 1.28;
@@ -533,8 +519,8 @@ CARDS
     width: 224px;
     max-width: 224px;
     padding: 10px 11px;
-    border: 1px solid rgba(224, 238, 230, 0.08);
-    background: rgba(8, 28, 22, 0.16);
+    border: 1px solid rgba(190, 224, 220, 0.08);
+    background: rgba(5, 26, 34, 0.16);
   }
 
   .meeting-card--global .meeting-card-meta {
@@ -562,20 +548,20 @@ CARDS
   width: 4px;
   height: 4px;
   border-radius: 999px;
-  background: rgb(181 199 191 / 0.38);
+  background: rgb(173 200 199 / 0.38);
   transform: translateY(-50%);
 }
 
 .meeting-card--local .meeting-card-meta span::before {
-  background: rgb(77 152 96 / 0.78);
+  background: rgb(103 170 162 / 0.78);
 }
 
 .meeting-card--global .meeting-card-meta span::before {
-  background: rgb(45 140 255 / 0.58);
+  background: rgb(91 158 172 / 0.58);
 }
 
 .meeting-card--global-local .meeting-card-meta span::before {
-  background: rgb(216 135 60 / 0.72);
+  background: rgb(223 135 106 / 0.72);
 }
 
 @media (min-width: 900px) {
@@ -685,7 +671,7 @@ LOCAL SELECTOR
   padding: 3px;
   border: 1px solid var(--meeting-line-soft);
   border-radius: var(--meeting-radius);
-  background: rgba(8, 28, 22, 0.28);
+  background: rgba(5, 26, 34, 0.28);
 }
 
 .meeting-day-tab {
@@ -695,7 +681,7 @@ LOCAL SELECTOR
   border: 1px solid transparent;
   border-radius: var(--meeting-radius-small);
   background: transparent;
-  color: rgb(181 199 191 / 0.74);
+  color: rgb(173 200 199 / 0.74);
   font: inherit;
   font-size: 0.84rem;
   font-weight: 780;
@@ -714,14 +700,14 @@ LOCAL SELECTOR
 
 .meeting-day-tab:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(216, 135, 60, 0.22);
+  box-shadow: 0 0 0 3px rgba(223, 135, 106, 0.22);
 }
 
 .meeting-day-tab--active {
-  color: rgb(245 241 232 / 0.96);
+  color: rgb(244 232 212 / 0.96);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent), rgba(216, 135, 60, 0.135);
-  border-color: rgba(216, 135, 60, 0.28);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent), rgba(223, 135, 106, 0.135);
+  border-color: rgba(223, 135, 106, 0.28);
 }
 
 /* =========================
@@ -844,11 +830,11 @@ BUTTONS
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 64%),
     var(--meeting-orange-pressed);
-  border-color: rgba(216, 135, 60, 0.34);
+  border-color: rgba(223, 135, 106, 0.34);
 }
 
 .meeting-button--zoom:focus-visible {
-  box-shadow: 0 0 0 3px rgba(216, 135, 60, 0.24);
+  box-shadow: 0 0 0 3px rgba(223, 135, 106, 0.24);
 }
 
 .meeting-button--maps {
@@ -862,11 +848,11 @@ BUTTONS
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 64%),
     var(--meeting-green-pressed);
-  border-color: rgba(77, 152, 96, 0.34);
+  border-color: rgba(103, 170, 162, 0.34);
 }
 
 .meeting-button--maps:focus-visible {
-  box-shadow: 0 0 0 3px rgba(77, 152, 96, 0.24);
+  box-shadow: 0 0 0 3px rgba(103, 170, 162, 0.24);
 }
 
 .meeting-button--global {
@@ -881,11 +867,11 @@ BUTTONS
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 62%),
     var(--meeting-zoom-blue-pressed);
-  border-color: rgba(45, 140, 255, 0.34);
+  border-color: rgba(91, 158, 172, 0.34);
 }
 
 .meeting-button--global:focus-visible {
-  box-shadow: 0 0 0 3px rgba(45, 140, 255, 0.28);
+  box-shadow: 0 0 0 3px rgba(91, 158, 172, 0.28);
 }
 
 .meeting-card--global-local .meeting-button--global {
@@ -899,11 +885,11 @@ BUTTONS
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 64%),
     var(--meeting-orange-pressed);
-  border-color: rgba(216, 135, 60, 0.34);
+  border-color: rgba(223, 135, 106, 0.34);
 }
 
 .meeting-card--global-local .meeting-button--global:focus-visible {
-  box-shadow: 0 0 0 3px rgba(216, 135, 60, 0.24);
+  box-shadow: 0 0 0 3px rgba(223, 135, 106, 0.24);
 }
 
 .meeting-details-link {
@@ -913,7 +899,7 @@ BUTTONS
   justify-content: center;
   min-width: 58px;
   padding: 0 7px;
-  color: rgb(245 241 232 / 0.66);
+  color: rgb(244 232 212 / 0.66);
   font-size: 0.81rem;
   font-weight: 810;
   line-height: 1;
@@ -931,7 +917,7 @@ BUTTONS
 
 @media (hover: hover) and (pointer: fine) {
   .meeting-day-tab:hover {
-    color: rgb(245 241 232 / 0.94);
+    color: rgb(244 232 212 / 0.94);
     background: rgba(255, 255, 255, 0.04);
   }
 
@@ -986,7 +972,7 @@ BUTTONS
   }
 
   .meeting-details-link:hover {
-    color: rgb(245 241 232 / 0.92);
+    color: rgb(244 232 212 / 0.92);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -1001,10 +987,10 @@ LOADING / FALLBACK STATES
   overflow: hidden;
   min-height: 94px;
   margin: 12px 0 0;
-  border: 1px solid rgba(224, 238, 230, 0.095);
+  border: 1px solid rgba(190, 224, 220, 0.095);
   border-radius: var(--meeting-radius);
   background:
-    radial-gradient(110% 130% at 0% 0%, rgba(45, 140, 255, 0.035), transparent 58%),
+    radial-gradient(110% 130% at 0% 0%, rgba(91, 158, 172, 0.035), transparent 58%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 70%), var(--meeting-card-global);
   box-shadow:
     0 1px 1px rgba(0, 0, 0, 0.28),
@@ -1029,7 +1015,7 @@ LOADING / FALLBACK STATES
 
 .meeting-loading::before {
   content: "Loading worldwide meetings";
-  color: rgb(181 199 191 / 0.72);
+  color: rgb(173 200 199 / 0.72);
   font-size: 0.84rem;
   font-weight: 760;
   letter-spacing: 0.01em;
@@ -1040,46 +1026,46 @@ LOADING / FALLBACK STATES
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: rgb(181 199 191 / 0.76);
+  background: rgb(173 200 199 / 0.76);
   box-shadow:
-    14px 0 0 rgb(181 199 191 / 0.42),
-    28px 0 0 rgb(181 199 191 / 0.24);
+    14px 0 0 rgb(173 200 199 / 0.42),
+    28px 0 0 rgb(173 200 199 / 0.24);
   animation: meeting-loading-dots 0.9s infinite ease-in-out;
 }
 
 @keyframes meeting-loading-dots {
   0% {
-    background: rgb(181 199 191 / 0.76);
+    background: rgb(173 200 199 / 0.76);
     box-shadow:
-      14px 0 0 rgb(181 199 191 / 0.42),
-      28px 0 0 rgb(181 199 191 / 0.24);
+      14px 0 0 rgb(173 200 199 / 0.42),
+      28px 0 0 rgb(173 200 199 / 0.24);
   }
 
   33% {
-    background: rgb(181 199 191 / 0.42);
+    background: rgb(173 200 199 / 0.42);
     box-shadow:
-      14px 0 0 rgb(181 199 191 / 0.76),
-      28px 0 0 rgb(181 199 191 / 0.42);
+      14px 0 0 rgb(173 200 199 / 0.76),
+      28px 0 0 rgb(173 200 199 / 0.42);
   }
 
   66% {
-    background: rgb(181 199 191 / 0.24);
+    background: rgb(173 200 199 / 0.24);
     box-shadow:
-      14px 0 0 rgb(181 199 191 / 0.42),
-      28px 0 0 rgb(181 199 191 / 0.76);
+      14px 0 0 rgb(173 200 199 / 0.42),
+      28px 0 0 rgb(173 200 199 / 0.76);
   }
 
   100% {
-    background: rgb(181 199 191 / 0.76);
+    background: rgb(173 200 199 / 0.76);
     box-shadow:
-      14px 0 0 rgb(181 199 191 / 0.42),
-      28px 0 0 rgb(181 199 191 / 0.24);
+      14px 0 0 rgb(173 200 199 / 0.42),
+      28px 0 0 rgb(173 200 199 / 0.24);
   }
 }
 
 .meeting-fallback {
   margin: 12px 0 0;
-  color: rgb(181 199 191 / 0.78);
+  color: rgb(173 200 199 / 0.78);
   font-size: 0.9rem;
   line-height: 1.42;
 }
@@ -1199,7 +1185,7 @@ MOBILE
   }
 
   .meeting-card--local .meeting-card-time {
-    color: rgb(245 241 232 / 0.68);
+    color: rgb(244 232 212 / 0.68);
     font-size: 0.95rem;
     line-height: 1.22;
   }
@@ -1268,7 +1254,7 @@ MOBILE
     flex-wrap: wrap;
     gap: 7px;
     margin: 0 0 16px;
-    color: rgb(181 199 191 / 0.78);
+    color: rgb(173 200 199 / 0.78);
     font-size: 0.84rem;
     line-height: 1;
   }
@@ -1288,9 +1274,9 @@ MOBILE
     align-items: center;
     min-height: 28px;
     padding: 0 10px;
-    border: 1px solid rgba(224, 238, 230, 0.09);
+    border: 1px solid rgba(190, 224, 220, 0.09);
     border-radius: 999px;
-    background: rgba(8, 28, 22, 0.18);
+    background: rgba(5, 26, 34, 0.18);
     white-space: normal;
   }
 
@@ -1363,5 +1349,77 @@ MOBILE
   .meeting-button,
   .meeting-day-tab {
     transition: none;
+  }
+}
+
+/* V5 meeting system additions. The shared panel structure remains intentionally compact. */
+.meeting-section-heading h1 {
+  margin: 0 0 4px;
+  color: rgb(var(--ink-rgb) / 0.94);
+  font-size: clamp(1.36rem, 2.55vw, 1.78rem);
+  font-weight: 790;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.meeting-directory-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 10px;
+  color: rgb(var(--ink-rgb) / 0.92);
+  font-size: 0.8rem;
+  font-weight: 820;
+}
+
+.meeting-source-status {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border: 1px solid rgb(var(--sea-rgb) / 0.16);
+  background: rgb(var(--action-alt-rgb) / 0.08);
+  color: rgb(var(--muted-rgb) / 0.92);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.meeting-day-selector {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: rgb(5 26 34 / 0.34);
+}
+
+.meeting-day-tab:focus-visible {
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.34);
+}
+
+.meeting-day-tab--active {
+  background:
+    linear-gradient(180deg, rgb(244 232 212 / 0.026), transparent), rgb(var(--accent-rgb) / 0.15);
+  border-color: rgb(var(--accent-rgb) / 0.34);
+}
+
+.meeting-card--local {
+  border-color: rgb(var(--action-alt-rgb) / 0.36);
+  background:
+    radial-gradient(105% 125% at 0% 0%, rgb(var(--action-alt-rgb) / 0.11), transparent 56%),
+    linear-gradient(180deg, rgb(244 232 212 / 0.02), transparent 68%), var(--meeting-card);
+}
+
+.meeting-card--local::before {
+  background: rgb(var(--action-alt-rgb) / 0.8);
+}
+
+.meeting-card--global {
+  border-color: rgb(91 158 172 / 0.28);
+  background:
+    radial-gradient(110% 130% at 0% 0%, rgb(91 158 172 / 0.07), transparent 58%),
+    linear-gradient(180deg, rgb(244 232 212 / 0.01), transparent 70%), var(--meeting-card-global);
+}
+
+.meeting-card--global::before {
+  background: rgb(91 158 172 / 0.64);
+}
+
+@media (min-width: 900px) {
+  .meeting-section-heading h1 {
+    margin-bottom: 8px;
   }
 }

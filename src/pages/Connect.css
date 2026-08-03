@@ -3,12 +3,12 @@ CONNECT PAGE
 ========================= */
 
 section.container.connect-page {
-  --connect-ink: #f5f1e8;
-  --connect-muted: #b5c7bf;
-  --connect-line: rgba(224, 238, 230, 0.13);
-  --connect-line-soft: rgba(224, 238, 230, 0.085);
-  --connect-line-strong: rgba(216, 135, 60, 0.34);
-  --connect-orange: #d8873c;
+  --connect-ink: #f4e8d4;
+  --connect-muted: #adc8c7;
+  --connect-line: rgba(190, 224, 220, 0.13);
+  --connect-line-soft: rgba(190, 224, 220, 0.085);
+  --connect-line-strong: rgba(223, 135, 106, 0.34);
+  --connect-orange: #df876a;
   --connect-radius: 2px;
 
   width: min(calc(100% - (var(--site-gutter) * 2)), 980px) !important;
@@ -37,7 +37,7 @@ section.container.connect-page {
 .connect-channel-kicker,
 .connect-address-label {
   margin: 0;
-  color: rgb(245 241 232 / 0.58);
+  color: rgb(244 232 212 / 0.58);
   font-size: 0.68rem;
   font-weight: 850;
   letter-spacing: 0.16em;
@@ -57,7 +57,7 @@ section.container.connect-page {
 .connect-lede {
   max-width: 64ch;
   margin: 0;
-  color: rgb(181 199 191 / 0.84);
+  color: rgb(173 200 199 / 0.84);
   font-size: clamp(1rem, 1.8vw, 1.14rem);
   line-height: 1.48;
 }
@@ -78,7 +78,7 @@ section.container.connect-page {
 
 .connect-channel-copy h3 {
   margin: 7px 0 8px;
-  color: rgb(245 241 232 / 0.96);
+  color: rgb(244 232 212 / 0.96);
   font-size: clamp(1.08rem, 2vw, 1.28rem);
   font-weight: 820;
   line-height: 1.16;
@@ -87,7 +87,7 @@ section.container.connect-page {
 
 .connect-channel-copy p:not(.connect-channel-kicker) {
   margin: 0;
-  color: rgb(181 199 191 / 0.78);
+  color: rgb(173 200 199 / 0.78);
   font-size: 0.92rem;
   line-height: 1.48;
 }
@@ -102,11 +102,11 @@ section.container.connect-page {
   max-width: 100%;
   margin: 0;
   padding: 9px 11px;
-  border: 1px solid rgba(216, 135, 60, 0.26);
+  border: 1px solid rgba(223, 135, 106, 0.26);
   border-radius: var(--connect-radius);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 64%), rgba(19, 46, 39, 0.86);
-  color: rgb(245 241 232 / 0.9);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 64%), rgba(12, 39, 48, 0.86);
+  color: rgb(244 232 212 / 0.9);
   font-size: 0.84rem;
   line-height: 1.38;
 }
@@ -127,10 +127,10 @@ section.container.connect-page {
   align-items: stretch !important;
   gap: 0 !important;
   overflow: hidden !important;
-  border: 1px solid rgba(224, 238, 230, 0.13) !important;
+  border: 1px solid rgba(190, 224, 220, 0.13) !important;
   border-radius: var(--connect-radius) !important;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 70%), rgba(8, 28, 22, 0.42) !important;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 70%), rgba(5, 26, 34, 0.42) !important;
   box-shadow:
     0 1px 1px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.014) !important;
@@ -144,7 +144,7 @@ section.container.connect-page {
   padding: 0 12px !important;
   border: 0 !important;
   background: transparent !important;
-  color: rgb(245 241 232 / 0.92) !important;
+  color: rgb(244 232 212 / 0.92) !important;
   font: inherit !important;
   font-size: 0.86rem !important;
   outline: none !important;
@@ -152,13 +152,13 @@ section.container.connect-page {
 }
 
 .connect-form-wrap .subscribe .field input[type="email"]::placeholder {
-  color: rgb(181 199 191 / 0.48);
+  color: rgb(173 200 199 / 0.48);
 }
 
 .connect-form-wrap .subscribe .field:focus-within {
-  border-color: rgba(216, 135, 60, 0.42) !important;
+  border-color: rgba(223, 135, 106, 0.42) !important;
   box-shadow:
-    inset 2px 0 0 rgba(216, 135, 60, 0.46),
+    inset 2px 0 0 rgba(223, 135, 106, 0.46),
     0 1px 1px rgba(0, 0, 0, 0.22) !important;
 }
 
@@ -169,18 +169,18 @@ section.container.connect-page {
   height: 38px !important;
   padding: 0 14px !important;
   border: 0 !important;
-  border-left: 1px solid rgba(216, 135, 60, 0.28) !important;
+  border-left: 1px solid rgba(223, 135, 106, 0.28) !important;
   border-radius: 0 !important;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 64%), rgba(19, 46, 39, 0.9) !important;
-  color: rgb(245 241 232 / 0.94) !important;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 64%), rgba(12, 39, 48, 0.9) !important;
+  color: rgb(244 232 212 / 0.94) !important;
   cursor: pointer;
   font: inherit !important;
   font-size: 0.8rem !important;
   font-weight: 820 !important;
   letter-spacing: -0.006em;
   white-space: nowrap !important;
-  box-shadow: inset 2px 0 0 rgba(216, 135, 60, 0.46) !important;
+  box-shadow: inset 2px 0 0 rgba(223, 135, 106, 0.46) !important;
   flex: none !important;
   transition:
     background 0.14s ease,
@@ -190,7 +190,7 @@ section.container.connect-page {
 @media (hover: hover) and (pointer: fine) {
   .connect-form-wrap .subscribe .field button:hover {
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 64%), rgba(25, 63, 49, 0.96) !important;
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 64%), rgba(16, 51, 58, 0.96) !important;
   }
 }
 
@@ -200,7 +200,7 @@ section.container.connect-page {
 
 .connect-form-wrap .subscribe .note {
   margin: 0 !important;
-  color: rgb(181 199 191 / 0.78);
+  color: rgb(173 200 199 / 0.78);
   font-size: 0.82rem;
   line-height: 1.35;
 }
@@ -222,11 +222,11 @@ section.container.connect-page {
   justify-content: center;
   width: fit-content;
   padding: 0 12px;
-  border: 1px solid rgba(216, 135, 60, 0.26);
+  border: 1px solid rgba(223, 135, 106, 0.26);
   border-radius: var(--connect-radius);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 64%), rgba(19, 46, 39, 0.86);
-  color: rgb(245 241 232 / 0.94);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 64%), rgba(12, 39, 48, 0.86);
+  color: rgb(244 232 212 / 0.94);
   cursor: pointer;
   font: inherit;
   font-size: 0.8rem;
@@ -236,7 +236,7 @@ section.container.connect-page {
   white-space: nowrap;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.035),
-    inset 2px 0 0 rgba(216, 135, 60, 0.54),
+    inset 2px 0 0 rgba(223, 135, 106, 0.54),
     0 1px 1px rgba(0, 0, 0, 0.18);
   transition:
     background 0.14s ease,
@@ -250,9 +250,9 @@ section.container.connect-page {
   .connect-copy-button:hover {
     color: #fff;
     text-decoration: none;
-    border-color: rgba(216, 135, 60, 0.42);
+    border-color: rgba(223, 135, 106, 0.42);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 64%), rgba(25, 63, 49, 0.96);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 64%), rgba(16, 51, 58, 0.96);
     transform: translateY(-1px);
   }
 }
@@ -268,7 +268,7 @@ section.container.connect-page {
 .connect-email-link:focus-visible,
 .connect-form-wrap .subscribe .field button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(216, 135, 60, 0.22);
+  box-shadow: 0 0 0 3px rgba(223, 135, 106, 0.22);
 }
 
 .connect-email-action {
@@ -278,14 +278,14 @@ section.container.connect-page {
 }
 
 .connect-address-label {
-  color: rgb(181 199 191 / 0.74);
+  color: rgb(173 200 199 / 0.74);
   font-size: 0.66rem;
   letter-spacing: 0.13em;
 }
 
 .connect-email-link {
   min-width: 0;
-  color: rgb(245 241 232 / 0.9);
+  color: rgb(244 232 212 / 0.9);
   font-size: 0.9rem;
   font-weight: 760;
   line-height: 1.25;
@@ -390,16 +390,16 @@ section.container.connect-page {
   }
 
   .connect-form-wrap .subscribe .field input[type="email"] {
-    border: 1px solid rgba(224, 238, 230, 0.13) !important;
+    border: 1px solid rgba(190, 224, 220, 0.13) !important;
     border-radius: var(--connect-radius) !important;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 70%), rgba(8, 28, 22, 0.42) !important;
+      linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 70%), rgba(5, 26, 34, 0.42) !important;
   }
 
   .connect-form-wrap .subscribe .field button {
     width: 100% !important;
     max-width: none !important;
-    border: 1px solid rgba(216, 135, 60, 0.26) !important;
+    border: 1px solid rgba(223, 135, 106, 0.26) !important;
     border-radius: var(--connect-radius) !important;
   }
 

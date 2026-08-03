@@ -2,24 +2,23 @@ export const NEWCOMERS_CONTENT = {
   hero: {
     eyebrow: "New here",
     title: "You can begin by simply arriving.",
-    lede:
-      "This fictional example is designed to make a first meeting feel easier to understand. A real community must verify its own local practices before publishing them.",
+    lede: "This fictional example is designed to make a first meeting feel easier to understand. Every real Recovery Dharma community has its own local practices.",
   },
   sections: [
     {
       kicker: "What to expect",
       title: "A little quiet, a little structure, and room to choose.",
       paragraphs: [
-        "A sample gathering may include meditation, a reading, and voluntary sharing. You can listen without speaking.",
-        "There is no registration in this fictional example, and newcomers are welcome.",
+        "A peer-led gathering may include meditation, a reading, and voluntary sharing. You can listen without speaking.",
+        "The fictional Atlantis meetings welcome newcomers and do not require registration.",
       ],
     },
     {
       kicker: "Before you go",
-      title: "Use verified local information.",
+      title: "Bring only yourself.",
       paragraphs: [
-        "This site intentionally does not provide an address, organizer, phone number, email address, parking detail, transit information, or accessibility guarantee.",
-        "An adopting group should replace these samples only with public facts it has checked and approved.",
+        "You do not need experience with meditation or Recovery Dharma to attend a first meeting.",
+        "If you are looking at a real local group, check its current meeting details in the place that group publishes them.",
       ],
     },
   ],
@@ -27,11 +26,11 @@ export const NEWCOMERS_CONTENT = {
     kicker: "At your pace",
     title: "A first visit can be simple.",
     steps: [
-      "Read the verified meeting details.",
+      "Choose a meeting time.",
       "Arrive when you are able.",
       "Listen, participate, or pass.",
       "Decide for yourself whether to return.",
     ],
-    actionLabel: "See the fictional meeting details",
+    actionLabel: "See fictional meeting details",
   },
 } as const;

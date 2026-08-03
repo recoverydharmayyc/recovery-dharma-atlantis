@@ -21,7 +21,9 @@ export default function Newcomers() {
             <p className="about-section-kicker">{section.kicker}</p>
             <h2>{section.title}</h2>
             <div className="about-copy">
-              {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </section>
         ))}

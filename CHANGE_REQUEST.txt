@@ -1,63 +1,42 @@
-CHANGE REQUEST TEMPLATE
+CHANGE REQUEST — send this with the current project ZIP and facts worksheet
 
-Attach this file with AI_READ_FIRST.txt, MY_WEBSITE_FACTS.txt, and the current project ZIP.
+CURRENT APPROVED FILE OR ARCHIVE
+[Write the approved project ZIP name and date.]
 
-Current approved project or files:
-- [ ] recovery-dharma-atlantis-source.zip
-- [ ] List any individual files supplied instead:
+GOAL
+[Describe the visitor-facing result in plain language.]
 
-Goal:
-- [ ] Describe the visible change in one clear sentence.
+APPROVED FACTS
+[Copy only facts approved in MY_WEBSITE_FACTS.txt.]
 
-Approved facts:
-- [ ] List facts from MY_WEBSITE_FACTS.txt that may appear in the result.
+REQUESTED VISUAL OR BEHAVIORAL CHANGES
+[For example: change the sea-glass theme tokens while keeping the existing layout.]
+[For example: add a verified temporary meeting using src/content/announcements.ts so it appears in the announcement bar and meeting list, then expires automatically.]
 
-Requested visual or behavioral changes:
-- [ ] Describe requested layout, wording, route, or interaction changes.
+THINGS NOT TO CHANGE
+[For example: keep routes, mobile navigation, fiction safety, Global-directory attribution and fallback, and no active contact form.]
 
-Things not to change:
-- [ ] Preserve the React/Vite architecture and routes.
-- [ ] Preserve the fictional notice, noindex/nofollow, robots block, and fictional demo state.
-- [ ] Preserve facts that remain unknown.
-- [ ] Do not add contact forms, analytics, external services, or real contact data.
+DEFINITION OF DONE
+[Describe what must be true when the candidate is opened.]
 
-Definition of done:
-- [ ] Return a complete clean updated source ZIP, or every complete changed file.
-- [ ] List every changed file.
-- [ ] Keep all routes usable on phone and desktop sizes.
-- [ ] State exactly what the owner should inspect.
+REQUIRED OUTPUT
+Return a complete clean project ZIP if supported. Otherwise return every complete changed file, with original filenames. Do not return diffs, patches, fragments, ellipses, or line-number instructions.
 
-Required output filename:
-- [ ] recovery-dharma-atlantis-updated-source.zip
-
-Browser checks the owner will perform:
-- [ ] Start the candidate with START-WEBSITE.bat.
-- [ ] Check Home, Meeting, About, New Here, Resources, and Connect.
-- [ ] Check the menu, keyboard focus, fictional notice, and meeting facts.
+BROWSER CHECKS I WILL PERFORM
+[ ] Home, Meetings, About, New Here, Resources, and Connect open.
+[ ] The two local meetings are correct.
+[ ] The temporary announcement is absent unless intentionally enabled.
+[ ] The Global directory disclosure and fallback link remain present.
+[ ] The fictional label and footer notice remain present.
+[ ] Desktop and mobile navigation work.
+[ ] I approve the candidate before publishing.
 
 COMPLETE EXAMPLE REQUEST
 
-Current approved project:
-- recovery-dharma-atlantis-source.zip
-
-Goal:
-- Change the fictional meeting day from Wednesday to Thursday and the time from 7:00 p.m. to 8:00 p.m. to 6:30 p.m. to 7:30 p.m.
-
-Approved facts:
-- Website name: Recovery Dharma Atlantis
-- Day: Thursday
-- Time: 6:30 p.m. to 7:30 p.m.
-- Format: In person
-- Venue: Atlantis Community Room
-- Newcomers welcome; no registration required
-
-Requested changes:
-- Update the factual content module and all affected page wording.
-- Do not redesign the dark forest interface.
-
-Things not to change:
-- Keep every route, fictional notice, noindex/nofollow, robots block, and no-contact state.
-
-Definition of done:
-- Return a complete clean source ZIP named recovery-dharma-atlantis-updated-source.zip.
-- List every changed file and tell me which pages to inspect.
+Current approved archive: recovery-dharma-atlantis-source.zip
+Goal: Update the fictional Sunday meeting time.
+Approved facts: Sunday Morning is Sunday, 9:30 a.m. to 10:30 a.m., in person at Atlantis Community Room. Newcomers welcome. No registration required. Atlantis time remains UTC-3.
+Requested change: Update the Sunday recurring meeting in the structured local meeting data. Keep the Wednesday meeting, visual theme, routes, announcement system, Global meeting preview, and fictional safety unchanged.
+Things not to change: Do not invent an address, contact method, organizer, accessibility claim, or link. Do not remove noindex, robots blocking, the fictional label, or footer notice.
+Definition of done: The Meetings page selects and displays the updated Sunday time, and all routes still work.
+Required output: Return a complete updated project ZIP, or every complete changed file if ZIP output is not supported.

@@ -1,61 +1,76 @@
-RECOVERY DHARMA ATLANTIS — PUBLIC FACTS WORKSHEET
+MY WEBSITE FACTS — factual authority for an AI candidate
 
-This starter is filled with fictional tutorial data. Use this file as the factual authority for any AI update.
+Only write public information here that you have checked and approved.
+Unknown information must stay unknown. This untouched copy contains fictional tutorial data.
 
-website name:
-Recovery Dharma Atlantis [FICTIONAL TUTORIAL DATA]
+PUBLIC-USE CONFIRMATION
+[ ] I confirm that the approved facts in this worksheet are intended to be public.
 
-city or region:
-Atlantis, fictional region [FICTIONAL TUTORIAL DATA]
+WEBSITE NAME
+Recovery Dharma Atlantis
+Tutorial data: Yes
 
-purpose:
-Fictional peer-led recovery community website for an educational tutorial.
+CITY OR REGION
+Atlantis
+Tutorial data: Yes
 
-meeting day:
-Wednesday [FICTIONAL TUTORIAL DATA]
+PURPOSE
+A fictional peer-led community website used as a worked example in an educational tutorial.
+Tutorial data: Yes
 
-meeting time:
-7:00 p.m. to 8:00 p.m. [FICTIONAL TUTORIAL DATA]
+RECURRING LOCAL MEETINGS
+1. Title: Wednesday Evening
+   Day: Wednesday
+   Time: 7:00 p.m. to 8:00 p.m.
+   Machine time: 19:00 to 20:00
+   Time zone: Atlantis time (UTC-3) / Etc/GMT+3
+   Format: In person
+   Venue: Atlantis Community Room
+   Newcomers: Newcomers welcome
+   Registration: No registration required
+   Verified public link: Unknown / none
 
-time zone:
-[UNKNOWN — do not invent]
+2. Title: Sunday Morning
+   Day: Sunday
+   Time: 10:00 a.m. to 11:00 a.m.
+   Machine time: 10:00 to 11:00
+   Time zone: Atlantis time (UTC-3) / Etc/GMT+3
+   Format: In person
+   Venue: Atlantis Community Room
+   Newcomers: Newcomers welcome
+   Registration: No registration required
+   Verified public link: Unknown / none
 
-meeting format:
-In person [FICTIONAL TUTORIAL DATA]
+TEMPORARY MEETING OR ANNOUNCEMENT
+Enabled: No
+Title: Unknown
+Verified dates and times: Unknown
+Verified venue or online description: Unknown
+Verified public link: Unknown
+Expiry after the final occurrence: Required
 
-venue:
-Atlantis Community Room [FICTIONAL TUTORIAL DATA]
+VERIFIED ADDRESS
+Unknown — do not invent one.
 
-verified address:
-[NOT PROVIDED]
+VERIFIED CONTACT METHOD
+Unknown — no contact channel is active in the fictional starter.
 
-verified contact method:
-[NOT PROVIDED]
+ACCESSIBILITY INFORMATION
+Unknown — do not invent a guarantee.
 
-accessibility information:
-[UNKNOWN — do not imply guarantees]
+NEWCOMER INFORMATION
+Newcomers welcome. Listening quietly is welcome. Sharing is never required.
+Tutorial data: Yes
 
-newcomer information:
-Newcomers welcome. No registration required. [FICTIONAL TUTORIAL DATA]
+APPROVED EXTERNAL LINKS
+Official Recovery Dharma resources already shown on the Resources page.
+Any new link: Unknown until checked and approved.
 
-approved external links:
-[NONE]
+DESIRED VISUAL FEELING
+Midnight ocean, deep blue-green, sea glass, pale sand, warm coral, and a restrained nighttime horizon.
 
-desired visual feeling:
-Dark forest, cream type, orange and green actions, compact and grounded peer-led community atmosphere.
+FACTS STILL UNKNOWN
+Street address, organizer, public contact method, access details, parking, transit, and any local affiliations.
 
-facts still unknown:
-- Real address
-- Time zone
-- Contact method
-- Accessibility details
-- Public links
-- Policies, organizers, and local procedures
-
-information that must never be invented:
-- addresses, contact details, names, affiliations, testimonials, accessibility claims
-- schedules or locations beyond approved facts
-- treatment claims, outcomes, attendance figures, or operational history
-
-explicit confirmation that the information is intended to be public:
-All current facts are fictional tutorial data. They are intended only as a clearly marked public demonstration, not as a real meeting listing.
+INFORMATION THAT MUST NEVER BE INVENTED
+Names, dates, schedules, venues, street addresses, contacts, links, accessibility claims, affiliations, testimonials, statistics, prices, policies, or recovery outcomes.

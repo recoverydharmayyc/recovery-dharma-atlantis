@@ -2,16 +2,15 @@ export const ABOUT_CONTENT = {
   hero: {
     eyebrow: "About the practice",
     title: "Recovery is something we practice together.",
-    lede:
-      "Recovery Dharma communities use meditation, reflection, and shared inquiry as supports for recovery. This fictional site is an educational example, not guidance for a particular person.",
+    lede: "Recovery Dharma communities use meditation, reflection, and shared inquiry as supports for recovery. This fictional example describes a peer-led approach, not individual guidance.",
   },
   sections: [
     {
       kicker: "Peer-led",
       title: "No gurus. No hierarchy of recovery.",
       paragraphs: [
-        "This example imagines a room where people meet as equals. Each person can take part in the ways that feel right for them.",
-        "We do not make medical claims or promise particular outcomes. People are encouraged to use the supports that are right for their own circumstances.",
+        "This imagined community is a place where people meet as equals. Each person can take part in ways that feel right for them.",
+        "Recovery Dharma Atlantis does not make medical claims or promise particular outcomes.",
       ],
       actionRow: undefined,
     },
@@ -19,12 +18,12 @@ export const ABOUT_CONTENT = {
       kicker: "Practice",
       title: "Meditation, reading, and honest reflection.",
       paragraphs: [
-        "Recovery Dharma practice can include quiet meditation, readings, and discussion rooted in lived experience.",
-        "A local group should write its own verified description of how it meets and what it offers.",
+        "A meeting can include quiet meditation, readings, and discussion rooted in lived experience.",
+        "The practice leaves room for each person to decide what supports are right for their own circumstances.",
       ],
       actionRow: {
         secondaryHref: "/resources",
-        secondaryLabel: "Explore the sample resource area",
+        secondaryLabel: "Explore Recovery Dharma resources",
       },
     },
   ],
@@ -37,6 +36,6 @@ export const ABOUT_CONTENT = {
       "Read, reflect, and share if you wish.",
       "Leave with no pressure to do more than you are ready for.",
     ],
-    actionLabel: "View the fictional meeting example",
+    actionLabel: "View fictional meeting times",
   },
 } as const;

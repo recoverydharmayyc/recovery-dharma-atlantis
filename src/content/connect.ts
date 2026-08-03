@@ -1,31 +1,30 @@
 export const CONNECT_CONTENT = {
   hero: {
     eyebrow: "Connect",
-    title: "No active contact channel in this tutorial example.",
-    lede:
-      "Recovery Dharma Atlantis is fictional, so it intentionally does not collect messages, email addresses, or other personal information.",
+    title: "A place to find your way in.",
+    lede: "Recovery Dharma Atlantis is a fictional example, so no contact channel is active. A real community would publish a verified public way to get in touch.",
   },
   channels: [
     {
-      kicker: "For a real adopter",
-      title: "Add one verified public contact method.",
+      kicker: "For this example",
+      title: "No messages are collected here.",
       description:
-        "Only add a contact address, phone number, or other method after it has been checked, approved, and is ready for public use.",
-      action: "No contact method is active in this sample.",
+        "There is no form, inbox, or signup attached to this fictional community website.",
+      action: "No contact channel is active.",
     },
     {
-      kicker: "Keep it clear",
-      title: "State what people can expect.",
+      kicker: "For a real community",
+      title: "Make one clear path available.",
       description:
-        "A real group should say who receives messages, when a response is likely, and where urgent support is available if that information has been verified.",
-      action: "No individual or organization is named here.",
+        "A local group can choose a public contact method that it is ready to manage and keep current.",
+      action: "Contact details belong to the group that verifies them.",
     },
     {
-      kicker: "Privacy",
-      title: "This sample collects nothing.",
+      kicker: "Take your time",
+      title: "Start with the meeting information.",
       description:
-        "There is no form, newsletter, analytics service, account system, or backend connected to this starter.",
-      action: "No data is sent from this page.",
+        "For this fictional example, the Meetings and New Here pages explain the basic shape of a first visit.",
+      action: "Explore the fictional meeting schedule.",
     },
   ],
 } as const;

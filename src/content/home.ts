@@ -7,7 +7,7 @@ export const HOME_CONTENT = {
     blurb:
       "Recovery Dharma Atlantis is an educational example of a local peer community. People sit together, meditate, read, and share as equals. There are no gurus and no pressure to speak.",
   },
-  primaryButtonLabel: "See Meeting",
+  primaryButtonLabel: "See Meetings",
   secondaryButtonLabel: "What to Expect",
   orientation: {
     kicker: "New here?",
@@ -15,12 +15,9 @@ export const HOME_CONTENT = {
     features: [
       {
         kicker: "No signup",
-        description: "Come as you are. This fictional sample meeting requires no registration.",
+        description: "Come as you are. These fictional sample meetings require no registration.",
       },
-      {
-        kicker: "Peer-led",
-        description: "The example shows people meditating, reading, and sharing as equals.",
-      },
+      { kicker: "Peer-led", description: "People meditate, read, and share as equals." },
       {
         kicker: "No pressure",
         description: "Listening quietly is welcome. Sharing is never required.",

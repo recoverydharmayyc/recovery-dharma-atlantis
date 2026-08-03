@@ -11,12 +11,13 @@
     "build": "vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "node scripts/validate-content.mjs",
-    "verify": "npm run lint && npm test && npm run typecheck && npm run build",
+    "test": "node --import tsx --test src/tests/*.test.ts",
+    "verify": "npm run lint && npm run test:content && npm run test && npm run typecheck && npm run build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:content": "node scripts/validate-content.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
@@ -37,6 +38,7 @@
     "globals": "^16.3.0",
     "jiti": "^2.7.0",
     "prettier": "^3.6.2",
+    "tsx": "^4.23.5",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.62.1",
     "vite": "^7.1.0"
