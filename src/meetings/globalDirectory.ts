@@ -22,13 +22,17 @@ export type GlobalDirectoryOptions = {
   fetcher?: typeof fetch | null;
   timeoutMs?: number;
   signal?: AbortSignal;
+  cachedMeetings?: SanitizedGlobalMeeting[] | null;
 };
 
 export async function loadGlobalMeetingDirectory(
   options: GlobalDirectoryOptions = {},
 ): Promise<GlobalDirectoryResult> {
   const now = options.now ?? Date.now();
-  const cached = readFreshGlobalMeetingCache(now, options.storage);
+  const cached =
+    options.cachedMeetings === undefined
+      ? readFreshGlobalMeetingCache(now, options.storage)
+      : options.cachedMeetings;
   const fetcher =
     options.fetcher === undefined ? (typeof fetch === "function" ? fetch : null) : options.fetcher;
   if (!fetcher)

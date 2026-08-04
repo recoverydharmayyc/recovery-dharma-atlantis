@@ -3,6 +3,7 @@ node_modules/
 dist/
 PUBLISH-THIS-FOLDER/
 AI-COPY/
+.browser-test-*/
 
 # Local or private configuration
 .env

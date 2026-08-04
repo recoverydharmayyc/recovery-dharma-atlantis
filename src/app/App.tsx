@@ -4,7 +4,7 @@ import AppRoutes from "./routes";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter useTransitions={false}>
       <SiteLayout>
         <AppRoutes />
       </SiteLayout>

@@ -10,7 +10,9 @@ import { buildLocalMeetings } from "../meetings/localMeetings";
 
 class MemoryStorage {
   values = new Map<string, string>();
+  readCount = 0;
   getItem(key: string) {
+    this.readCount += 1;
     return this.values.get(key) ?? null;
   }
   setItem(key: string, value: string) {
@@ -29,6 +31,21 @@ const cachedMeeting = {
   conferenceUrl: "https://zoom.us/j/1",
   sourceUrl: "https://recoverydharma.org/meetings/",
 };
+
+test("a pre-read cache prevents duplicate synchronous storage parsing", async () => {
+  const storage = new MemoryStorage();
+  const result = await loadGlobalMeetingDirectory({
+    now: 1_000,
+    storage,
+    cachedMeetings: [cachedMeeting],
+    fetcher: async () => {
+      throw new Error("offline");
+    },
+  });
+  assert.equal(storage.readCount, 0);
+  assert.equal(result.status, "cached");
+  assert.equal(result.meetings[0].id, "safe");
+});
 
 const record = {
   id: "cached-open",

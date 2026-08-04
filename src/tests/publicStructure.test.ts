@@ -57,12 +57,25 @@ test("local meeting content renders in the initial shell before Global retrieval
 
 test("Global resolution is section-scoped and does not own the Meetings page shell", async () => {
   const page = await source("src/pages/Meetings.tsx");
+  const globalSection = await source("src/components/GlobalDirectorySection.tsx");
   const shellAt = page.indexOf('className="page-shell meetings-page"');
   const localAt = page.indexOf('className="local-schedule"');
-  const globalAt = page.indexOf('className="global-directory"');
+  const globalAt = page.indexOf("<GlobalDirectorySection");
   assert.ok(shellAt >= 0 && localAt > shellAt && globalAt > localAt);
-  assert.doesNotMatch(page, /key=\{globalStatus\}/);
-  assert.doesNotMatch(page, /if\s*\(\s*globalStatus[^)]*\)\s*return/);
+  assert.doesNotMatch(page, /localStorage|readFreshGlobalMeetingCache|JSON\.parse/);
+  assert.doesNotMatch(globalSection, /key=\{(?:global)?status\}/i);
+  assert.doesNotMatch(globalSection, /if\s*\(\s*(?:global)?status[^)]*\)\s*return/i);
+});
+
+test("Global cache and network work begin only after the local route can paint", async () => {
+  const globalSection = await source("src/components/GlobalDirectorySection.tsx");
+  const effectAt = globalSection.indexOf("useEffect(() =>");
+  const frameAt = globalSection.indexOf("scheduleAfterLocalPaint", effectAt);
+  const cacheAt = globalSection.indexOf("readFreshGlobalMeetingCache", frameAt);
+  const loadAt = globalSection.indexOf("loadGlobalMeetingDirectory", cacheAt);
+  assert.ok(effectAt >= 0 && frameAt > effectAt && cacheAt > frameAt && loadAt > cacheAt);
+  assert.equal((globalSection.match(/window\.requestAnimationFrame/g) ?? []).length, 2);
+  assert.doesNotMatch(globalSection, /setTimeout|startTransition|startViewTransition/);
 });
 
 test("public copy contains no implementation tutorial or owner-placeholder language", () => {
@@ -109,9 +122,20 @@ test("one token file owns CSS colour literals and inherited visual assets are ab
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {
   const css = await source("src/styles/pages/meetings.css");
+  const appSources = await Promise.all([
+    source("src/app/App.tsx"),
+    source("src/app/routes.tsx"),
+    source("src/components/SiteLayout.tsx"),
+    source("src/pages/Meetings.tsx"),
+  ]);
   assert.doesNotMatch(css, /position:\s*(?:absolute|fixed)/i);
   assert.doesNotMatch(css, /overflow-y:\s*(?:auto|scroll)/i);
   assert.doesNotMatch(css, /height:\s*\d+(?:px|rem|vh)/i);
+  assert.doesNotMatch(css, /opacity:\s*0(?:\D|$)|visibility:\s*hidden/i);
+  assert.doesNotMatch(
+    appSources.join("\n"),
+    /startViewTransition|viewTransition|startTransition|Suspense|lazy\(/,
+  );
 });
 
 test("focus and reduced-motion rules remain explicit", async () => {

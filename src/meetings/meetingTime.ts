@@ -17,6 +17,21 @@ export type ClockTime = { hour: number; minute: number };
 export type PlainDate = { year: number; month: number; day: number };
 export type ZonedDateParts = PlainDate & ClockTime & { weekday: DayIndex; second: number };
 
+const timeZoneValidity = new Map<string, boolean>();
+const dateTimeFormatters = new Map<string, Intl.DateTimeFormat>();
+
+function cachedFormatter(
+  key: string,
+  locale: string,
+  options: Intl.DateTimeFormatOptions,
+): Intl.DateTimeFormat {
+  const existing = dateTimeFormatters.get(key);
+  if (existing) return existing;
+  const formatter = new Intl.DateTimeFormat(locale, options);
+  dateTimeFormatters.set(key, formatter);
+  return formatter;
+}
+
 export function parseClockTime(value: unknown): ClockTime | null {
   if (typeof value !== "string") return null;
   const twentyFour = value.trim().match(/^(\d{1,2}):(\d{2})$/);
@@ -54,10 +69,15 @@ export function parsePlainDate(value: unknown): PlainDate | null {
 
 export function isValidTimeZone(value: unknown): value is string {
   if (typeof value !== "string" || !value.trim()) return false;
+  const timeZone = value.trim();
+  const known = timeZoneValidity.get(timeZone);
+  if (known !== undefined) return known;
   try {
-    new Intl.DateTimeFormat("en-US", { timeZone: value.trim() }).format(new Date());
+    new Intl.DateTimeFormat("en-US", { timeZone }).format(new Date());
+    timeZoneValidity.set(timeZone, true);
     return true;
   } catch {
+    timeZoneValidity.set(timeZone, false);
     return false;
   }
 }
@@ -78,8 +98,9 @@ export function isForwardClockRange(startTime: unknown, endTime: unknown): boole
 }
 
 export function getZonedDateTimeParts(date: Date, timeZone: string): ZonedDateParts {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: safeTimeZone(timeZone),
+  const zone = safeTimeZone(timeZone);
+  const parts = cachedFormatter(`zoned-parts|${zone}`, "en-CA", {
+    timeZone: zone,
     calendar: "gregory",
     numberingSystem: "latn",
     year: "numeric",
@@ -143,16 +164,18 @@ export function zonedTimeToUtc(parts: PlainDate & ClockTime, timeZone: string): 
 }
 
 export function formatClockInZone(date: Date, timeZone: string): string {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: safeTimeZone(timeZone),
+  const zone = safeTimeZone(timeZone);
+  return cachedFormatter(`clock|${zone}`, "en-US", {
+    timeZone: zone,
     hour: "numeric",
     minute: "2-digit",
   }).format(date);
 }
 
 export function getTimeZoneShortName(date: Date, timeZone: string): string {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: safeTimeZone(timeZone),
+  const zone = safeTimeZone(timeZone);
+  const parts = cachedFormatter(`zone-name|${zone}`, "en-US", {
+    timeZone: zone,
     hour: "numeric",
     timeZoneName: "short",
   }).formatToParts(date);
@@ -182,8 +205,9 @@ export function formatRelativeDay(date: Date, now: Date, timeZone = ATLANTIS_TIM
     "-" +
     String(tomorrow.day).padStart(2, "0");
   if (target === tomorrowKey) return "Tomorrow";
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: safeTimeZone(timeZone),
+  const zone = safeTimeZone(timeZone);
+  return cachedFormatter(`weekday|${zone}`, "en-US", {
+    timeZone: zone,
     weekday: "short",
   }).format(date);
 }
