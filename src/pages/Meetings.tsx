@@ -1,13 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+import ExternalLink from "../components/ExternalLink";
+import PageIntro from "../components/PageIntro";
+import StatusLabel from "../components/StatusLabel";
 import { GLOBAL_DIRECTORY_SOURCE } from "../config/externalSources";
 import { MEETINGS_PAGE_CONTENT } from "../content/meetings";
-import {
-  buildLocalMeetings,
-  formatMeetingStartLabel,
-  getMeetingStatus,
-  getNearestLocalMeeting,
-  type LocalMeetingItem,
-} from "../meetings/localMeetings";
+import useMinuteClock from "../hooks/useMinuteClock";
 import {
   loadGlobalMeetingDirectory,
   readFreshGlobalMeetingCache,
@@ -18,24 +15,20 @@ import {
   selectGlobalPreviewMeetings,
   type GlobalMeetingOccurrence,
 } from "../meetings/globalMeetingPreview";
-import { MINUTE_MS } from "../meetings/meetingTime";
-import "./Meetings.css";
+import {
+  buildLocalMeetings,
+  formatMeetingStartLabel,
+  getMeetingStatus,
+  getNearestLocalMeeting,
+  type LocalMeetingItem,
+} from "../meetings/localMeetings";
 
-function useNow() {
-  const [now, setNow] = useState(() => new Date());
-  useEffect(() => {
-    const intervalId = window.setInterval(() => setNow(new Date()), MINUTE_MS);
-    return () => window.clearInterval(intervalId);
-  }, []);
-  return now;
-}
+type GlobalViewStatus = "loading" | "live" | "cached" | "empty" | "unavailable" | "error";
 
 function useGlobalMeetings(now: Date) {
   const [initialCache] = useState(() => readFreshGlobalMeetingCache());
   const [records, setRecords] = useState(() => initialCache || []);
-  const [status, setStatus] = useState<
-    "loading" | "live" | "cached" | "empty" | "unavailable" | "error"
-  >("loading");
+  const [status, setStatus] = useState<GlobalViewStatus>("loading");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -60,181 +53,222 @@ function useGlobalMeetings(now: Date) {
   };
 }
 
-function MeetingStatusPill({ startsAt, now }: { startsAt: Date; now: Date }) {
-  const status = getMeetingStatus(startsAt, now);
+function LocalScheduleRow({
+  item,
+  index,
+  now,
+  selected,
+  nearest,
+  onSelect,
+}: {
+  item: LocalMeetingItem;
+  index: number;
+  now: Date;
+  selected: boolean;
+  nearest: boolean;
+  onSelect: () => void;
+}) {
   return (
-    <span className={"meeting-status-pill meeting-status-pill--" + status.tone}>
-      {status.label}
-    </span>
+    <li className={`schedule-row${selected ? " schedule-row--selected" : ""}`}>
+      <span className="schedule-row__index">{String(index + 1).padStart(2, "0")}</span>
+      <div className="schedule-row__body">
+        <div className="schedule-row__heading">
+          <h3>{item.title}</h3>
+          {nearest && <StatusLabel status={getMeetingStatus(item.startsAt, now)} />}
+        </div>
+        <p className="schedule-row__summary">
+          {item.dayLabel} · {item.timeLabel}
+          <br />
+          {item.venueLabel}
+        </p>
+        <button
+          className="schedule-row__select"
+          type="button"
+          aria-pressed={selected}
+          aria-controls="selected-meeting-details"
+          onClick={onSelect}
+        >
+          {selected ? "Details shown" : "View details"}
+        </button>
+      </div>
+    </li>
   );
 }
 
-function LocalMeetingCard({ item, now }: { item: LocalMeetingItem; now: Date }) {
+function LocalMeetingDetail({ item, now }: { item: LocalMeetingItem; now: Date }) {
   return (
-    <article className="meeting-card meeting-card--local" aria-labelledby={"meeting-" + item.id}>
-      <div className="meeting-card-topline">
-        <MeetingStatusPill startsAt={item.startsAt} now={now} />
-        <span className="meeting-card-time">
+    <article
+      className="meeting-detail"
+      id="selected-meeting-details"
+      aria-labelledby={`meeting-${item.id}`}
+    >
+      <div className="meeting-detail__copy">
+        <StatusLabel status={getMeetingStatus(item.startsAt, now)} />
+        <p className="meeting-detail__timing">
           {formatMeetingStartLabel(item.startsAt, now, item.timeZone)}
-        </span>
+        </p>
+        <h3 id={`meeting-${item.id}`}>{item.title}</h3>
+        <p className="meeting-detail__description">{item.description}</p>
+        {item.publicLink && (
+          <ExternalLink href={item.publicLink}>Open verified meeting link</ExternalLink>
+        )}
       </div>
-      <p className="meeting-card-eyebrow">{item.eyebrow}</p>
-      <h3 id={"meeting-" + item.id}>{item.title}</h3>
-      <p className="meeting-card-description">{item.description}</p>
-      <div className="meeting-card-meta" aria-label="Fictional meeting details">
-        {item.metaLines.map((line) => (
-          <span key={line}>{line}</span>
-        ))}
-      </div>
-      {item.publicLink && (
-        <div className="meeting-card-actions">
-          <a
-            className="meeting-button meeting-button--maps"
-            href={item.publicLink}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open verified link
-          </a>
+      <dl className="meeting-detail__facts">
+        <div>
+          <dt>Schedule</dt>
+          <dd>
+            {item.dayLabel}, {item.timeLabel}
+          </dd>
         </div>
-      )}
+        <div>
+          <dt>Time zone</dt>
+          <dd>{item.timeZoneLabel}</dd>
+        </div>
+        <div>
+          <dt>Format and venue</dt>
+          <dd>
+            {item.eyebrow} · {item.venueLabel}
+          </dd>
+        </div>
+        {item.newcomerNote && (
+          <div>
+            <dt>Newcomers</dt>
+            <dd>{item.newcomerNote}</dd>
+          </div>
+        )}
+        {item.registrationNote && (
+          <div>
+            <dt>Registration</dt>
+            <dd>{item.registrationNote}</dd>
+          </div>
+        )}
+      </dl>
     </article>
   );
 }
 
-function GlobalMeetingCard({ meeting, now }: { meeting: GlobalMeetingOccurrence; now: Date }) {
+function GlobalMeeting({ meeting, now }: { meeting: GlobalMeetingOccurrence; now: Date }) {
   return (
-    <article className="meeting-card meeting-card--global">
-      <div className="meeting-card-topline">
-        <MeetingStatusPill startsAt={meeting.startsAt} now={now} />
-        <span className="meeting-card-time">
+    <li className="global-meeting">
+      <div className="global-meeting__topline">
+        <StatusLabel status={getMeetingStatus(meeting.startsAt, now)} />
+        <span className="global-meeting__time">
           {formatMeetingStartLabel(meeting.startsAt, now, meeting.timeZone)}
         </span>
       </div>
-      <p className="meeting-card-eyebrow">{meeting.region}</p>
+      <p className="global-meeting__region">{meeting.region}</p>
       <h3>{meeting.name}</h3>
-      <div className="meeting-card-meta" aria-label="Listed meeting details">
-        <span>{formatListedLocalTime(meeting)}</span>
-      </div>
-      <div className="meeting-card-actions">
-        <a
-          className="meeting-button meeting-button--global"
-          href={meeting.conferenceUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
+      <p className="global-meeting__time">{formatListedLocalTime(meeting)}</p>
+      <div className="global-meeting__actions">
+        <ExternalLink className="button-link button-link--primary" href={meeting.conferenceUrl}>
           Open meeting
-        </a>
-        <a
-          className="meeting-details-link"
-          href={meeting.sourceUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Details
-        </a>
+        </ExternalLink>
+        <ExternalLink href={meeting.sourceUrl}>View source details</ExternalLink>
       </div>
-    </article>
+    </li>
   );
 }
 
+function getGlobalStatusMessage(status: GlobalViewStatus, hasMeetings: boolean): string {
+  switch (status) {
+    case "loading":
+      return hasMeetings
+        ? "Refreshing recently cached listings."
+        : "Loading a small preview from the public directory.";
+    case "live":
+      return "Current public preview loaded.";
+    case "cached":
+      return "Showing recently cached listings while the live directory is unavailable.";
+    case "empty":
+      return "No suitable open online previews are available right now.";
+    case "unavailable":
+      return "The live directory is not available in this browser. Use the full directory link.";
+    case "error":
+      return "The live directory could not be reached. Use the full directory link.";
+  }
+}
+
 export default function Meetings() {
-  const now = useNow();
+  const now = useMinuteClock();
   const localMeetings = useMemo(() => buildLocalMeetings(now), [now]);
+  const nearestMeeting = getNearestLocalMeeting(localMeetings);
+  const [selectedId, setSelectedId] = useState(() => nearestMeeting?.id ?? null);
   const { meetings: globalMeetings, status: globalStatus } = useGlobalMeetings(now);
-  const [selectedLocalMeetingId, setSelectedLocalMeetingId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!localMeetings.some((meeting) => meeting.id === selectedLocalMeetingId)) {
-      setSelectedLocalMeetingId(getNearestLocalMeeting(localMeetings)?.id || null);
-    }
-  }, [localMeetings, selectedLocalMeetingId]);
+    if (!localMeetings.some((meeting) => meeting.id === selectedId))
+      setSelectedId(nearestMeeting?.id ?? null);
+  }, [localMeetings, nearestMeeting?.id, selectedId]);
 
-  const selectedLocalMeeting =
-    localMeetings.find((meeting) => meeting.id === selectedLocalMeetingId) ||
-    getNearestLocalMeeting(localMeetings);
+  const selectedMeeting =
+    localMeetings.find((meeting) => meeting.id === selectedId) || nearestMeeting;
 
   return (
-    <section className="container meetings-page" aria-labelledby="meetings-heading">
-      <section className="meeting-section meeting-section--local" id="local-schedule">
-        <div className="meeting-section-heading">
-          <p className="meeting-section-kicker">{MEETINGS_PAGE_CONTENT.hero.kicker}</p>
-          <h1 id="meetings-heading">{MEETINGS_PAGE_CONTENT.hero.title}</h1>
-          <p>{MEETINGS_PAGE_CONTENT.hero.lede}</p>
-        </div>
+    <div className="page-shell meetings-page">
+      <div className="site-container">
+        <PageIntro
+          eyebrow={MEETINGS_PAGE_CONTENT.hero.kicker}
+          title={MEETINGS_PAGE_CONTENT.hero.title}
+          lede={MEETINGS_PAGE_CONTENT.hero.lede}
+          headingId="meetings-heading"
+        />
 
-        {localMeetings.length > 1 && (
-          <div className="meeting-day-selector" aria-label="Choose a fictional local meeting">
-            {localMeetings.map((meeting) => (
-              <button
-                key={meeting.id}
-                className={
-                  "meeting-day-tab" +
-                  (meeting.id === selectedLocalMeeting?.id ? " meeting-day-tab--active" : "")
-                }
-                type="button"
-                aria-pressed={meeting.id === selectedLocalMeeting?.id}
-                onClick={() => setSelectedLocalMeetingId(meeting.id)}
-              >
-                {meeting.tabLabel}
-              </button>
-            ))}
+        <section className="local-schedule" id="local-schedule" aria-labelledby="local-heading">
+          <div className="section-heading">
+            <p className="section-label">{MEETINGS_PAGE_CONTENT.local.kicker}</p>
+            <h2 id="local-heading">{MEETINGS_PAGE_CONTENT.local.title}</h2>
           </div>
-        )}
-        {selectedLocalMeeting && <LocalMeetingCard item={selectedLocalMeeting} now={now} />}
-      </section>
 
-      <section
-        className="meeting-section meeting-section--global"
-        aria-labelledby="global-meetings-heading"
-      >
-        <div className="meeting-section-heading">
-          <p className="meeting-section-kicker">{MEETINGS_PAGE_CONTENT.global.kicker}</p>
-          <h2 id="global-meetings-heading">{MEETINGS_PAGE_CONTENT.global.title}</h2>
-          <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
-          <a
-            className="meeting-directory-link"
-            href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {MEETINGS_PAGE_CONTENT.global.directoryLabel}
-          </a>
-        </div>
-
-        <div className="meeting-source-status" aria-live="polite" aria-atomic="true">
-          {globalStatus === "cached" && (
-            <p>Showing recently cached listings while the live directory is unavailable.</p>
-          )}
-          {globalStatus === "loading" && (
-            <p>
-              {globalMeetings.length > 0
-                ? "Refreshing recently cached listings."
-                : "Loading a small preview from the public directory."}
-            </p>
-          )}
-          {globalStatus === "empty" && (
-            <p>No suitable open online previews are available right now.</p>
-          )}
-          {globalStatus === "unavailable" && (
-            <p>The live directory is not available in this browser. Use the full directory link.</p>
-          )}
-          {globalStatus === "error" && (
-            <p>The live directory could not be reached. Use the full directory link.</p>
-          )}
-        </div>
-        {globalMeetings.length > 0 && (
-          <div className="meeting-card-list">
-            {globalMeetings.map((meeting) => (
-              <GlobalMeetingCard
-                key={meeting.id + meeting.startsAt.toISOString()}
-                meeting={meeting}
+          <ol className="schedule-ledger">
+            {localMeetings.map((meeting, index) => (
+              <LocalScheduleRow
+                key={meeting.id}
+                item={meeting}
+                index={index}
                 now={now}
+                selected={meeting.id === selectedMeeting?.id}
+                nearest={meeting.id === nearestMeeting?.id}
+                onSelect={() => setSelectedId(meeting.id)}
               />
             ))}
+          </ol>
+
+          {selectedMeeting && <LocalMeetingDetail item={selectedMeeting} now={now} />}
+          <p className="meetings-qualification">{MEETINGS_PAGE_CONTENT.local.qualification}</p>
+        </section>
+
+        <section className="global-directory" aria-labelledby="global-heading">
+          <div className="global-directory__intro">
+            <p className="section-label">{MEETINGS_PAGE_CONTENT.global.kicker}</p>
+            <h2 id="global-heading">{MEETINGS_PAGE_CONTENT.global.title}</h2>
+            <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
+            <ExternalLink href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}>
+              {MEETINGS_PAGE_CONTENT.global.directoryLabel}
+            </ExternalLink>
           </div>
-        )}
-      </section>
-    </section>
+
+          <p
+            className="global-directory__status"
+            aria-live="polite"
+            aria-atomic="true"
+            data-global-state={globalStatus}
+          >
+            {getGlobalStatusMessage(globalStatus, globalMeetings.length > 0)}
+          </p>
+
+          {globalMeetings.length > 0 && (
+            <ol className="global-meeting-list">
+              {globalMeetings.map((meeting) => (
+                <GlobalMeeting
+                  key={`${meeting.id}-${meeting.startsAt.toISOString()}`}
+                  meeting={meeting}
+                  now={now}
+                />
+              ))}
+            </ol>
+          )}
+        </section>
+      </div>
+    </div>
   );
 }

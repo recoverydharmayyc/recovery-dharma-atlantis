@@ -10,25 +10,26 @@ APPROVED FACTS
 [Copy only facts approved in MY_WEBSITE_FACTS.txt.]
 
 REQUESTED VISUAL OR BEHAVIORAL CHANGES
-[For example: change the sea-glass theme tokens while keeping the existing layout.]
-[For example: add a verified temporary meeting using src/content/announcements.ts so it appears in the announcement bar and meeting list, then expires automatically.]
+[For example: change the design tokens to a cooler civic palette while keeping the layout and meeting rules.]
+[For example: add a verified temporary meeting through src/content/announcements.ts so it appears in the community bulletin and meeting ledger, then expires automatically.]
 
 THINGS NOT TO CHANGE
-[For example: keep routes, mobile navigation, fiction safety, Global-directory attribution and fallback, and no active contact form.]
+[For example: keep routes, responsive navigation, fictional safety, Global-directory attribution, sanitization, timeout, cache, and fallback.]
 
 DEFINITION OF DONE
-[Describe what must be true when the candidate is opened.]
+[Describe what must be true when the candidate is previewed.]
 
 REQUIRED OUTPUT
 Return a complete clean project ZIP if supported. Otherwise return every complete changed file, with original filenames. Do not return diffs, patches, fragments, ellipses, or line-number instructions.
 
 BROWSER CHECKS I WILL PERFORM
-[ ] Home, Meetings, About, New Here, Resources, and Connect open.
-[ ] The two local meetings are correct.
-[ ] The temporary announcement is absent unless intentionally enabled.
-[ ] The Global directory disclosure and fallback link remain present.
+[ ] Home, Meetings, About, New Here, Resources, Connect, and a missing-page address open correctly.
+[ ] The two local meetings and nearest-meeting marker are correct.
+[ ] The temporary bulletin is absent unless intentionally enabled.
+[ ] Global attribution, sanitization behavior, cached status, and fallback link remain present.
 [ ] The fictional label and footer notice remain present.
-[ ] Desktop and mobile navigation work.
+[ ] Desktop and mobile navigation work; Escape closes the mobile menu.
+[ ] Pages remain readable at narrow widths and 200 percent zoom.
 [ ] I approve the candidate before publishing.
 
 COMPLETE EXAMPLE REQUEST
@@ -36,7 +37,7 @@ COMPLETE EXAMPLE REQUEST
 Current approved archive: recovery-dharma-atlantis-source.zip
 Goal: Update the fictional Sunday meeting time.
 Approved facts: Sunday Morning is Sunday, 9:30 a.m. to 10:30 a.m., in person at Atlantis Community Room. Newcomers welcome. No registration required. Atlantis time remains UTC-3.
-Requested change: Update the Sunday recurring meeting in the structured local meeting data. Keep the Wednesday meeting, visual theme, routes, announcement system, Global meeting preview, and fictional safety unchanged.
-Things not to change: Do not invent an address, contact method, organizer, accessibility claim, or link. Do not remove noindex, robots blocking, the fictional label, or footer notice.
-Definition of done: The Meetings page selects and displays the updated Sunday time, and all routes still work.
+Requested change: Update the Sunday recurring meeting in src/content/meetings.ts. Keep its stable ID and matching day index. Keep the Wednesday meeting, design tokens, routes, announcement system, Global preview safety, and fictional mode unchanged.
+Things not to change: Do not invent an address, contact method, organizer, accessibility claim, or link. Do not remove noindex, robots blocking, the fictional label, or footer notice. Do not rewrite meeting-domain or design-system files.
+Definition of done: The home-page next-gathering ledger and Meetings page use the updated Sunday time when Sunday is next, and all routes still work.
 Required output: Return a complete updated project ZIP, or every complete changed file if ZIP output is not supported.

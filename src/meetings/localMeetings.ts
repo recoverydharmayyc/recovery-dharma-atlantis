@@ -30,7 +30,12 @@ export type LocalMeetingItem = {
   title: string;
   eyebrow: string;
   description: string;
-  metaLines: string[];
+  dayLabel: string;
+  timeLabel: string;
+  timeZoneLabel: string;
+  venueLabel: string;
+  newcomerNote: string | null;
+  registrationNote: string | null;
   startsAt: Date;
   endsAt: Date;
   timeZone: string;
@@ -195,14 +200,12 @@ export function buildLocalMeetings(
       title: meeting.title,
       eyebrow: meeting.format,
       description: meeting.description,
-      metaLines: [
-        meeting.day,
-        meeting.displayTime,
-        meeting.timeZoneLabel,
-        meeting.venue,
-        meeting.newcomerNote,
-        meeting.registrationNote,
-      ],
+      dayLabel: meeting.day,
+      timeLabel: meeting.displayTime,
+      timeZoneLabel: meeting.timeZoneLabel,
+      venueLabel: meeting.venue,
+      newcomerNote: meeting.newcomerNote,
+      registrationNote: meeting.registrationNote,
       startsAt: occurrence.startsAt,
       endsAt: occurrence.endsAt,
       timeZone: meeting.timeZone,
@@ -219,10 +222,15 @@ export function buildLocalMeetings(
       title: temporaryMeeting.title,
       eyebrow: temporaryMeeting.format,
       description: temporaryMeeting.note || "A one-time fictional community gathering.",
-      metaLines: [
-        formatRelativeDay(temporary.startsAt, now, temporary.occurrence.timeZone),
-        temporaryMeeting.venueOrOnlineDescription,
-      ],
+      dayLabel: formatRelativeDay(temporary.startsAt, now, temporary.occurrence.timeZone),
+      timeLabel:
+        formatClockInZone(temporary.startsAt, temporary.occurrence.timeZone) +
+        " to " +
+        formatClockInZone(temporary.endsAt, temporary.occurrence.timeZone),
+      timeZoneLabel: getTimeZoneShortName(temporary.startsAt, temporary.occurrence.timeZone),
+      venueLabel: temporaryMeeting.venueOrOnlineDescription,
+      newcomerNote: null,
+      registrationNote: null,
       startsAt: temporary.startsAt,
       endsAt: temporary.endsAt,
       timeZone: temporary.occurrence.timeZone,

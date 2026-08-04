@@ -1,88 +1,62 @@
 import { NavLink } from "react-router-dom";
+import ExternalLink from "../components/ExternalLink";
+import PageIntro from "../components/PageIntro";
 import { RESOURCES_CONTENT, type Resource } from "../content/resources";
-import "./Resources.css";
 
-function ResourceCard({
-  resource,
-  variant = "standard",
-}: {
-  resource: Resource;
-  variant?: "standard" | "local" | "featured";
-}) {
-  const className = "resources-card resources-card--" + variant;
-  const content = (
-    <>
-      <span className="resources-card-title">{resource.title}</span>
-      <span className="resources-card-description">{resource.description}</span>
-      <span className="resources-card-action">{resource.action}</span>
-    </>
-  );
-
+function ResourceTitle({ resource }: { resource: Resource }) {
   if (resource.internal && resource.href)
     return (
-      <NavLink className={className} to={resource.href}>
-        {content}
+      <NavLink className="resource-index__title text-link" to={resource.href}>
+        {resource.title}
       </NavLink>
     );
   if (resource.href)
     return (
-      <a className={className} href={resource.href} target="_blank" rel="noreferrer">
-        {content}
-      </a>
+      <ExternalLink className="resource-index__title external-link" href={resource.href}>
+        {resource.title}
+      </ExternalLink>
     );
-  return <article className={className}>{content}</article>;
+  return <span className="resource-index__title">{resource.title}</span>;
 }
 
 export default function Resources() {
   const { hero, sections } = RESOURCES_CONTENT;
+  const groups = [sections.local, sections.core, sections.practice];
+
   return (
-    <section className="container resources-page" aria-labelledby="resources-heading">
-      <header className="resources-hero">
-        <p className="resources-eyebrow">{hero.eyebrow}</p>
-        <h1 className="resources-title" id="resources-heading">
-          {hero.title}
-        </h1>
-        <p className="resources-lede">{hero.lede}</p>
-      </header>
+    <div className="page-shell editorial-page">
+      <div className="site-container">
+        <PageIntro
+          eyebrow={hero.eyebrow}
+          title={hero.title}
+          lede={hero.lede}
+          headingId="resources-heading"
+        />
 
-      <section
-        className="resources-section resources-section--local"
-        aria-labelledby="local-heading"
-      >
-        <div className="resources-section-heading">
-          <p className="resources-section-kicker">{sections.local.kicker}</p>
-          <h2 id="local-heading">{sections.local.title}</h2>
-        </div>
-        <div className="resources-grid resources-grid--local">
-          {sections.local.items.map((resource) => (
-            <ResourceCard key={resource.title} resource={resource} variant="local" />
-          ))}
-        </div>
-      </section>
-
-      <section className="resources-section" aria-labelledby="core-heading">
-        <div className="resources-section-heading">
-          <p className="resources-section-kicker">{sections.core.kicker}</p>
-          <h2 id="core-heading">{sections.core.title}</h2>
-        </div>
-        <div className="resources-feature-grid">
-          {sections.core.items.map((resource) => (
-            <ResourceCard key={resource.title} resource={resource} variant="featured" />
-          ))}
-        </div>
-      </section>
-
-      <section className="resources-section" aria-labelledby="practice-heading">
-        <div className="resources-section-heading">
-          <p className="resources-section-kicker">{sections.practice.kicker}</p>
-          <h2 id="practice-heading">{sections.practice.title}</h2>
-        </div>
-        <div className="resources-list-grid">
-          {sections.practice.items.map((resource) => (
-            <ResourceCard key={resource.title} resource={resource} />
-          ))}
-        </div>
-      </section>
-    </section>
+        {groups.map((group) => (
+          <section className="resource-group" key={group.title}>
+            <div className="section-heading">
+              <p className="section-label">{group.kicker}</p>
+              <h2>{group.title}</h2>
+            </div>
+            <ol className="resource-index">
+              {group.items.map((resource, index) => (
+                <li className="resource-index__item" key={resource.title}>
+                  <span className="resource-index__number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="resource-index__copy">
+                    <ResourceTitle resource={resource} />
+                    <p className="resource-index__description">
+                      {resource.description} Source: {resource.source}.
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </div>
   );
 }

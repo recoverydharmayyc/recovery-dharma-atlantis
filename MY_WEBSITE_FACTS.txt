@@ -19,8 +19,10 @@ A fictional peer-led community website used as a worked example in an educationa
 Tutorial data: Yes
 
 RECURRING LOCAL MEETINGS
-1. Title: Wednesday Evening
+1. Stable ID: wednesday-evening
+   Title: Wednesday Evening
    Day: Wednesday
+   Day index: 3
    Time: 7:00 p.m. to 8:00 p.m.
    Machine time: 19:00 to 20:00
    Time zone: Atlantis time (UTC-3) / Etc/GMT+3
@@ -30,8 +32,10 @@ RECURRING LOCAL MEETINGS
    Registration: No registration required
    Verified public link: Unknown / none
 
-2. Title: Sunday Morning
+2. Stable ID: sunday-morning
+   Title: Sunday Morning
    Day: Sunday
+   Day index: 0
    Time: 10:00 a.m. to 11:00 a.m.
    Machine time: 10:00 to 11:00
    Time zone: Atlantis time (UTC-3) / Etc/GMT+3
@@ -43,6 +47,7 @@ RECURRING LOCAL MEETINGS
 
 TEMPORARY MEETING OR ANNOUNCEMENT
 Enabled: No
+Related recurring meeting ID: Unknown / none
 Title: Unknown
 Verified dates and times: Unknown
 Verified venue or online description: Unknown
@@ -67,7 +72,7 @@ Official Recovery Dharma resources already shown on the Resources page.
 Any new link: Unknown until checked and approved.
 
 DESIRED VISUAL FEELING
-Midnight ocean, deep blue-green, sea glass, pale sand, warm coral, and a restrained nighttime horizon.
+A warm community field guide: pale paper, deep ink, mature sea-glass teal, warm coral, restrained ochre, editorial rules, and generous reading space.
 
 FACTS STILL UNKNOWN
 Street address, organizer, public contact method, access details, parking, transit, and any local affiliations.

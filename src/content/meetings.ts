@@ -87,7 +87,13 @@ export const MEETINGS_PAGE_CONTENT = {
   hero: {
     kicker: "Atlantis gatherings",
     title: "Find a time to sit together.",
-    lede: "These are fictional sample listings for the tutorial community. They show how a local group can make meeting details clear without inventing information.",
+    lede: "Two weekly gatherings make room for meditation, reflection, and voluntary sharing. Newcomers can begin with either meeting.",
+  },
+  local: {
+    kicker: "Local schedule",
+    title: "Two ways into the week.",
+    qualification:
+      "Recovery Dharma Atlantis is a fictional example. These listings do not describe active meetings.",
   },
   global: {
     kicker: "Worldwide online meetings",

@@ -1,19 +1,20 @@
-import { NavLink } from "react-router-dom";
+import ButtonLink from "../components/ButtonLink";
 import { ROUTE_PATHS } from "../config/site";
 
 export default function NotFound() {
   return (
-    <section className="container about-page" aria-labelledby="not-found-heading">
-      <header className="about-hero">
-        <p className="about-eyebrow">Page not found</p>
-        <h1 className="about-title" id="not-found-heading">
-          This path does not lead to a page.
-        </h1>
-        <p className="about-lede">The address may be incomplete or the page may have moved.</p>
-        <NavLink className="about-meetings-link" to={ROUTE_PATHS.home}>
-          Return home
-        </NavLink>
-      </header>
-    </section>
+    <div className="page-shell not-found-route">
+      <section className="site-container reading-width" aria-labelledby="not-found-heading">
+        <div className="page-intro">
+          <p className="page-intro__eyebrow">Page not found · 404</p>
+          <h1 id="not-found-heading">This path ends here.</h1>
+          <p className="page-intro__lede">
+            The address may be incomplete, or the page may have moved. The community guide begins
+            again at the home page.
+          </p>
+        </div>
+        <ButtonLink to={ROUTE_PATHS.home}>Return home</ButtonLink>
+      </section>
+    </div>
   );
 }

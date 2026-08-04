@@ -3,7 +3,7 @@ import { ROUTE_PATHS } from "../config/site";
 export type Resource = {
   title: string;
   description: string;
-  action: string;
+  source: string;
   href?: string;
   internal?: boolean;
 };
@@ -22,19 +22,19 @@ export const RESOURCES_CONTENT = {
         {
           title: "Beginners",
           description: "An official Recovery Dharma introduction for people getting started.",
-          action: "Explore beginners’ resources",
+          source: "Recovery Dharma Global",
           href: "https://recoverydharma.org/get-started/beginners/",
         },
         {
           title: "The Recovery Dharma book",
           description: "Read about the practice and its approach to recovery.",
-          action: "Visit the book page",
+          source: "Recovery Dharma Global",
           href: "https://recoverydharma.org/book/",
         },
         {
           title: "Meditations",
           description: "Browse official guided meditation resources.",
-          action: "Explore meditations",
+          source: "Recovery Dharma Global",
           href: "https://recoverydharma.org/resources/meditations/",
         },
       ],
@@ -46,19 +46,19 @@ export const RESOURCES_CONTENT = {
         {
           title: "Meeting materials",
           description: "Official Recovery Dharma materials for meetings and shared practice.",
-          action: "View meeting materials",
+          source: "Recovery Dharma Global",
           href: "https://recoverydharma.org/resources/meeting-materials/",
         },
         {
           title: "Friends and mentors",
           description: "Learn about peer relationships within the Recovery Dharma community.",
-          action: "Explore friends and mentors",
+          source: "Recovery Dharma Global",
           href: "https://recoverydharma.org/resources/friends-mentors/",
         },
         {
           title: "Glossary",
           description: "A plain-language reference for common Recovery Dharma terms.",
-          action: "Read the glossary",
+          source: "Recovery Dharma Global",
           href: "https://recoverydharma.org/glossary/",
         },
       ],
@@ -71,7 +71,7 @@ export const RESOURCES_CONTENT = {
           title: "Meeting times",
           description:
             "See the two fictional Atlantis gatherings used throughout this tutorial project.",
-          action: "View fictional meetings",
+          source: "Recovery Dharma Atlantis",
           href: ROUTE_PATHS.meetings,
           internal: true,
         },

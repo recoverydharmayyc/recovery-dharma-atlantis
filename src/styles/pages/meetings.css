@@ -1,0 +1,205 @@
+.local-schedule {
+  margin-bottom: clamp(4rem, 9vw, 8rem);
+}
+
+.schedule-ledger {
+  list-style: none;
+  border-top: var(--border-heavy) solid var(--ink-strong);
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-bottom: var(--border-thin) solid var(--line-strong);
+}
+
+.schedule-row--selected {
+  background: var(--coral-wash);
+}
+
+.schedule-row__index {
+  color: var(--coral-deep);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+
+.schedule-row__body {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-3);
+}
+
+.schedule-row__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.schedule-row h3 {
+  font-size: var(--step-2);
+}
+
+.schedule-row__summary {
+  color: var(--ink-muted);
+}
+
+.schedule-row__select {
+  width: fit-content;
+  min-height: 2.75rem;
+  padding: 0.45rem 0;
+  border: 0;
+  border-bottom: var(--border-heavy) solid var(--sea);
+  background: transparent;
+  color: var(--sea-deep);
+  cursor: pointer;
+  font-size: var(--step--1);
+  font-weight: 800;
+}
+
+@media (min-width: 45rem) {
+  .schedule-row {
+    grid-template-columns: 3rem minmax(12rem, 0.75fr) minmax(13rem, 1fr) auto;
+    align-items: center;
+  }
+
+  .schedule-row__body {
+    display: contents;
+  }
+
+  .schedule-row__select {
+    justify-self: end;
+  }
+}
+
+.meeting-detail {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-left: 0.4rem solid var(--sea);
+  background: var(--paper-light);
+}
+
+.meeting-detail__copy {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.meeting-detail__timing {
+  color: var(--coral-deep);
+  font-weight: 850;
+}
+
+.meeting-detail__description {
+  max-width: var(--content-reading);
+  color: var(--ink-muted);
+}
+
+.meeting-detail__facts {
+  display: grid;
+  margin: 0;
+  border-top: var(--border-thin) solid var(--line-strong);
+}
+
+.meeting-detail__facts div {
+  display: grid;
+  gap: 0.15rem;
+  padding-block: var(--space-3);
+  border-bottom: var(--border-thin) solid var(--line);
+}
+
+.meeting-detail__facts dt {
+  color: var(--ink-muted);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meeting-detail__facts dd {
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+
+@media (min-width: 48rem) {
+  .meeting-detail {
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  }
+}
+
+.global-directory {
+  padding-top: clamp(4rem, 9vw, 8rem);
+  border-top: var(--border-heavy) solid var(--ink-strong);
+}
+
+.global-directory__intro {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 52rem;
+}
+
+.global-directory__status {
+  min-height: 1.7rem;
+  margin-block: var(--space-5);
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+}
+
+.global-meeting-list {
+  display: grid;
+  gap: var(--space-4);
+  list-style: none;
+}
+
+.global-meeting {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border-thin) solid var(--line-strong);
+  border-top: 0.3rem solid var(--sea);
+  border-radius: var(--radius-small);
+  background: var(--paper-light);
+}
+
+.global-meeting__topline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.global-meeting__time,
+.global-meeting__region {
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+}
+
+.global-meeting h3 {
+  font-size: var(--step-1);
+  line-height: 1.22;
+}
+
+.global-meeting__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+@media (min-width: 68rem) {
+  .global-meeting-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.meetings-qualification {
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: var(--border-thin) solid var(--line-strong);
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+}

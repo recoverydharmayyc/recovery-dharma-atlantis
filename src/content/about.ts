@@ -4,15 +4,15 @@ export const ABOUT_CONTENT = {
   hero: {
     eyebrow: "About the practice",
     title: "Recovery is something we practice together.",
-    lede: "Recovery Dharma communities use meditation, reflection, and shared inquiry as supports for recovery. This fictional example describes a peer-led approach, not individual guidance.",
+    lede: "Recovery Dharma communities use meditation, reflection, and shared inquiry as supports for recovery. The practice is peer-led and participation is voluntary.",
   },
   sections: [
     {
       kicker: "Peer-led",
       title: "No gurus. No hierarchy of recovery.",
       paragraphs: [
-        "This imagined community is a place where people meet as equals. Each person can take part in ways that feel right for them.",
-        "Recovery Dharma Atlantis does not make medical claims or promise particular outcomes.",
+        "People meet as equals and speak from lived experience. No participant acts as a guru or holds authority over another person’s recovery.",
+        "The community does not make medical claims or promise particular outcomes.",
       ],
       actionRow: undefined,
     },
@@ -38,6 +38,6 @@ export const ABOUT_CONTENT = {
       "Read, reflect, and share if you wish.",
       "Leave with no pressure to do more than you are ready for.",
     ],
-    actionLabel: "View fictional meeting times",
+    actionLabel: "View meeting times",
   },
 } as const;

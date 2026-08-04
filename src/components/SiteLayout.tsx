@@ -5,7 +5,6 @@ import { SITE_CONFIG } from "../config/site";
 import AnnouncementBar from "./AnnouncementBar";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
-import "./layout/LayoutPolish.css";
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
@@ -28,17 +27,15 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className="app-shell" data-demo-state={SITE_CONFIG.demoState}>
+    <div className="site-shell" data-demo-state={SITE_CONFIG.demoState}>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
       <SiteHeader />
       {announcement && <AnnouncementBar announcement={announcement} />}
-      <div className="route-transition-surface">
-        <main id="main-content" className="site-main" tabIndex={-1}>
-          <div className="page">{children}</div>
-        </main>
-      </div>
+      <main id="main-content" className="site-main" tabIndex={-1}>
+        {children}
+      </main>
       <SiteFooter />
     </div>
   );

@@ -1,43 +1,98 @@
-import { NavLink } from "react-router-dom";
+import { useMemo } from "react";
+import ButtonLink from "../components/ButtonLink";
+import StatusLabel from "../components/StatusLabel";
 import { ROUTE_PATHS } from "../config/site";
 import { HOME_CONTENT } from "../content/home";
-import "./Home.css";
+import useMinuteClock from "../hooks/useMinuteClock";
+import {
+  buildLocalMeetings,
+  getMeetingStatus,
+  getNearestLocalMeeting,
+} from "../meetings/localMeetings";
 
 export default function Home() {
-  return (
-    <section className="container home-page">
-      <div className="home-hero">
-        <div className="home-copy">
-          <p className="home-eyebrow">{HOME_CONTENT.hero.eyebrow}</p>
-          <h1 className="home-title">{HOME_CONTENT.hero.heroText}</h1>
-          <p className="home-sub">{HOME_CONTENT.hero.subText}</p>
-          <p className="home-blurb">{HOME_CONTENT.hero.blurb}</p>
-          <div className="home-cta-row">
-            <NavLink to={ROUTE_PATHS.meetings} className="home-button home-button--primary">
-              {HOME_CONTENT.primaryButtonLabel}
-            </NavLink>
-            <NavLink to={ROUTE_PATHS.newcomers} className="home-button home-button--secondary">
-              {HOME_CONTENT.secondaryButtonLabel}
-            </NavLink>
-          </div>
-        </div>
+  const now = useMinuteClock();
+  const nextMeeting = useMemo(() => getNearestLocalMeeting(buildLocalMeetings(now)), [now]);
 
-        <aside className="home-orientation" aria-label="New visitor information">
-          <p className="home-panel-kicker">{HOME_CONTENT.orientation.kicker}</p>
-          <h2>{HOME_CONTENT.orientation.heading}</h2>
-          <ul className="home-orientation-list">
-            {HOME_CONTENT.orientation.features.map((feature) => (
-              <li key={feature.kicker}>
-                <span>{feature.kicker}</span>
-                <p>{feature.description}</p>
+  return (
+    <>
+      <div className="page-shell page-shell--home">
+        <section className="site-container home-hero" aria-labelledby="home-heading">
+          <div className="home-hero__copy">
+            <p className="page-intro__eyebrow">{HOME_CONTENT.hero.eyebrow}</p>
+            <h1 className="home-hero__title" id="home-heading">
+              {HOME_CONTENT.hero.heroText}
+            </h1>
+            <p className="home-hero__summary">{HOME_CONTENT.hero.subText}</p>
+            <p className="home-hero__body">{HOME_CONTENT.hero.blurb}</p>
+            <div className="button-row home-hero__actions">
+              <ButtonLink to={ROUTE_PATHS.meetings}>{HOME_CONTENT.primaryButtonLabel}</ButtonLink>
+              <ButtonLink to={ROUTE_PATHS.newcomers} variant="secondary">
+                {HOME_CONTENT.secondaryButtonLabel}
+              </ButtonLink>
+            </div>
+          </div>
+
+          {nextMeeting && (
+            <aside className="next-ledger" aria-labelledby="next-gathering-heading">
+              <div className="next-ledger__header">
+                <p className="next-ledger__label" id="next-gathering-heading">
+                  Next gathering
+                </p>
+                <StatusLabel status={getMeetingStatus(nextMeeting.startsAt, now)} />
+              </div>
+              <div className="next-ledger__entry">
+                <p className="next-ledger__day">{nextMeeting.dayLabel.slice(0, 3)}</p>
+                <div>
+                  <p className="next-ledger__time">{nextMeeting.timeLabel}</p>
+                  <h2 className="next-ledger__title">{nextMeeting.title}</h2>
+                  <p className="next-ledger__meta">
+                    {nextMeeting.venueLabel}
+                    {nextMeeting.newcomerNote && ` · ${nextMeeting.newcomerNote}`}
+                    {nextMeeting.registrationNote && ` · ${nextMeeting.registrationNote}`}
+                  </p>
+                  <ButtonLink to={ROUTE_PATHS.meetings} variant="secondary">
+                    View all meetings
+                  </ButtonLink>
+                </div>
+              </div>
+            </aside>
+          )}
+        </section>
+      </div>
+
+      <section className="section-band section-band--paper-deep">
+        <div className="site-container home-practice">
+          <div className="section-heading">
+            <p className="section-label">{HOME_CONTENT.practice.kicker}</p>
+            <h2>{HOME_CONTENT.practice.heading}</h2>
+          </div>
+          <ol className="practice-sequence">
+            {HOME_CONTENT.practice.features.map((feature, index) => (
+              <li key={feature.title}>
+                <span className="practice-sequence__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </div>
               </li>
             ))}
-          </ul>
-          <NavLink to={ROUTE_PATHS.newcomers} className="home-text-link">
-            {HOME_CONTENT.orientation.detailsLinkLabel}
-          </NavLink>
-        </aside>
-      </div>
-    </section>
+          </ol>
+        </div>
+      </section>
+
+      <section className="section-band section-band--paper-light">
+        <div className="site-container newcomer-invitation">
+          <div className="newcomer-invitation__copy">
+            <p className="section-label">{HOME_CONTENT.invitation.kicker}</p>
+            <h2>{HOME_CONTENT.invitation.heading}</h2>
+            <p>{HOME_CONTENT.invitation.body}</p>
+          </div>
+          <ButtonLink to={ROUTE_PATHS.newcomers}>{HOME_CONTENT.invitation.actionLabel}</ButtonLink>
+        </div>
+      </section>
+    </>
   );
 }

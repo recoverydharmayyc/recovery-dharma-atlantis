@@ -1,29 +1,33 @@
+import ButtonLink from "../components/ButtonLink";
+import PageIntro from "../components/PageIntro";
+import { ROUTE_PATHS } from "../config/site";
 import { CONNECT_CONTENT } from "../content/connect";
-import "./Connect.css";
 
 export default function Connect() {
   return (
-    <section className="container connect-page">
-      <header className="connect-hero">
-        <p className="connect-eyebrow">{CONNECT_CONTENT.hero.eyebrow}</p>
-        <h1 className="connect-title">{CONNECT_CONTENT.hero.title}</h1>
-        <p className="connect-lede">{CONNECT_CONTENT.hero.lede}</p>
-      </header>
+    <div className="page-shell editorial-page">
+      <div className="site-container">
+        <PageIntro
+          eyebrow={CONNECT_CONTENT.hero.eyebrow}
+          title={CONNECT_CONTENT.hero.title}
+          lede={CONNECT_CONTENT.hero.lede}
+          headingId="connect-heading"
+        />
 
-      <section className="connect-channels" aria-label="Contact information for adopters">
-        {CONNECT_CONTENT.channels.map((channel) => (
-          <article className="connect-channel" key={channel.title}>
-            <div className="connect-channel-copy">
-              <p className="connect-channel-kicker">{channel.kicker}</p>
-              <h2>{channel.title}</h2>
-              <p>{channel.description}</p>
-            </div>
-            <div className="connect-channel-action">
-              <p className="connect-action-note">{channel.action}</p>
-            </div>
-          </article>
-        ))}
-      </section>
-    </section>
+        <section className="connect-empty" aria-labelledby="connect-empty-heading">
+          <h2 id="connect-empty-heading">{CONNECT_CONTENT.emptyState.heading}</h2>
+          <p className="connect-empty__copy">{CONNECT_CONTENT.emptyState.body}</p>
+          <div className="button-row">
+            <ButtonLink to={ROUTE_PATHS.meetings}>
+              {CONNECT_CONTENT.emptyState.meetingsAction}
+            </ButtonLink>
+            <ButtonLink to={ROUTE_PATHS.newcomers} variant="secondary">
+              {CONNECT_CONTENT.emptyState.newcomersAction}
+            </ButtonLink>
+          </div>
+          <p className="connect-note">{CONNECT_CONTENT.emptyState.note}</p>
+        </section>
+      </div>
+    </div>
   );
 }

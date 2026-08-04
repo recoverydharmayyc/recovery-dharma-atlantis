@@ -3,26 +3,34 @@ export const HOME_CONTENT = {
     eyebrow: "Atlantis peer recovery",
     heroText: "Connect. Meditate. Recover.",
     subText:
-      "A fictional peer-led community for anyone seeking freedom from addiction through meditation, reflection, and shared recovery practice.",
+      "A fictional peer-led community for people exploring recovery through meditation, reflection, and shared practice.",
     blurb:
       "Recovery Dharma Atlantis is an educational example of a local peer community. People sit together, meditate, read, and share as equals. There are no gurus and no pressure to speak.",
   },
   primaryButtonLabel: "See Meetings",
   secondaryButtonLabel: "What to Expect",
-  orientation: {
-    kicker: "New here?",
-    heading: "Start with a meeting.",
+  practice: {
+    kicker: "What happens here",
+    heading: "A shared practice, one ordinary step at a time.",
     features: [
       {
-        kicker: "No signup",
-        description: "Come as you are. These fictional sample meetings require no registration.",
+        title: "Sit",
+        description: "Begin with meditation—guided, quiet, or simply a chance to arrive.",
       },
-      { kicker: "Peer-led", description: "People meditate, read, and share as equals." },
       {
-        kicker: "No pressure",
-        description: "Listening quietly is welcome. Sharing is never required.",
+        title: "Reflect",
+        description: "Readings offer a starting point for honest attention and inquiry.",
+      },
+      {
+        title: "Share",
+        description: "Speak from your own experience, or listen quietly. Both are welcome.",
       },
     ],
-    detailsLinkLabel: "Learn what to expect",
+  },
+  invitation: {
+    kicker: "New here?",
+    heading: "Start with a meeting.",
+    body: "No experience is expected, no registration is required, and there is no pressure to speak.",
+    actionLabel: "Read the first-visit guide",
   },
 } as const;
