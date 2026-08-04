@@ -7,8 +7,11 @@ import { MemoryRouter } from "react-router-dom";
 import AnnouncementBar from "../components/AnnouncementBar";
 import SiteLayout from "../components/SiteLayout";
 import { CONNECT_CONTENT } from "../content/connect";
+import { ABOUT_CONTENT } from "../content/about";
 import { HOME_CONTENT } from "../content/home";
 import { MEETINGS_PAGE_CONTENT } from "../content/meetings";
+import { NEWCOMERS_CONTENT } from "../content/newcomers";
+import { RESOURCES_CONTENT } from "../content/resources";
 import Meetings from "../pages/Meetings";
 
 const project = new URL("../../", import.meta.url);
@@ -78,9 +81,26 @@ test("Global cache and network work begin only after the local route can paint",
   assert.doesNotMatch(globalSection, /setTimeout|startTransition|startViewTransition/);
 });
 
+test("router opts out of deferred route activation without adding route motion", async () => {
+  const app = await source("src/app/App.tsx");
+  const header = await source("src/components/SiteHeader.tsx");
+  assert.match(app, /<BrowserRouter useTransitions=\{false\}>/);
+  assert.doesNotMatch(`${app}\n${header}`, /startTransition|startViewTransition|viewTransition/);
+});
+
 test("public copy contains no implementation tutorial or owner-placeholder language", () => {
-  const publicCopy = JSON.stringify({ HOME_CONTENT, MEETINGS_PAGE_CONTENT, CONNECT_CONTENT });
-  assert.doesNotMatch(publicCopy, /React|TypeScript|source folder|AI tool|owner should|adopter/i);
+  const publicCopy = JSON.stringify({
+    HOME_CONTENT,
+    MEETINGS_PAGE_CONTENT,
+    ABOUT_CONTENT,
+    NEWCOMERS_CONTENT,
+    RESOURCES_CONTENT,
+    CONNECT_CONTENT,
+  });
+  assert.doesNotMatch(
+    publicCopy,
+    /React|TypeScript|source folder|AI tool|owner should|adopter|tutorial project/i,
+  );
   assert.doesNotMatch(
     publicCopy,
     /Leave room for verified sources|Public information to verify first|Add only after approval/i,
@@ -117,7 +137,46 @@ test("one token file owns CSS colour literals and inherited visual assets are ab
   ]);
   const joined = allEditable.join("\n");
   assert.doesNotMatch(joined, /forest_deep_two|faviconTarget|framer-motion/i);
+  assert.doesNotMatch(joined, /atlantis-lines|--paper\b|--ink\b|--sea\b|--coral\b|--ochre\b/i);
   assert.doesNotMatch(joined, /https?:\/\/[^\s"')]+\.(?:woff2?|ttf|otf|png|jpe?g|webp|gif)/i);
+  const tokens = await source("src/styles/tokens.css");
+  for (const role of [
+    "--color-page",
+    "--color-plaster",
+    "--color-limestone",
+    "--color-clay-wash",
+    "--color-aegean",
+    "--color-terracotta",
+    "--color-bronze",
+    "--color-night-sea",
+    "--surface-padding",
+    "--row-padding-block",
+    "--section-gap",
+    "--footer-padding",
+  ]) {
+    assert.match(tokens, new RegExp(role));
+  }
+});
+
+test("original Aegean motifs are local, lightweight, and referenced by the visual system", async () => {
+  const motifNames = ["atlantis-rings.svg", "aegean-frieze.svg", "atlantis-chart.svg"];
+  const motifs = await Promise.all(
+    motifNames.map((name) => source(`public/${name}`).then((text) => ({ name, text }))),
+  );
+  for (const motif of motifs) {
+    assert.match(motif.text, /^<svg/);
+    assert.doesNotMatch(motif.text, /<text|<image|filter=|(?:href|src)="https?:\/\//i);
+    assert.ok(Buffer.byteLength(motif.text) < 5_000, `${motif.name} should remain lightweight`);
+  }
+  const styles = await Promise.all([
+    source("src/styles/components.css"),
+    source("src/styles/layout.css"),
+    source("src/styles/pages/home.css"),
+    source("src/styles/pages/meetings.css"),
+    source("src/styles/pages/editorial.css"),
+  ]);
+  const joined = styles.join("\n");
+  for (const name of motifNames) assert.match(joined, new RegExp(name.replace(".", "\\.")));
 });
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {

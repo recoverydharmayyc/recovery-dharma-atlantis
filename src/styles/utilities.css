@@ -9,11 +9,3 @@
   white-space: nowrap !important;
   border: 0 !important;
 }
-
-.flow > * + * {
-  margin-top: var(--flow-space, var(--space-4));
-}
-
-.text-muted {
-  color: var(--ink-muted);
-}

@@ -19,9 +19,13 @@ const checks = [
   ],
   ["src/config/externalSources.ts", "https://recoverydharma.org/meetings/"],
   ["src/config/externalSources.ts", "recovery-dharma-atlantis-global-meetings-v2"],
-  ["src/styles/tokens.css", "--paper: #f4efe5"],
+  ["src/styles/tokens.css", "--color-aegean: #1f6387"],
+  ["src/styles/tokens.css", "--surface-padding-large"],
   ["public/atlantis-mark.svg", "Recovery Dharma Atlantis mark"],
-  ["public/favicon.svg", "#d96d4b"],
+  ["public/favicon.svg", "#c65d40"],
+  ["public/atlantis-rings.svg", "<circle"],
+  ["public/aegean-frieze.svg", "<path"],
+  ["public/atlantis-chart.svg", "<circle"],
   ["src/config/site.ts", 'newcomers: "/newcomers"'],
   ["src/app/routes.tsx", 'path="*"'],
 ];
@@ -52,6 +56,8 @@ for (const removedPhrase of [
 }
 if (/\bcalgary\b|\byyc\b/i.test(visibleText))
   throw new Error("YYC or Calgary identity leaked into Atlantis public content.");
+if (/React|TypeScript|AI tool|source folder|tutorial project|adopter/i.test(visibleText))
+  throw new Error("Implementation or owner workflow language leaked into public content.");
 
 process.stdout.write(
   "Content, demo-safety, and public-copy checks passed (" + checks.length + " checks).\n",

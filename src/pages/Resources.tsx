@@ -24,8 +24,8 @@ export default function Resources() {
   const groups = [sections.local, sections.core, sections.practice];
 
   return (
-    <div className="page-shell editorial-page">
-      <div className="site-container">
+    <div className="page-shell editorial-page resources-page">
+      <div className="site-container resources-layout">
         <PageIntro
           eyebrow={hero.eyebrow}
           title={hero.title}
@@ -33,29 +33,31 @@ export default function Resources() {
           headingId="resources-heading"
         />
 
-        {groups.map((group) => (
-          <section className="resource-group" key={group.title}>
-            <div className="section-heading">
-              <p className="section-label">{group.kicker}</p>
-              <h2>{group.title}</h2>
-            </div>
-            <ol className="resource-index">
-              {group.items.map((resource, index) => (
-                <li className="resource-index__item" key={resource.title}>
-                  <span className="resource-index__number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="resource-index__copy">
-                    <ResourceTitle resource={resource} />
-                    <p className="resource-index__description">
-                      {resource.description} Source: {resource.source}.
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
-        ))}
+        <div className="resource-chapters">
+          {groups.map((group) => (
+            <section className="resource-group" key={group.title}>
+              <div className="section-heading">
+                <p className="section-label">{group.kicker}</p>
+                <h2>{group.title}</h2>
+              </div>
+              <ol className="resource-index civic-index">
+                {group.items.map((resource, index) => (
+                  <li className="resource-index__item" key={resource.title}>
+                    <span className="resource-index__number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="resource-index__copy">
+                      <ResourceTitle resource={resource} />
+                      <p className="resource-index__description">
+                        {resource.description} Source: {resource.source}.
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
       </div>
     </div>
   );

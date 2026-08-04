@@ -69,8 +69,7 @@ export const RESOURCES_CONTENT = {
       items: [
         {
           title: "Meeting times",
-          description:
-            "See the two fictional Atlantis gatherings used throughout this tutorial project.",
+          description: "See the two fictional gatherings listed in this Atlantis community guide.",
           source: "Recovery Dharma Atlantis",
           href: ROUTE_PATHS.meetings,
           internal: true,

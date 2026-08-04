@@ -10,7 +10,7 @@ APPROVED FACTS
 [Copy only facts approved in MY_WEBSITE_FACTS.txt.]
 
 REQUESTED VISUAL OR BEHAVIORAL CHANGES
-[For example: change the design tokens to a cooler civic palette while keeping the layout and meeting rules.]
+[For example: adjust the semantic theme colours in src/styles/tokens.css while preserving the Aegean civic-archive composition, surface roles, spacing law, and meeting rules.]
 [For example: add a verified temporary meeting through src/content/announcements.ts so it appears in the community bulletin and meeting ledger, then expires automatically.]
 
 THINGS NOT TO CHANGE

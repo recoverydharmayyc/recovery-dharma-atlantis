@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
   <title id="title">Recovery Dharma Atlantis mark</title>
-  <desc id="desc">An abstract gathering point crossed by ripple and navigation lines.</desc>
-  <circle cx="32" cy="32" r="29" fill="#fffaf2" stroke="#183236" stroke-width="2"/>
-  <path d="M11 34c7-9 14-13 21-13s14 4 21 13" fill="none" stroke="#2f7778" stroke-width="3" stroke-linecap="round"/>
-  <path d="M15 42c6-6 11-9 17-9s11 3 17 9" fill="none" stroke="#183236" stroke-width="2" stroke-linecap="round"/>
-  <path d="M32 11v42" fill="none" stroke="#c99b43" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="32" cy="28" r="5" fill="#d96d4b" stroke="#fffaf2" stroke-width="2"/>
+  <desc id="desc">An abstract gathering point within intersecting harbor rings.</desc>
+  <circle cx="32" cy="32" r="29" fill="#fff9ee" stroke="#124660" stroke-width="2"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#1f6387" stroke-width="2.5" stroke-dasharray="62 13" transform="rotate(-18 32 32)"/>
+  <circle cx="32" cy="32" r="12" fill="none" stroke="#2f7775" stroke-width="2" stroke-dasharray="30 9" transform="rotate(28 32 32)"/>
+  <path d="M9 32h46M32 9v46" fill="none" stroke="#94702f" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="5" fill="#c65d40" stroke="#fff9ee" stroke-width="2"/>
 </svg>

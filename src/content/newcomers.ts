@@ -7,7 +7,7 @@ export const NEWCOMERS_CONTENT = {
   steps: [
     {
       title: "Arrive",
-      body: "Come a few minutes early when possible. No registration is required for the Atlantis example.",
+      body: "Come a few minutes early when possible. No registration is required for either listed gathering.",
     },
     {
       title: "Settle",

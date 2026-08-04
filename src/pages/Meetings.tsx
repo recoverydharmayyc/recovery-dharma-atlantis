@@ -58,7 +58,7 @@ function LocalScheduleRow({
 function LocalMeetingDetail({ item, now }: { item: LocalMeetingItem; now: Date }) {
   return (
     <article
-      className="meeting-detail"
+      className="meeting-detail surface-aegean"
       id="selected-meeting-details"
       aria-labelledby={`meeting-${item.id}`}
     >
@@ -123,7 +123,7 @@ export default function Meetings() {
 
   return (
     <div className="page-shell meetings-page">
-      <div className="site-container">
+      <div className="site-container meetings-local-stage">
         <PageIntro
           eyebrow={MEETINGS_PAGE_CONTENT.hero.kicker}
           title={MEETINGS_PAGE_CONTENT.hero.title}
@@ -137,7 +137,7 @@ export default function Meetings() {
             <h2 id="local-heading">{MEETINGS_PAGE_CONTENT.local.title}</h2>
           </div>
 
-          <ol className="schedule-ledger">
+          <ol className="schedule-ledger surface-ledger">
             {localMeetings.map((meeting, index) => (
               <LocalScheduleRow
                 key={meeting.id}
@@ -151,12 +151,12 @@ export default function Meetings() {
             ))}
           </ol>
 
-          {selectedMeeting && <LocalMeetingDetail item={selectedMeeting} now={now} />}
           <p className="meetings-qualification">{MEETINGS_PAGE_CONTENT.local.qualification}</p>
         </section>
 
-        <GlobalDirectorySection now={now} />
+        {selectedMeeting && <LocalMeetingDetail item={selectedMeeting} now={now} />}
       </div>
+      <GlobalDirectorySection now={now} />
     </div>
   );
 }

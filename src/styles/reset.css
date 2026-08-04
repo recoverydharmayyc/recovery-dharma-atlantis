@@ -7,7 +7,7 @@
 html {
   min-width: 320px;
   scroll-behavior: smooth;
-  scroll-padding-top: 7rem;
+  scroll-padding-top: calc(var(--header-block-size) + 1rem);
 }
 
 body,

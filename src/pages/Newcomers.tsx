@@ -5,8 +5,8 @@ import { NEWCOMERS_CONTENT } from "../content/newcomers";
 
 export default function Newcomers() {
   return (
-    <div className="page-shell editorial-page">
-      <div className="site-container">
+    <div className="page-shell editorial-page newcomers-page">
+      <div className="site-container newcomers-layout">
         <PageIntro
           eyebrow={NEWCOMERS_CONTENT.hero.eyebrow}
           title={NEWCOMERS_CONTENT.hero.title}
@@ -14,24 +14,29 @@ export default function Newcomers() {
           headingId="newcomers-heading"
         />
 
-        <ol className="field-guide" aria-label="A five-step first-visit guide">
-          {NEWCOMERS_CONTENT.steps.map((step, index) => (
-            <li key={step.title}>
-              <span className="field-guide__number">{String(index + 1).padStart(2, "0")}</span>
-              <div>
-                <h2>{step.title}</h2>
-                <p>{step.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <div className="newcomers-guide-wrap">
+          <ol
+            className="field-guide newcomer-guide civic-index"
+            aria-label="A five-step first-visit guide"
+          >
+            {NEWCOMERS_CONTENT.steps.map((step, index) => (
+              <li key={step.title}>
+                <span className="field-guide__number">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h2>{step.title}</h2>
+                  <p>{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
 
-        <div className="editorial-note flow">
-          <strong>Every room has its own rhythm.</strong>
-          <p>{NEWCOMERS_CONTENT.qualification}</p>
-        </div>
-        <div className="button-row">
-          <ButtonLink to={ROUTE_PATHS.meetings}>{NEWCOMERS_CONTENT.actionLabel}</ButtonLink>
+          <div className="newcomer-closing surface-clay">
+            <div>
+              <strong>Every room has its own rhythm.</strong>
+              <p>{NEWCOMERS_CONTENT.qualification}</p>
+            </div>
+            <ButtonLink to={ROUTE_PATHS.meetings}>{NEWCOMERS_CONTENT.actionLabel}</ButtonLink>
+          </div>
         </div>
       </div>
     </div>

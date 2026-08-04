@@ -10,15 +10,17 @@
 }
 
 .site-main {
+  min-width: 0;
   flex: 1 0 auto;
+  overflow-wrap: anywhere;
 }
 
 .page-shell {
-  padding-block: clamp(3rem, 7vw, 6.5rem) clamp(5rem, 10vw, 9rem);
+  padding-block: var(--page-block-start) var(--page-block-end);
 }
 
 .page-shell--home {
-  padding-top: clamp(2.25rem, 5vw, 5rem);
+  padding-top: clamp(1.75rem, 3.5vw, 3rem);
 }
 
 .reading-width {
@@ -29,65 +31,42 @@
   max-width: var(--content-narrow);
 }
 
-.section-band {
-  padding-block: clamp(3.5rem, 8vw, 7rem);
-}
-
-.section-band--paper-deep {
-  background: var(--paper-deep);
-}
-
-.section-band--paper-light {
-  background: var(--paper-light);
-}
-
-.section-rule {
-  border-top: var(--border-thin) solid var(--line-strong);
-}
-
-.editorial-grid {
-  display: grid;
-  gap: var(--space-7);
-}
-
-@media (min-width: 52rem) {
-  .editorial-grid--split {
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-    align-items: start;
-  }
-}
-
 .app-error-shell {
   display: grid;
   min-height: 100vh;
   place-items: center;
   padding: var(--page-gutter);
-  background: var(--paper);
+  background:
+    url("/atlantis-rings.svg") right -7rem center / min(70vw, 34rem) auto no-repeat,
+    var(--color-page);
 }
 
 .app-error {
-  width: min(100%, 40rem);
-  padding-block: var(--space-7);
-  border-block: var(--border-heavy) solid var(--ink);
+  width: min(100%, 42rem);
+  padding: var(--surface-padding-large);
+  border-top: 0.45rem solid var(--color-aegean);
+  border-bottom: var(--border-heavy) solid var(--color-ink-strong);
+  background: var(--color-plaster);
+  box-shadow: var(--shadow-paper);
 }
 
 .app-error > * + * {
-  margin-top: var(--space-4);
+  margin-top: var(--content-gap);
 }
 
 .app-error button {
-  min-height: 3rem;
-  padding: var(--space-2) var(--space-4);
-  border: var(--border-heavy) solid var(--ink-strong);
+  min-height: 2.8rem;
+  padding: 0.65rem 1rem;
+  border: var(--border-heavy) solid var(--color-terracotta-deep);
   border-radius: var(--radius-small);
-  background: var(--coral);
-  color: var(--ink-strong);
+  background: var(--color-terracotta-deep);
+  color: var(--color-on-terracotta);
   cursor: pointer;
-  font-weight: 750;
+  font-weight: 800;
 }
 
 .app-error-label,
 .app-error-notice {
-  color: var(--ink-muted);
+  color: var(--color-ink-muted);
   font-size: var(--step--1);
 }

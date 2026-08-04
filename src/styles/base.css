@@ -1,16 +1,15 @@
 html {
-  background: var(--paper);
+  background: var(--color-page);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--color-page);
+  color: var(--color-ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.65;
+  line-height: 1.58;
   text-rendering: optimizeLegibility;
 }
 
@@ -21,11 +20,11 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--ink-strong);
+  color: var(--color-ink-strong);
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.025em;
-  line-height: 1.04;
+  line-height: 1.02;
   text-wrap: balance;
 }
 
@@ -41,7 +40,9 @@ h3 {
   font-size: var(--step-2);
 }
 
-p {
+p,
+li,
+dd {
   text-wrap: pretty;
 }
 
@@ -55,21 +56,21 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--focus);
+  outline: 3px solid var(--color-focus);
   outline-offset: 4px;
 }
 
 ::selection {
-  background: var(--coral-pale);
-  color: var(--ink-strong);
+  background: var(--color-clay-wash);
+  color: var(--color-ink-strong);
 }
 
 noscript {
   display: block;
   padding: var(--space-4) var(--page-gutter);
-  border-bottom: var(--border-heavy) solid var(--coral);
-  background: var(--paper-light);
-  color: var(--ink-strong);
+  border-bottom: var(--border-heavy) solid var(--color-terracotta);
+  background: var(--color-plaster);
+  color: var(--color-ink-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -20,7 +20,7 @@ WHAT YOU CAN SAFELY ASK AN AI TO CHANGE
 - Community wording in src/content/.
 - The two structured recurring meetings in src/content/meetings.ts.
 - A one-time meeting through the existing configuration in src/content/announcements.ts.
-- Colour, typography, and spacing tokens in src/styles/tokens.css while preserving layout and meeting rules.
+- Colour, typography, and spacing tokens in src/styles/tokens.css while preserving DESIGN_GUIDE.md, route compositions, and meeting rules.
 - Resource links only after you have verified them.
 
 Important: this untouched starter is fictional. It is not a real meeting listing. Do not remove the fictional label, footer notice, indexing block, or fictional mode until every public fact has been verified and you knowingly decide to convert it.

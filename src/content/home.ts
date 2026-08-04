@@ -5,7 +5,7 @@ export const HOME_CONTENT = {
     subText:
       "A fictional peer-led community for people exploring recovery through meditation, reflection, and shared practice.",
     blurb:
-      "Recovery Dharma Atlantis is an educational example of a local peer community. People sit together, meditate, read, and share as equals. There are no gurus and no pressure to speak.",
+      "People sit together, meditate, read, and share as equals. There are no gurus and no pressure to speak.",
   },
   primaryButtonLabel: "See Meetings",
   secondaryButtonLabel: "What to Expect",

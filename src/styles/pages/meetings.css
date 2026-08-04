@@ -1,26 +1,52 @@
+.meetings-page {
+  padding-bottom: 0;
+}
+
+.meetings-local-stage {
+  display: grid;
+  gap: var(--section-gap-compact);
+}
+
+.meetings-local-stage > .page-intro {
+  margin-bottom: 0;
+}
+
 .local-schedule {
-  margin-bottom: clamp(4rem, 9vw, 8rem);
+  min-width: 0;
+}
+
+.local-schedule .section-heading {
+  margin-bottom: var(--space-3);
+}
+
+.local-schedule .section-heading h2 {
+  font-size: var(--step-2);
 }
 
 .schedule-ledger {
   list-style: none;
-  border-top: var(--border-heavy) solid var(--ink-strong);
 }
 
 .schedule-row {
   display: grid;
-  grid-template-columns: 2.25rem minmax(0, 1fr);
+  grid-template-columns: 2.35rem minmax(0, 1fr);
   gap: var(--space-3);
-  padding-block: var(--space-5);
-  border-bottom: var(--border-thin) solid var(--line-strong);
+  padding: var(--row-padding-block) var(--row-padding-inline);
+  border-bottom: var(--border-thin) solid var(--color-line-strong);
+  background: var(--color-limestone);
+}
+
+.schedule-row:last-child {
+  border-bottom: 0;
 }
 
 .schedule-row--selected {
-  background: var(--coral-wash);
+  background: var(--color-clay-wash);
+  box-shadow: inset 0.35rem 0 var(--color-terracotta);
 }
 
 .schedule-row__index {
-  color: var(--coral-deep);
+  color: var(--color-terracotta-deep);
   font-family: var(--font-display);
   font-size: var(--step-1);
   font-weight: 700;
@@ -29,59 +55,49 @@
 .schedule-row__body {
   display: grid;
   min-width: 0;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .schedule-row__heading {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-2) var(--space-4);
+  gap: var(--space-2) var(--space-3);
 }
 
 .schedule-row h3 {
-  font-size: var(--step-2);
+  font-size: var(--step-1);
+  line-height: 1.14;
 }
 
 .schedule-row__summary {
-  color: var(--ink-muted);
+  color: var(--color-ink-muted);
+  font-size: var(--step--1);
+  line-height: 1.45;
 }
 
 .schedule-row__select {
   width: fit-content;
   min-height: 2.75rem;
-  padding: 0.45rem 0;
+  padding: 0.5rem 0.18rem;
   border: 0;
-  border-bottom: var(--border-heavy) solid var(--sea);
+  border-bottom: var(--border-heavy) solid var(--color-sea-glass-deep);
   background: transparent;
-  color: var(--sea-deep);
+  color: var(--color-sea-glass-deep);
   cursor: pointer;
   font-size: var(--step--1);
-  font-weight: 800;
-}
-
-@media (min-width: 45rem) {
-  .schedule-row {
-    grid-template-columns: 3rem minmax(12rem, 0.75fr) minmax(13rem, 1fr) auto;
-    align-items: center;
-  }
-
-  .schedule-row__body {
-    display: contents;
-  }
-
-  .schedule-row__select {
-    justify-self: end;
-  }
+  font-weight: 830;
 }
 
 .meeting-detail {
   display: grid;
-  gap: var(--space-6);
-  margin-top: var(--space-7);
-  padding: clamp(1.5rem, 4vw, 3rem);
-  border-left: 0.4rem solid var(--sea);
-  background: var(--paper-light);
+  min-width: 0;
+  gap: var(--space-4);
+  align-content: start;
+  padding: var(--surface-padding-large);
+  background:
+    url("/atlantis-rings.svg") right -7rem bottom -7rem / 18rem auto no-repeat,
+    var(--color-aegean-deep);
 }
 
 .meeting-detail__copy {
@@ -90,62 +106,109 @@
 }
 
 .meeting-detail__timing {
-  color: var(--coral-deep);
+  color: var(--color-bronze-pale);
   font-weight: 850;
 }
 
+.meeting-detail h3 {
+  font-size: var(--step-2);
+}
+
 .meeting-detail__description {
-  max-width: var(--content-reading);
-  color: var(--ink-muted);
+  color: var(--color-sea-glass-pale);
+  font-size: var(--step--1);
+}
+
+.meeting-detail .external-link {
+  color: var(--color-on-aegean);
 }
 
 .meeting-detail__facts {
   display: grid;
   margin: 0;
-  border-top: var(--border-thin) solid var(--line-strong);
+  border-top: var(--border-thin) solid var(--color-line-dark);
 }
 
 .meeting-detail__facts div {
   display: grid;
-  gap: 0.15rem;
-  padding-block: var(--space-3);
-  border-bottom: var(--border-thin) solid var(--line);
+  gap: 0.18rem;
+  padding-block: 0.72rem;
+  border-bottom: var(--border-thin) solid var(--color-line-dark);
 }
 
 .meeting-detail__facts dt {
-  color: var(--ink-muted);
-  font-size: 0.7rem;
+  color: var(--color-bronze-pale);
+  font-size: 0.68rem;
   font-weight: 850;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
 .meeting-detail__facts dd {
-  color: var(--ink-strong);
-  font-weight: 700;
+  color: var(--color-on-aegean);
+  font-size: var(--step--1);
+  font-weight: 680;
 }
 
-@media (min-width: 48rem) {
-  .meeting-detail {
-    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
-  }
+.meetings-qualification {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--row-padding-inline);
+  border-left: var(--border-heavy) solid var(--color-bronze);
+  color: var(--color-ink-muted);
+  font-size: var(--step--1);
 }
 
 .global-directory {
-  padding-top: clamp(4rem, 9vw, 8rem);
-  border-top: var(--border-heavy) solid var(--ink-strong);
+  margin-top: var(--section-gap);
+  padding-block: var(--section-gap) var(--page-block-end);
+  border-top: 0.5rem solid var(--color-bronze);
+  background:
+    url("/atlantis-chart.svg") right top / min(58vw, 48rem) auto no-repeat,
+    var(--color-night-sea);
+  color: var(--color-on-dark);
+}
+
+.global-directory__inner {
+  display: grid;
+  gap: var(--section-gap-compact);
+}
+
+.global-directory__header {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .global-directory__intro {
   display: grid;
-  gap: var(--space-4);
   max-width: 52rem;
+  gap: var(--content-gap);
+}
+
+.global-directory .section-label {
+  color: var(--color-bronze-pale);
+}
+
+.global-directory h2 {
+  max-width: 18ch;
+  color: var(--color-on-dark);
+}
+
+.global-directory__intro > p:not(.section-label) {
+  color: var(--color-sea-glass-pale);
+}
+
+.global-directory__intro > .external-link {
+  width: fit-content;
+  color: var(--color-on-dark);
 }
 
 .global-directory__status {
-  min-height: 1.7rem;
-  margin-block: var(--space-5);
-  color: var(--ink-muted);
+  align-self: end;
+  padding: var(--surface-padding);
+  border-top: var(--border-heavy) solid var(--color-terracotta);
+  border-bottom: var(--border-thin) solid var(--color-line-dark);
+  background: var(--color-aegean-deep);
+  color: var(--color-on-aegean);
   font-size: var(--step--1);
 }
 
@@ -158,11 +221,9 @@
 .global-meeting {
   display: grid;
   gap: var(--space-3);
-  padding: var(--space-4);
-  border: var(--border-thin) solid var(--line-strong);
-  border-top: 0.3rem solid var(--sea);
-  border-radius: var(--radius-small);
-  background: var(--paper-light);
+  align-content: start;
+  padding: var(--surface-padding);
+  color: var(--color-ink);
 }
 
 .global-meeting__topline {
@@ -170,36 +231,76 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-thin) solid var(--color-line-soft);
 }
 
 .global-meeting__time,
 .global-meeting__region {
-  color: var(--ink-muted);
+  color: var(--color-ink-muted);
   font-size: var(--step--1);
+}
+
+.global-meeting__region {
+  color: var(--color-terracotta-deep);
+  font-weight: 800;
 }
 
 .global-meeting h3 {
   font-size: var(--step-1);
-  line-height: 1.22;
+  line-height: 1.18;
 }
 
 .global-meeting__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--control-gap);
   align-items: center;
+  margin-top: auto;
+  padding-top: var(--space-2);
 }
 
-@media (min-width: 68rem) {
+@media (min-width: 48rem) {
+  .meetings-local-stage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .meetings-local-stage > .page-intro {
+    grid-column: 1 / -1;
+  }
+
+  .global-directory__header {
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.6fr);
+    align-items: end;
+  }
+
   .global-meeting-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.meetings-qualification {
-  margin-top: var(--space-7);
-  padding-top: var(--space-4);
-  border-top: var(--border-thin) solid var(--line-strong);
-  color: var(--ink-muted);
-  font-size: var(--step--1);
+@media (min-width: 74rem) {
+  .meetings-local-stage {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(1.25rem, 2vw, 2rem);
+    align-items: start;
+  }
+
+  .meetings-local-stage > .page-intro {
+    grid-column: 1 / 5;
+  }
+
+  .local-schedule {
+    grid-column: 5 / 9;
+  }
+
+  .meeting-detail {
+    grid-column: 9 / 13;
+  }
+}
+
+@media (min-width: 82rem) {
+  .global-meeting-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

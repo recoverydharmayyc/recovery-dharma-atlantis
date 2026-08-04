@@ -2,7 +2,7 @@ export const CONNECT_CONTENT = {
   hero: {
     eyebrow: "Connect",
     title: "Stay connected.",
-    lede: "A community website should make the next step clear and respectful.",
+    lede: "Meeting information and a first-visit guide are available even when no contact channel is active.",
   },
   emptyState: {
     heading: "No public contact channel is active.",

@@ -68,7 +68,7 @@ function useGlobalMeetings(now: Date) {
 
 function GlobalMeeting({ meeting, now }: { meeting: GlobalMeetingOccurrence; now: Date }) {
   return (
-    <li className="global-meeting">
+    <li className="global-meeting surface-plaster">
       <div className="global-meeting__topline">
         <StatusLabel status={getMeetingStatus(meeting.startsAt, now)} />
         <span className="global-meeting__time">
@@ -112,35 +112,39 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
 
   return (
     <section className="global-directory" aria-labelledby="global-heading">
-      <div className="global-directory__intro">
-        <p className="section-label">{MEETINGS_PAGE_CONTENT.global.kicker}</p>
-        <h2 id="global-heading">{MEETINGS_PAGE_CONTENT.global.title}</h2>
-        <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
-        <ExternalLink href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}>
-          {MEETINGS_PAGE_CONTENT.global.directoryLabel}
-        </ExternalLink>
+      <div className="site-container global-directory__inner">
+        <div className="global-directory__header">
+          <div className="global-directory__intro">
+            <p className="section-label">{MEETINGS_PAGE_CONTENT.global.kicker}</p>
+            <h2 id="global-heading">{MEETINGS_PAGE_CONTENT.global.title}</h2>
+            <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
+            <ExternalLink href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}>
+              {MEETINGS_PAGE_CONTENT.global.directoryLabel}
+            </ExternalLink>
+          </div>
+
+          <p
+            className="global-directory__status"
+            aria-live="polite"
+            aria-atomic="true"
+            data-global-state={status}
+          >
+            {getGlobalStatusMessage(status, meetings.length > 0)}
+          </p>
+        </div>
+
+        {meetings.length > 0 && (
+          <ol className="global-meeting-list">
+            {meetings.map((meeting) => (
+              <GlobalMeeting
+                key={`${meeting.id}-${meeting.startsAt.toISOString()}`}
+                meeting={meeting}
+                now={now}
+              />
+            ))}
+          </ol>
+        )}
       </div>
-
-      <p
-        className="global-directory__status"
-        aria-live="polite"
-        aria-atomic="true"
-        data-global-state={status}
-      >
-        {getGlobalStatusMessage(status, meetings.length > 0)}
-      </p>
-
-      {meetings.length > 0 && (
-        <ol className="global-meeting-list">
-          {meetings.map((meeting) => (
-            <GlobalMeeting
-              key={`${meeting.id}-${meeting.startsAt.toISOString()}`}
-              meeting={meeting}
-              now={now}
-            />
-          ))}
-        </ol>
-      )}
     </section>
   );
 }
