@@ -20,20 +20,25 @@
 }
 
 .local-schedule .section-heading h2 {
-  font-size: var(--step-2);
+  font-size: var(--text-section);
 }
 
 .schedule-ledger {
+  overflow: hidden;
+  border: var(--border-normal) solid var(--line-strong);
+  border-radius: var(--radius-surface);
+  background: var(--canvas-raised);
+  box-shadow: var(--shadow);
   list-style: none;
 }
 
 .schedule-row {
   display: grid;
-  grid-template-columns: 2.35rem minmax(0, 1fr);
+  grid-template-columns: 2.5rem minmax(0, 1fr);
   gap: var(--space-3);
   padding: var(--row-padding-block) var(--row-padding-inline);
-  border-bottom: var(--border-thin) solid var(--color-line-strong);
-  background: var(--color-limestone);
+  border-bottom: var(--border-normal) solid var(--line);
+  background: var(--canvas-raised);
 }
 
 .schedule-row:last-child {
@@ -41,15 +46,15 @@
 }
 
 .schedule-row--selected {
-  background: var(--color-clay-wash);
-  box-shadow: inset 0.35rem 0 var(--color-terracotta);
+  background: var(--ocean-soft);
+  box-shadow: inset 0.22rem 0 var(--ocean);
 }
 
 .schedule-row__index {
-  color: var(--color-terracotta-deep);
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 700;
+  color: var(--ocean-strong);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .schedule-row__body {
@@ -66,38 +71,62 @@
 }
 
 .schedule-row h3 {
-  font-size: var(--step-1);
+  font-size: var(--text-component);
   line-height: 1.14;
 }
 
 .schedule-row__summary {
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
   line-height: 1.45;
 }
 
 .schedule-row__select {
   width: fit-content;
   min-height: 2.75rem;
-  padding: 0.5rem 0.18rem;
+  padding: 0.45rem 0;
   border: 0;
-  border-bottom: var(--border-heavy) solid var(--color-sea-glass-deep);
   background: transparent;
-  color: var(--color-sea-glass-deep);
+  color: var(--ocean-strong);
   cursor: pointer;
-  font-size: var(--step--1);
-  font-weight: 830;
+  font-size: var(--text-small);
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .meeting-detail {
+  position: relative;
   display: grid;
   min-width: 0;
+  overflow: hidden;
   gap: var(--space-4);
   align-content: start;
-  padding: var(--surface-padding-large);
-  background:
-    url("/atlantis-rings.svg") right -7rem bottom -7rem / 18rem auto no-repeat,
-    var(--color-aegean-deep);
+  padding: var(--surface-padding);
+  border: var(--border-normal) solid var(--ocean-strong);
+  border-radius: var(--radius-surface);
+  background: var(--ocean-strong);
+  color: var(--ink-on-ocean);
+}
+
+.meeting-detail::after {
+  position: absolute;
+  right: -6rem;
+  top: -6rem;
+  width: 15rem;
+  aspect-ratio: 1;
+  background: var(--ink-on-ocean);
+  content: "";
+  opacity: 0.14;
+  pointer-events: none;
+  -webkit-mask: url("/atlantis-ripple.svg") center / contain no-repeat;
+  mask: url("/atlantis-ripple.svg") center / contain no-repeat;
+}
+
+.meeting-detail__copy,
+.meeting-detail__facts {
+  position: relative;
+  z-index: 1;
 }
 
 .meeting-detail__copy {
@@ -106,66 +135,63 @@
 }
 
 .meeting-detail__timing {
-  color: var(--color-bronze-pale);
-  font-weight: 850;
+  color: var(--ocean-muted);
+  font-size: var(--text-small);
+  font-weight: 750;
 }
 
 .meeting-detail h3 {
-  font-size: var(--step-2);
+  color: var(--ink-on-ocean);
+  font-size: var(--text-section);
 }
 
 .meeting-detail__description {
-  color: var(--color-sea-glass-pale);
-  font-size: var(--step--1);
+  color: var(--ocean-muted);
+  font-size: var(--text-small);
 }
 
 .meeting-detail .external-link {
-  color: var(--color-on-aegean);
+  color: var(--ink-on-ocean);
 }
 
 .meeting-detail__facts {
   display: grid;
   margin: 0;
-  border-top: var(--border-thin) solid var(--color-line-dark);
+  border-top: var(--border-normal) solid var(--line-on-ocean);
 }
 
 .meeting-detail__facts div {
   display: grid;
-  gap: 0.18rem;
-  padding-block: 0.72rem;
-  border-bottom: var(--border-thin) solid var(--color-line-dark);
+  gap: 0.15rem;
+  padding-block: 0.68rem;
+  border-bottom: var(--border-normal) solid var(--line-on-ocean);
 }
 
 .meeting-detail__facts dt {
-  color: var(--color-bronze-pale);
+  color: var(--ocean-muted);
   font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.09em;
+  font-weight: 750;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .meeting-detail__facts dd {
-  color: var(--color-on-aegean);
-  font-size: var(--step--1);
-  font-weight: 680;
+  color: var(--ink-on-ocean);
+  font-size: var(--text-small);
+  font-weight: 600;
 }
 
 .meetings-qualification {
   margin-top: var(--space-3);
-  padding: var(--space-3) var(--row-padding-inline);
-  border-left: var(--border-heavy) solid var(--color-bronze);
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .global-directory {
   margin-top: var(--section-gap);
-  padding-block: var(--section-gap) var(--page-block-end);
-  border-top: 0.5rem solid var(--color-bronze);
-  background:
-    url("/atlantis-chart.svg") right top / min(58vw, 48rem) auto no-repeat,
-    var(--color-night-sea);
-  color: var(--color-on-dark);
+  padding-block: var(--section-gap);
+  background: var(--ocean-strong);
+  color: var(--ink-on-ocean);
 }
 
 .global-directory__inner {
@@ -185,36 +211,35 @@
 }
 
 .global-directory .section-label {
-  color: var(--color-bronze-pale);
+  color: var(--ocean-muted);
 }
 
 .global-directory h2 {
   max-width: 18ch;
-  color: var(--color-on-dark);
+  color: var(--ink-on-ocean);
 }
 
 .global-directory__intro > p:not(.section-label) {
-  color: var(--color-sea-glass-pale);
+  color: var(--ocean-muted);
 }
 
 .global-directory__intro > .external-link {
   width: fit-content;
-  color: var(--color-on-dark);
+  color: var(--ink-on-ocean);
 }
 
 .global-directory__status {
   align-self: end;
-  padding: var(--surface-padding);
-  border-top: var(--border-heavy) solid var(--color-terracotta);
-  border-bottom: var(--border-thin) solid var(--color-line-dark);
-  background: var(--color-aegean-deep);
-  color: var(--color-on-aegean);
-  font-size: var(--step--1);
+  padding: var(--surface-padding-compact);
+  border: var(--border-normal) solid var(--line-on-ocean);
+  border-radius: var(--radius-control);
+  color: var(--ink-on-ocean);
+  font-size: var(--text-small);
 }
 
 .global-meeting-list {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
   list-style: none;
 }
 
@@ -222,8 +247,11 @@
   display: grid;
   gap: var(--space-3);
   align-content: start;
-  padding: var(--surface-padding);
-  color: var(--color-ink);
+  padding: var(--surface-padding-compact);
+  border: var(--border-normal) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--canvas-raised);
+  color: var(--ink);
 }
 
 .global-meeting__topline {
@@ -232,22 +260,22 @@
   justify-content: space-between;
   gap: var(--space-2);
   padding-bottom: var(--space-2);
-  border-bottom: var(--border-thin) solid var(--color-line-soft);
+  border-bottom: var(--border-normal) solid var(--line);
 }
 
 .global-meeting__time,
 .global-meeting__region {
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .global-meeting__region {
-  color: var(--color-terracotta-deep);
-  font-weight: 800;
+  color: var(--ocean-strong);
+  font-weight: 750;
 }
 
 .global-meeting h3 {
-  font-size: var(--step-1);
+  font-size: var(--text-component);
   line-height: 1.18;
 }
 

@@ -13,9 +13,9 @@ export default function NotFound() {
             again at the home page.
           </p>
         </div>
-        <div className="not-found-action surface-ledger">
-          <p className="section-label">Chart note · 404</p>
-          <p>The requested route is not part of this community field guide.</p>
+        <div className="not-found-action info-surface">
+          <p className="section-label">Route note · 404</p>
+          <p>The requested route is not part of this community website.</p>
           <ButtonLink to={ROUTE_PATHS.home}>Return home</ButtonLink>
         </div>
       </section>

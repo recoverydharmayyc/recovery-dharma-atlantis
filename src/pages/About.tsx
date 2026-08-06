@@ -17,7 +17,7 @@ export default function About() {
         <div className="editorial-page__body about-page__body">
           <div className="about-principles">
             {ABOUT_CONTENT.sections.map((section) => (
-              <section className="prose-section surface-plaster" key={section.title}>
+              <section className="prose-section info-surface" key={section.title}>
                 <div>
                   <p className="section-label">{section.kicker}</p>
                   <h2>{section.title}</h2>
@@ -36,7 +36,7 @@ export default function About() {
             ))}
           </div>
 
-          <section className="about-rhythm surface-aegean">
+          <section className="about-rhythm ocean-surface">
             <div className="about-rhythm__heading">
               <p className="section-label">{ABOUT_CONTENT.rhythm.kicker}</p>
               <h2>{ABOUT_CONTENT.rhythm.title}</h2>

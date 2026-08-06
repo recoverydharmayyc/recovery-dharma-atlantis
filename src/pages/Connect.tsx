@@ -14,7 +14,7 @@ export default function Connect() {
           headingId="connect-heading"
         />
 
-        <section className="connect-empty surface-plaster" aria-labelledby="connect-empty-heading">
+        <section className="connect-empty info-surface" aria-labelledby="connect-empty-heading">
           <h2 id="connect-empty-heading">{CONNECT_CONTENT.emptyState.heading}</h2>
           <p className="connect-empty__copy">{CONNECT_CONTENT.emptyState.body}</p>
           <div className="button-row">

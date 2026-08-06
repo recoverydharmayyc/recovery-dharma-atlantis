@@ -58,7 +58,7 @@ function LocalScheduleRow({
 function LocalMeetingDetail({ item, now }: { item: LocalMeetingItem; now: Date }) {
   return (
     <article
-      className="meeting-detail surface-aegean"
+      className="meeting-detail"
       id="selected-meeting-details"
       aria-labelledby={`meeting-${item.id}`}
     >
@@ -137,7 +137,7 @@ export default function Meetings() {
             <h2 id="local-heading">{MEETINGS_PAGE_CONTENT.local.title}</h2>
           </div>
 
-          <ol className="schedule-ledger surface-ledger">
+          <ol className="schedule-ledger">
             {localMeetings.map((meeting, index) => (
               <LocalScheduleRow
                 key={meeting.id}

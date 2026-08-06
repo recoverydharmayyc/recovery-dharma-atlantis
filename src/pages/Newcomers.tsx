@@ -15,10 +15,7 @@ export default function Newcomers() {
         />
 
         <div className="newcomers-guide-wrap">
-          <ol
-            className="field-guide newcomer-guide civic-index"
-            aria-label="A five-step first-visit guide"
-          >
+          <ol className="field-guide newcomer-guide" aria-label="A five-step first-visit guide">
             {NEWCOMERS_CONTENT.steps.map((step, index) => (
               <li key={step.title}>
                 <span className="field-guide__number">{String(index + 1).padStart(2, "0")}</span>
@@ -30,7 +27,7 @@ export default function Newcomers() {
             ))}
           </ol>
 
-          <div className="newcomer-closing surface-clay">
+          <div className="newcomer-closing notice-surface">
             <div>
               <strong>Every room has its own rhythm.</strong>
               <p>{NEWCOMERS_CONTENT.qualification}</p>

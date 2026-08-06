@@ -1,42 +1,34 @@
 # Atlantis design guide
 
-## Concept
+## Ocean Civic Light
 
-Atlantis is an **Aegean civic archive**: a modern community field guide shaped by gathering ledgers, navigation charts, sun-warmed plaster, limestone, terracotta, bronze, and Mediterranean blue. It should feel useful and human—not mythical, corporate, or app-like.
+Recovery Dharma Atlantis uses one clear, welcoming visual system: a cool near-white canvas, deep navy ink, ocean teal-blue identity, and one warm coral action colour. It should feel like a cared-for community website—not software, a museum publication, or an underwater fantasy.
 
 ## Design ownership
 
-- `src/styles/tokens.css` owns colour, type scale, spacing, widths, borders, and motion timing.
+- `src/styles/tokens.css` owns every production colour, the system sans-serif type scale, spacing, widths, radii, borders, shadow, and motion timing.
 - `src/styles/components.css` owns the masthead, bulletin, actions, shared information surfaces, and footer.
 - `src/styles/pages/` owns route composition.
-- `public/atlantis-mark.svg`, `atlantis-rings.svg`, `atlantis-chart.svg`, and `aegean-frieze.svg` are original local motifs.
+- `public/atlantis-mark.svg` and `public/atlantis-ripple.svg` are the only identity motif family. The mark suggests gathering and intersecting currents; the ripple should frame information, never become wallpaper.
 
-## Colour roles
+## Three colour families
 
-- Page: warm limestone paper.
-- Plaster: warm explanatory fields.
-- Limestone: schedules and factual ledgers.
-- Aegean/night sea: high-priority information and the Global directory chapter.
-- Terracotta: primary actions, selections, and temporary notices.
-- Sea glass: secondary actions and links.
-- Bronze: rules, timing details, and restrained ornament.
+- **Neutral canvas and ink:** page, raised surfaces, readable text, and quiet rules.
+- **Ocean:** identity, links, selected information, and high-priority meeting fields.
+- **Coral:** the primary action and occasional next/temporary marker.
 
-Change identity through these semantic roles in `tokens.css`; do not scatter new colour literals through page files.
+Change colours through the semantic roles in `tokens.css`. Do not add a second warm accent, unrelated greens, dark-theme overrides, or colour literals in component/page CSS.
 
-## Information surfaces
+## Type, grid, and shapes
 
-- **Limestone ledger:** schedules and structured facts.
-- **Painted plaster field:** introductions and explanations.
-- **Aegean information field:** important meeting or source information.
-- **Terracotta notice:** temporary or selected information.
-- **Civic index row:** steps, resources, and compact sequences.
+One system sans-serif family owns every heading, paragraph, label, navigation item, and action. Use weight, size, line length, and spacing for hierarchy; do not reintroduce serif display type or giant headings.
 
-These are editorial groupings, not a generic card system. Keep rules, rows, bands, and split compositions. Do not box every paragraph, add large radii, or add shadows everywhere.
+All public regions align to one `--page-max` / `--page-gutter` grid. Major information surfaces use `--radius-surface`, controls use `--radius-control`, and true status indicators alone may be fully rounded. Use one border system and one restrained shadow.
 
-## Spacing and viewport law
+## Composition
 
-Use **more interior space, less empty section space**. Preserve comfortable row and surface padding while keeping page starts, section gaps, and the footer compact. Wide screens should place related information beside each other. Short pages should feel complete near one viewport, without fixed-height route areas, clipped content, or nested scrolling.
+Meeting information belongs in the reading path, especially on Home and Meetings. Prefer integrated horizontal fields, shared rules, and compact lists over dashboard grids or a collection of unrelated cards. Keep enough padding inside useful objects while avoiding empty stage-setting space between sections.
 
 ## Safe changes
 
-Factual edits belong in `src/content/` and must not rewrite the design system. Visual edits must not weaken meeting timing, Recovery Dharma Global sanitization, cache, timeout, attribution, or fallback behavior in `src/meetings/`. Preserve keyboard behavior, focus visibility, reduced motion, fictional mode, and every route.
+Factual edits belong in `src/content/` and must not rewrite the visual system. Visual edits must not weaken meeting timing, Recovery Dharma Global sanitization, cache, timeout, attribution, or fallback behavior in `src/meetings/`. Preserve responsive navigation, keyboard focus, reduced motion, fictional mode, and every route.

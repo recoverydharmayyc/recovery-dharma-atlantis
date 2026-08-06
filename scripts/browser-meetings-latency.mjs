@@ -150,7 +150,7 @@ function stage(message) {
 function maximumCache({ corrupt = false } = {}) {
   return Array.from({ length: 240 }, (_, index) => ({
     id: `browser-cache-${index}`,
-    name: `Cached open meeting ${index} ${"Aegean ".repeat(12)}`.slice(0, 180),
+    name: `Cached open meeting ${index} ${"Ocean ".repeat(12)}`.slice(0, 180),
     dayIndex: index % 7,
     time: `${String(index % 24).padStart(2, "0")}:${index % 2 ? "30" : "00"}`,
     endTime: `${String((index + 1) % 24).padStart(2, "0")}:${index % 2 ? "30" : "00"}`,

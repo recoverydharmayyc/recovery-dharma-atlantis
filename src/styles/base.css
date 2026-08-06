@@ -1,15 +1,15 @@
 html {
-  background: var(--color-page);
+  background: var(--canvas);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
-  background: var(--color-page);
-  color: var(--color-ink);
-  font-family: var(--font-body);
-  font-size: var(--step-0);
-  line-height: 1.58;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.55;
   text-rendering: optimizeLegibility;
 }
 
@@ -20,24 +20,24 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--color-ink-strong);
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 750;
+  letter-spacing: -0.035em;
   line-height: 1.02;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: var(--step-4);
+  font-size: var(--page-title-size);
 }
 
 h2 {
-  font-size: var(--step-3);
+  font-size: var(--text-section);
 }
 
 h3 {
-  font-size: var(--step-2);
+  font-size: var(--text-component);
 }
 
 p,
@@ -53,24 +53,25 @@ a {
 
 button {
   color: inherit;
+  font: inherit;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 4px;
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
 }
 
 ::selection {
-  background: var(--color-clay-wash);
-  color: var(--color-ink-strong);
+  background: var(--ocean-soft);
+  color: var(--ink);
 }
 
 noscript {
   display: block;
   padding: var(--space-4) var(--page-gutter);
-  border-bottom: var(--border-heavy) solid var(--color-terracotta);
-  background: var(--color-plaster);
-  color: var(--color-ink-strong);
+  border-bottom: var(--border-emphasis) solid var(--coral);
+  background: var(--canvas-raised);
+  color: var(--ink);
 }
 
 @media (prefers-reduced-motion: reduce) {

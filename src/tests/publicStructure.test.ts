@@ -115,7 +115,7 @@ test("Connect has no form or active endpoint and Global attribution remains visi
   assert.match(meetingContent, /Recovery Dharma Global’s public meeting directory/);
 });
 
-test("one token file owns CSS colour literals and inherited visual assets are absent", async () => {
+test("one token file owns the light Ocean Civic CSS colours", async () => {
   const styleRoot = new URL("src/styles/", project);
   const topLevel = await readdir(styleRoot, { withFileTypes: true });
   const pageFiles = await readdir(new URL("pages/", styleRoot));
@@ -136,30 +136,39 @@ test("one token file owns CSS colour literals and inherited visual assets are ab
     ...cssFiles.map((file) => readFile(new URL(file, styleRoot), "utf8")),
   ]);
   const joined = allEditable.join("\n");
-  assert.doesNotMatch(joined, /forest_deep_two|faviconTarget|framer-motion/i);
-  assert.doesNotMatch(joined, /atlantis-lines|--paper\b|--ink\b|--sea\b|--coral\b|--ochre\b/i);
+  assert.doesNotMatch(joined, /forest_deep_two|faviconTarget|framer-motion|theme-dark/i);
+  assert.doesNotMatch(
+    joined,
+    /aegean|frieze|bronze|ochre|limestone|terracotta|atlantis-(?:chart|rings)/i,
+  );
+  assert.doesNotMatch(joined, /ui-serif|Georgia|Cambria|Times New Roman/i);
   assert.doesNotMatch(joined, /https?:\/\/[^\s"')]+\.(?:woff2?|ttf|otf|png|jpe?g|webp|gif)/i);
   const tokens = await source("src/styles/tokens.css");
   for (const role of [
-    "--color-page",
-    "--color-plaster",
-    "--color-limestone",
-    "--color-clay-wash",
-    "--color-aegean",
-    "--color-terracotta",
-    "--color-bronze",
-    "--color-night-sea",
+    "--canvas",
+    "--canvas-raised",
+    "--canvas-subtle",
+    "--ink",
+    "--ink-muted",
+    "--ocean",
+    "--ocean-strong",
+    "--ocean-soft",
+    "--coral",
+    "--coral-strong",
+    "--footer-canvas",
+    "--radius-surface",
+    "--radius-control",
     "--surface-padding",
     "--row-padding-block",
     "--section-gap",
-    "--footer-padding",
+    "--font-sans",
   ]) {
     assert.match(tokens, new RegExp(role));
   }
 });
 
-test("original Aegean motifs are local, lightweight, and referenced by the visual system", async () => {
-  const motifNames = ["atlantis-rings.svg", "aegean-frieze.svg", "atlantis-chart.svg"];
+test("the original Ocean Civic mark and one ripple motif are local and lightweight", async () => {
+  const motifNames = ["atlantis-mark.svg", "atlantis-ripple.svg"];
   const motifs = await Promise.all(
     motifNames.map((name) => source(`public/${name}`).then((text) => ({ name, text }))),
   );
@@ -177,6 +186,8 @@ test("original Aegean motifs are local, lightweight, and referenced by the visua
   ]);
   const joined = styles.join("\n");
   for (const name of motifNames) assert.match(joined, new RegExp(name.replace(".", "\\.")));
+  for (const removed of ["aegean-frieze.svg", "atlantis-chart.svg", "atlantis-rings.svg"])
+    assert.doesNotMatch(joined, new RegExp(removed.replace(".", "\\.")));
 });
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {
@@ -187,10 +198,11 @@ test("meeting layout uses document flow without fixed-height or nested-scroll pa
     source("src/components/SiteLayout.tsx"),
     source("src/pages/Meetings.tsx"),
   ]);
-  assert.doesNotMatch(css, /position:\s*(?:absolute|fixed)/i);
+  assert.doesNotMatch(css, /position:\s*fixed/i);
   assert.doesNotMatch(css, /overflow-y:\s*(?:auto|scroll)/i);
   assert.doesNotMatch(css, /height:\s*\d+(?:px|rem|vh)/i);
-  assert.doesNotMatch(css, /opacity:\s*0(?:\D|$)|visibility:\s*hidden/i);
+  assert.doesNotMatch(css, /opacity:\s*0\s*;|visibility:\s*hidden/i);
+  assert.doesNotMatch(css, /\.meeting-detail__(?:copy|facts)[^{]*\{[^}]*position:\s*absolute/is);
   assert.doesNotMatch(
     appSources.join("\n"),
     /startViewTransition|viewTransition|startTransition|Suspense|lazy\(/,

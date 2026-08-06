@@ -68,7 +68,7 @@ function useGlobalMeetings(now: Date) {
 
 function GlobalMeeting({ meeting, now }: { meeting: GlobalMeetingOccurrence; now: Date }) {
   return (
-    <li className="global-meeting surface-plaster">
+    <li className="global-meeting">
       <div className="global-meeting__topline">
         <StatusLabel status={getMeetingStatus(meeting.startsAt, now)} />
         <span className="global-meeting__time">

@@ -1,26 +1,4 @@
-.editorial-page__body {
-  display: grid;
-  gap: var(--section-gap-compact);
-}
-
-.prose-section {
-  display: grid;
-  gap: var(--space-4);
-  padding: var(--surface-padding-large);
-}
-
-.prose-section h2 {
-  margin-top: var(--space-2);
-  font-size: var(--step-2);
-}
-
-.prose-section__copy {
-  display: grid;
-  max-width: var(--content-reading);
-  gap: var(--content-gap);
-  color: var(--color-ink-muted);
-}
-
+.editorial-page__body,
 .about-layout,
 .newcomers-layout,
 .resources-layout,
@@ -32,68 +10,90 @@
 
 .about-layout > .page-intro,
 .newcomers-layout > .page-intro,
-.connect-layout > .page-intro {
+.connect-layout > .page-intro,
+.resources-layout > .page-intro {
   margin-bottom: 0;
+}
+
+.prose-section {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--surface-padding-compact);
+}
+
+.prose-section h2 {
+  margin-top: var(--space-2);
+  font-size: var(--text-component);
+}
+
+.prose-section__copy {
+  display: grid;
+  max-width: var(--page-reading);
+  gap: var(--content-gap);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .about-principles {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .about-rhythm {
   display: grid;
   gap: var(--space-4);
-  padding: var(--surface-padding-large);
-  background:
-    url("/atlantis-rings.svg") right -8rem bottom -8rem / 20rem auto no-repeat,
-    var(--color-aegean-deep);
+  padding: var(--surface-padding-compact);
 }
 
-.about-rhythm .section-label {
-  color: var(--color-bronze-pale);
+.about-rhythm .section-label,
+.about-rhythm__steps p {
+  color: var(--ocean-muted);
 }
 
 .about-rhythm__heading h2 {
   margin-top: var(--space-2);
-  font-size: var(--step-2);
+  font-size: var(--text-component);
 }
 
 .about-rhythm__steps {
   display: grid;
   list-style: none;
-  border-top: var(--border-thin) solid var(--color-line-dark);
+  border-top: var(--border-normal) solid var(--line-on-ocean);
 }
 
 .about-rhythm__steps li {
   display: grid;
   grid-template-columns: 2rem minmax(0, 1fr);
   gap: var(--space-2);
-  padding-block: 0.72rem;
-  border-bottom: var(--border-thin) solid var(--color-line-dark);
+  padding-block: 0.68rem;
+  border-bottom: var(--border-normal) solid var(--line-on-ocean);
 }
 
 .about-rhythm__steps span {
-  color: var(--color-bronze-pale);
-  font-family: var(--font-display);
+  color: var(--ocean-muted);
+  font-size: var(--text-small);
+  font-weight: 750;
 }
 
 .about-rhythm__steps p {
-  color: var(--color-sea-glass-pale);
-  font-size: var(--step--1);
+  font-size: var(--text-small);
 }
 
 .about-rhythm .text-link {
   width: fit-content;
-  color: var(--color-on-aegean);
+  color: var(--ink-on-ocean);
 }
 
 .newcomers-guide-wrap {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .field-guide {
+  overflow: hidden;
+  border: var(--border-normal) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--canvas-raised);
   list-style: none;
 }
 
@@ -102,58 +102,48 @@
   grid-template-columns: 2.35rem minmax(0, 1fr);
   gap: var(--space-3);
   padding: var(--row-padding-block) var(--row-padding-inline);
-  border-right: var(--border-thin) solid var(--color-line-soft);
-  border-bottom: var(--border-thin) solid var(--color-line-strong);
-  background: var(--color-plaster);
+  border-bottom: var(--border-normal) solid var(--line);
+  background: var(--canvas-raised);
 }
 
 .field-guide li:nth-child(even) {
-  background: var(--color-limestone);
+  background: var(--canvas-subtle);
 }
 
-.field-guide__number {
-  color: var(--color-terracotta-deep);
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 700;
+.field-guide__number,
+.resource-index__number {
+  color: var(--coral-strong);
+  font-size: 0.72rem;
+  font-weight: 800;
 }
 
 .field-guide h2 {
-  font-size: var(--step-1);
+  font-size: var(--text-component);
   line-height: 1.15;
 }
 
 .field-guide p {
   margin-top: var(--space-2);
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .newcomer-closing {
   display: grid;
   gap: var(--space-4);
   align-items: center;
-  padding: var(--surface-padding);
+  padding: var(--surface-padding-compact);
 }
 
 .newcomer-closing strong {
-  color: var(--color-ink-strong);
-  font-family: var(--font-display);
-  font-size: var(--step-1);
+  color: var(--ink);
+  font-size: var(--text-body);
 }
 
 .newcomer-closing p {
   margin-top: var(--space-1);
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
-}
-
-.resources-page > .site-container {
-  gap: var(--section-gap-compact);
-}
-
-.resources-page .page-intro {
-  margin-bottom: 0;
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .resource-chapters {
@@ -170,12 +160,15 @@
 }
 
 .resource-group .section-heading h2 {
-  font-size: var(--step-2);
+  font-size: var(--text-component);
 }
 
 .resource-index {
+  overflow: hidden;
+  border: var(--border-normal) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--canvas-raised);
   list-style: none;
-  background: var(--color-plaster-wash);
 }
 
 .resource-index__item {
@@ -183,18 +176,11 @@
   grid-template-columns: 2.4rem minmax(0, 1fr);
   gap: var(--space-3);
   padding: var(--row-padding-block) var(--row-padding-inline);
-  border-bottom: var(--border-thin) solid var(--color-line-strong);
+  border-bottom: var(--border-normal) solid var(--line);
 }
 
 .resource-index__item:last-child {
   border-bottom: 0;
-}
-
-.resource-index__number {
-  color: var(--color-terracotta-deep);
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 700;
 }
 
 .resource-index__copy {
@@ -204,16 +190,15 @@
 
 .resource-index__title {
   width: fit-content;
-  color: var(--color-ink-strong);
-  font-family: var(--font-display);
-  font-size: var(--step-1);
+  color: var(--ink);
+  font-size: var(--text-body);
   font-weight: 700;
   line-height: 1.2;
 }
 
 .resource-index__description {
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .connect-layout {
@@ -221,22 +206,40 @@
 }
 
 .connect-empty {
-  padding: var(--surface-padding-large);
-  background:
-    url("/atlantis-rings.svg") right -7rem bottom -7rem / 18rem auto no-repeat,
-    var(--color-plaster);
+  position: relative;
+  overflow: hidden;
+  padding: var(--surface-padding);
+}
+
+.connect-empty::after {
+  position: absolute;
+  right: -6rem;
+  bottom: -6rem;
+  width: 16rem;
+  aspect-ratio: 1;
+  background: var(--ocean);
+  content: "";
+  opacity: 0.1;
+  pointer-events: none;
+  -webkit-mask: url("/atlantis-ripple.svg") center / contain no-repeat;
+  mask: url("/atlantis-ripple.svg") center / contain no-repeat;
+}
+
+.connect-empty > * {
+  position: relative;
+  z-index: 1;
 }
 
 .connect-empty h2 {
-  max-width: 15ch;
-  font-size: var(--step-2);
+  max-width: 18ch;
+  font-size: var(--text-section);
 }
 
 .connect-empty__copy {
   max-width: 39rem;
   margin-top: var(--space-3);
-  color: var(--color-ink-muted);
-  font-size: var(--step-1);
+  color: var(--ink-muted);
+  font-size: var(--text-lede);
 }
 
 .connect-empty .button-row {
@@ -246,13 +249,9 @@
 .connect-note {
   margin-top: var(--space-4);
   padding-top: var(--space-3);
-  border-top: var(--border-thin) solid var(--color-line-soft);
-  color: var(--color-ink-muted);
-  font-size: var(--step--1);
-}
-
-.not-found-route {
-  background: url("/atlantis-chart.svg") right top / min(62vw, 42rem) auto no-repeat;
+  border-top: var(--border-normal) solid var(--line);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .not-found-layout {
@@ -264,10 +263,11 @@
 }
 
 .not-found-action {
+  position: relative;
   display: grid;
+  overflow: hidden;
   gap: var(--space-4);
-  padding: var(--surface-padding-large);
-  border-top-color: var(--color-terracotta);
+  padding: var(--surface-padding);
 }
 
 .not-found-action .button-link {
@@ -318,7 +318,7 @@
 
   .about-rhythm__steps li:nth-child(odd) {
     padding-right: var(--space-4);
-    border-right: var(--border-thin) solid var(--color-line-dark);
+    border-right: var(--border-normal) solid var(--line-on-ocean);
   }
 
   .about-rhythm__steps li:nth-child(even) {
@@ -339,15 +339,6 @@
 
   .resource-group:last-child {
     grid-column: 1 / -1;
-  }
-
-  .resource-group:last-child .resource-index {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .resource-group:last-child .resource-index__item {
-    border-right: var(--border-thin) solid var(--color-line-soft);
   }
 }
 

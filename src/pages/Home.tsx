@@ -35,10 +35,7 @@ export default function Home() {
             </div>
 
             {nextMeeting && (
-              <aside
-                className="next-ledger surface-ledger"
-                aria-labelledby="next-gathering-heading"
-              >
+              <aside className="next-ledger" aria-labelledby="next-gathering-heading">
                 <div className="next-ledger__header">
                   <p className="next-ledger__label" id="next-gathering-heading">
                     Next gathering
@@ -68,7 +65,7 @@ export default function Home() {
                 <p className="section-label">{HOME_CONTENT.practice.kicker}</p>
                 <h2 id="home-practice-heading">{HOME_CONTENT.practice.heading}</h2>
               </div>
-              <ol className="practice-sequence civic-index">
+              <ol className="practice-sequence">
                 {HOME_CONTENT.practice.features.map((feature, index) => (
                   <li key={feature.title}>
                     <span className="practice-sequence__number">

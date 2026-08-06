@@ -1,43 +1,38 @@
 :root {
   color-scheme: light;
 
-  /* Aegean civic archive: every active CSS colour is owned here. */
-  --color-page: #f3ecdf;
-  --color-plaster: #fff9ee;
-  --color-limestone: #e5e3d9;
-  --color-clay-wash: #efd5c7;
-  --color-aegean: #1f6387;
-  --color-aegean-deep: #124660;
-  --color-sea-glass: #2f7775;
-  --color-sea-glass-deep: #205f60;
-  --color-sea-glass-pale: #c6dcd7;
-  --color-terracotta: #c65d40;
-  --color-terracotta-deep: #a9422d;
-  --color-bronze: #94702f;
-  --color-bronze-pale: #e5d4aa;
-  --color-ink: #17363a;
-  --color-ink-strong: #0d292d;
-  --color-ink-muted: #516566;
-  --color-night-sea: #0c2d3a;
-  --color-line-soft: rgb(23 54 58 / 17%);
-  --color-line-strong: rgb(23 54 58 / 42%);
-  --color-line-dark: rgb(255 249 238 / 25%);
-  --color-plaster-wash: rgb(255 249 238 / 88%);
-  --color-aegean-wash: rgb(31 99 135 / 10%);
-  --color-focus: #b23f28;
-  --color-on-dark: #fff9ee;
-  --color-on-aegean: #fff9ee;
-  --color-on-terracotta: #fff9ee;
+  /* Ocean Civic Light is the single production colour owner. */
+  --canvas: #f4fafb;
+  --canvas-raised: #ffffff;
+  --canvas-subtle: #e3f2f4;
+  --ink: #0b3044;
+  --ink-muted: #58717e;
+  --line: rgb(11 48 68 / 14%);
+  --line-strong: rgb(11 48 68 / 28%);
+  --ocean: #147f8a;
+  --ocean-strong: #0b5873;
+  --ocean-soft: #ccebed;
+  --coral: #f2644b;
+  --coral-strong: #c83c2c;
+  --focus: #c83c2c;
+  --shadow: 0 1.125rem 3.125rem rgb(11 48 68 / 13%);
+  --ink-on-ocean: #f7fbfc;
+  --ink-on-coral: #082b3d;
+  --ocean-muted: #cee3e8;
+  --line-on-ocean: rgb(247 251 252 / 20%);
+  --footer-canvas: #062d40;
+  --footer-ink: #f7fbfc;
+  --footer-muted: #bdd3da;
+  --footer-line: rgb(247 251 252 / 16%);
 
-  --font-display: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-  --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --step--1: clamp(0.79rem, 0.77rem + 0.08vw, 0.84rem);
-  --step-0: clamp(1rem, 0.98rem + 0.1vw, 1.0625rem);
-  --step-1: clamp(1.16rem, 1.1rem + 0.25vw, 1.34rem);
-  --step-2: clamp(1.42rem, 1.3rem + 0.5vw, 1.78rem);
-  --step-3: clamp(1.88rem, 1.68rem + 0.86vw, 2.5rem);
-  --step-4: clamp(2.55rem, 2.05rem + 2.05vw, 4.1rem);
-  --step-5: clamp(3.3rem, 2.45rem + 3.5vw, 5.85rem);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text-small: clamp(0.78rem, 0.76rem + 0.08vw, 0.84rem);
+  --text-body: clamp(1rem, 0.98rem + 0.08vw, 1.0625rem);
+  --text-lede: clamp(1.08rem, 1.02rem + 0.24vw, 1.22rem);
+  --text-component: clamp(1.2rem, 1.12rem + 0.28vw, 1.38rem);
+  --text-section: clamp(1.5rem, 1.35rem + 0.6vw, 2rem);
+  --page-title-size: clamp(2.2rem, 1.9rem + 1.25vw, 3.25rem);
+  --hero-size: clamp(2.75rem, 2.05rem + 3vw, 4.375rem);
 
   --space-1: 0.375rem;
   --space-2: 0.625rem;
@@ -46,53 +41,52 @@
   --space-5: 1.75rem;
   --space-6: 2.5rem;
   --space-7: 3.5rem;
-  --space-8: 5rem;
 
-  --page-gutter: clamp(1.125rem, 3.8vw, 4rem);
-  --page-block-start: clamp(2rem, 4.2vw, 3.5rem);
-  --page-block-end: clamp(3.25rem, 6vw, 5.25rem);
-  --section-gap: clamp(2.6rem, 5vw, 4.5rem);
-  --section-gap-compact: clamp(1.5rem, 2.8vw, 2.5rem);
-  --surface-padding: clamp(1.15rem, 2vw, 1.8rem);
-  --surface-padding-large: clamp(1.4rem, 2.8vw, 2.3rem);
-  --row-padding-block: clamp(1rem, 1.8vw, 1.45rem);
-  --row-padding-inline: clamp(1rem, 2vw, 1.75rem);
-  --content-gap: clamp(0.75rem, 1.5vw, 1.15rem);
-  --control-gap: 0.8rem;
-  --footer-padding: clamp(2.5rem, 4.5vw, 4rem);
-  --header-block-size: 4.5rem;
+  --header-height: 4.375rem;
+  --footer-height: 3rem;
+  --page-max: 75rem;
+  --page-reading: 43rem;
+  --page-narrow: 34rem;
+  --page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --main-padding-block: clamp(1.5rem, 3.2vw, 2.75rem);
+  --section-gap: clamp(1.75rem, 3.2vw, 2.75rem);
+  --section-gap-compact: clamp(1rem, 1.8vw, 1.5rem);
+  --surface-padding: clamp(1.5rem, 2.5vw, 2rem);
+  --surface-padding-compact: clamp(1.125rem, 2vw, 1.5rem);
+  --row-padding-block: clamp(1rem, 1.6vw, 1.35rem);
+  --row-padding-inline: clamp(1.125rem, 2vw, 1.65rem);
+  --content-gap: clamp(0.75rem, 1.3vw, 1.05rem);
+  --control-gap: 0.75rem;
+  --control-height: 2.875rem;
 
-  --content-wide: 76rem;
-  --content-reading: 44rem;
-  --content-narrow: 34rem;
-  --radius-small: 0.15rem;
-  --radius-medium: 0.4rem;
-  --border-thin: 1px;
-  --border-heavy: 2px;
-  --shadow-paper: 0 0.6rem 1.6rem rgb(13 41 45 / 8%);
+  --radius-surface: 1.125rem;
+  --radius-control: 0.625rem;
+  --radius-status: 999px;
+  --border-normal: 1px;
+  --border-emphasis: 2px;
   --duration-fast: 120ms;
-  --duration-standard: 180ms;
+  --duration-standard: 160ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (min-width: 64rem) and (max-height: 56rem) {
+@media (min-width: 64rem) and (max-height: 49.9375rem) {
   :root {
-    --page-block-start: clamp(1.75rem, 3.5vh, 2.5rem);
-    --page-block-end: clamp(2.75rem, 5vh, 3.75rem);
-    --section-gap: clamp(2.25rem, 5vh, 3.25rem);
-    --section-gap-compact: clamp(1.25rem, 3vh, 2rem);
-    --footer-padding: clamp(2.25rem, 5vh, 3rem);
-    --step-5: clamp(3.2rem, 2.5rem + 3vw, 5.15rem);
+    --main-padding-block: 1.25rem;
+    --section-gap: 1.5rem;
+    --section-gap-compact: 0.875rem;
+    --surface-padding: 1.35rem;
+    --hero-size: clamp(3.1rem, 2.4rem + 2.6vw, 4rem);
+    --page-title-size: clamp(2.15rem, 1.9rem + 0.9vw, 2.75rem);
   }
 }
 
-@media (min-width: 64rem) and (max-height: 46rem) {
+@media (min-width: 64rem) and (max-height: 44.9375rem) {
   :root {
-    --page-block-start: 1.6rem;
-    --page-block-end: 2.75rem;
-    --section-gap: 2.25rem;
-    --section-gap-compact: 1.25rem;
-    --footer-padding: 2.1rem;
-    --step-5: clamp(3rem, 2.45rem + 2.6vw, 4.7rem);
+    --main-padding-block: 1rem;
+    --section-gap: 1.25rem;
+    --surface-padding: 1.2rem;
+    --surface-padding-compact: 1rem;
+    --row-padding-block: 0.85rem;
+    --hero-size: clamp(3rem, 2.4rem + 2.3vw, 3.75rem);
   }
 }

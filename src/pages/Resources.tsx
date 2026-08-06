@@ -40,7 +40,7 @@ export default function Resources() {
                 <p className="section-label">{group.kicker}</p>
                 <h2>{group.title}</h2>
               </div>
-              <ol className="resource-index civic-index">
+              <ol className="resource-index">
                 {group.items.map((resource, index) => (
                   <li className="resource-index__item" key={resource.title}>
                     <span className="resource-index__number">
