@@ -40,7 +40,7 @@ A likely tutorial sequence is:
 9. Build or publish the approved version.
 10. Recover by returning to an approved project copy.
 
-Public wording lives in `src/content/`. Recurring local meeting facts live in `src/content/meetings.ts`; temporary meetings and scheduled notices live in `src/content/announcements.ts`. Centralized colour, system sans-serif typography, spacing, and shape decisions live in `src/styles/tokens.css`. Shared presentation components live in `src/components/`, and route compositions live in `src/styles/pages/`. `DESIGN_GUIDE.md` explains the light Ocean Civic system and its single ripple identity family. Meeting timing, validation, external retrieval, sanitization, and caching live in `src/meetings/` and should not be rewritten for an ordinary factual or visual change.
+Public wording lives in `src/content/`. Recurring local meeting facts live in `src/content/meetings.ts`; temporary meetings and scheduled notices live in `src/content/announcements.ts`. Centralized colour, system sans-serif typography, spacing, and shape decisions live in `src/styles/tokens.css`. Shared presentation components live in `src/components/`, and route compositions live in `src/styles/pages/`. `DESIGN_GUIDE.md` explains the light Ocean Civic system, its single ripple identity family, and the viewport-first rule that permits only one desktop main scroll surface. Meeting timing, validation, external retrieval, sanitization, and caching live in `src/meetings/` and should not be rewritten for an ordinary factual or visual change.
 
 ## Recovery Dharma Global preview
 

@@ -5,6 +5,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import AnnouncementBar from "../components/AnnouncementBar";
+import { DEFAULT_GLOBAL_PREVIEW_COUNT } from "../components/GlobalDirectorySection";
 import SiteLayout from "../components/SiteLayout";
 import { CONNECT_CONTENT } from "../content/connect";
 import { ABOUT_CONTENT } from "../content/about";
@@ -86,6 +87,14 @@ test("router opts out of deferred route activation without adding route motion",
   const header = await source("src/components/SiteHeader.tsx");
   assert.match(app, /<BrowserRouter useTransitions=\{false\}>/);
   assert.doesNotMatch(`${app}\n${header}`, /startTransition|startViewTransition|viewTransition/);
+});
+
+test("route changes reset the single main scroll surface before paint", async () => {
+  const layout = await source("src/components/SiteLayout.tsx");
+  assert.match(layout, /useLayoutEffect/);
+  assert.match(layout, /main\.scrollTop = 0/);
+  assert.match(layout, /main\?\.focus\(\{ preventScroll: true \}\)/);
+  assert.doesNotMatch(layout, /setTimeout|startTransition|startViewTransition/);
 });
 
 test("public copy contains no implementation tutorial or owner-placeholder language", () => {
@@ -188,6 +197,71 @@ test("the original Ocean Civic mark and one ripple motif are local and lightweig
   for (const name of motifNames) assert.match(joined, new RegExp(name.replace(".", "\\.")));
   for (const removed of ["aegean-frieze.svg", "atlantis-chart.svg", "atlantis-rings.svg"])
     assert.doesNotMatch(joined, new RegExp(removed.replace(".", "\\.")));
+});
+
+test("the desktop shell has one scroll owner and mobile retains document flow", async () => {
+  const styleRoot = new URL("src/styles/", project);
+  const topLevel = await readdir(styleRoot, { withFileTypes: true });
+  const pageFiles = await readdir(new URL("pages/", styleRoot));
+  const cssFiles = [
+    ...topLevel.filter((entry) => entry.isFile()).map((entry) => entry.name),
+    ...pageFiles.map((name) => `pages/${name}`),
+  ];
+  const allCss = (
+    await Promise.all(cssFiles.map((file) => readFile(new URL(file, styleRoot), "utf8")))
+  ).join("\n");
+  const layout = await source("src/styles/layout.css");
+  assert.equal((allCss.match(/overflow-y:\s*(?:auto|scroll)/gi) ?? []).length, 1);
+  assert.match(layout, /\.site-main\s*\{[^}]*overflow-y:\s*auto/is);
+  assert.match(layout, /body\s*\{[^}]*overflow:\s*hidden/is);
+  assert.match(layout, /grid-template-rows:\s*auto auto minmax\(0, 1fr\) auto/);
+  assert.match(layout, /scrollbar-gutter:\s*stable/);
+  assert.doesNotMatch(allCss, /\.global-meeting-list\s*\{[^}]*overflow/is);
+  assert.doesNotMatch(allCss, /\.meeting-detail\s*\{[^}]*overflow-y/is);
+});
+
+test("Global preview defaults to three records and expands accessibly", async () => {
+  const globalSection = await source("src/components/GlobalDirectorySection.tsx");
+  assert.equal(DEFAULT_GLOBAL_PREVIEW_COUNT, 3);
+  assert.match(globalSection, /meetings\.slice\(0, DEFAULT_GLOBAL_PREVIEW_COUNT\)/);
+  assert.match(globalSection, /aria-expanded=\{expanded\}/);
+  assert.match(globalSection, /aria-controls="global-meeting-preview"/);
+  assert.match(globalSection, /Show more worldwide meetings/);
+});
+
+test("the compact footer does not duplicate primary navigation", async () => {
+  const footer = await source("src/components/SiteFooter.tsx");
+  assert.match(footer, /footer-utility/);
+  assert.doesNotMatch(footer, /NAVIGATION_ROUTES|<nav|BrandMark/);
+  assert.match(footer, /Recovery Dharma Global/);
+});
+
+test("beginner batch files retain safe preview, archive, and build boundaries", async () => {
+  const start = await source("START-WEBSITE.bat");
+  const archive = await source("MAKE-AI-COPY.bat");
+  const build = await source("BUILD-WEBSITE.bat");
+
+  assert.match(start, /set "PROJECT_DIR=%~dp0"/);
+  assert.match(start, /call npm ci/);
+  assert.match(start, /call npm run dev -- --host 127\.0\.0\.1 --open/);
+
+  for (const excluded of [
+    "node_modules",
+    "dist",
+    "PUBLISH-THIS-FOLDER",
+    "AI-COPY",
+    ".git",
+    ".env*",
+    "screenshots",
+    "review-artifacts",
+  ])
+    assert.match(archive, new RegExp(excluded.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(archive, /DESIGN_GUIDE\.md[^\r\n]*(?:skip|exclude)/i);
+  assert.match(archive, /recovery-dharma-atlantis-source\.zip/);
+
+  assert.match(build, /call npm run verify/);
+  assert.match(build, /PUBLISH-THIS-FOLDER/);
+  assert.match(build, /xcopy "%PROJECT_DIR%dist\\\*"/);
 });
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {

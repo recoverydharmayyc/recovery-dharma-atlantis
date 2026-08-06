@@ -27,10 +27,4 @@ export const HOME_CONTENT = {
       },
     ],
   },
-  invitation: {
-    kicker: "New here?",
-    heading: "Start with a meeting.",
-    body: "No experience is expected, no registration is required, and there is no pressure to speak.",
-    actionLabel: "Read the first-visit guide",
-  },
 } as const;

@@ -12,11 +12,12 @@ import {
   type GlobalMeetingOccurrence,
 } from "../meetings/globalMeetingPreview";
 import type { SanitizedGlobalMeeting } from "../meetings/globalDirectorySanitizer";
-import { formatMeetingStartLabel, getMeetingStatus } from "../meetings/localMeetings";
+import { getMeetingStatus } from "../meetings/localMeetings";
 import ExternalLink from "./ExternalLink";
 import StatusLabel from "./StatusLabel";
 
 type GlobalViewStatus = "loading" | "live" | "cached" | "empty" | "unavailable" | "error";
+export const DEFAULT_GLOBAL_PREVIEW_COUNT = 3;
 
 function scheduleAfterLocalPaint(callback: () => void): () => void {
   let workFrameId = 0;
@@ -71,11 +72,8 @@ function GlobalMeeting({ meeting, now }: { meeting: GlobalMeetingOccurrence; now
     <li className="global-meeting">
       <div className="global-meeting__topline">
         <StatusLabel status={getMeetingStatus(meeting.startsAt, now)} />
-        <span className="global-meeting__time">
-          {formatMeetingStartLabel(meeting.startsAt, now, meeting.timeZone)}
-        </span>
+        <span className="global-meeting__region">{meeting.region}</span>
       </div>
-      <p className="global-meeting__region">{meeting.region}</p>
       <h3>{meeting.name}</h3>
       <p className="global-meeting__time">{formatListedLocalTime(meeting)}</p>
       <div className="global-meeting__actions">
@@ -109,6 +107,9 @@ function getGlobalStatusMessage(status: GlobalViewStatus, hasMeetings: boolean):
 
 export default function GlobalDirectorySection({ now }: { now: Date }) {
   const { meetings, status } = useGlobalMeetings(now);
+  const [expanded, setExpanded] = useState(false);
+  const visibleMeetings = expanded ? meetings : meetings.slice(0, DEFAULT_GLOBAL_PREVIEW_COUNT);
+  const canExpand = meetings.length > DEFAULT_GLOBAL_PREVIEW_COUNT;
 
   return (
     <section className="global-directory" aria-labelledby="global-heading">
@@ -133,17 +134,30 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
           </p>
         </div>
 
-        {meetings.length > 0 && (
-          <ol className="global-meeting-list">
-            {meetings.map((meeting) => (
-              <GlobalMeeting
-                key={`${meeting.id}-${meeting.startsAt.toISOString()}`}
-                meeting={meeting}
-                now={now}
-              />
-            ))}
-          </ol>
-        )}
+        <div className="global-directory__results">
+          {meetings.length > 0 && (
+            <ol className="global-meeting-list" id="global-meeting-preview">
+              {visibleMeetings.map((meeting) => (
+                <GlobalMeeting
+                  key={`${meeting.id}-${meeting.startsAt.toISOString()}`}
+                  meeting={meeting}
+                  now={now}
+                />
+              ))}
+            </ol>
+          )}
+          {canExpand && (
+            <button
+              className="global-show-more"
+              type="button"
+              aria-expanded={expanded}
+              aria-controls="global-meeting-preview"
+              onClick={() => setExpanded((value) => !value)}
+            >
+              {expanded ? "Show fewer worldwide meetings" : "Show more worldwide meetings"}
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );

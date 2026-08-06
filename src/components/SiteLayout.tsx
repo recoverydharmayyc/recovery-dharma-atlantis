@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { getActiveAnnouncement } from "../announcements/announcementTiming";
 import { SITE_CONFIG } from "../config/site";
@@ -9,6 +9,7 @@ import SiteHeader from "./SiteHeader";
 export default function SiteLayout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const [now, setNow] = useState(() => new Date());
+  const mainRef = useRef<HTMLElement>(null);
   const firstRoute = useRef(true);
   const announcement = getActiveAnnouncement(now);
 
@@ -17,13 +18,15 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
     return () => window.clearInterval(intervalId);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (firstRoute.current) {
       firstRoute.current = false;
       return;
     }
+    const main = mainRef.current;
+    if (main) main.scrollTop = 0;
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.querySelector<HTMLElement>("#main-content")?.focus({ preventScroll: true });
+    main?.focus({ preventScroll: true });
   }, [pathname]);
 
   return (
@@ -33,7 +36,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       </a>
       <SiteHeader />
       {announcement && <AnnouncementBar announcement={announcement} />}
-      <main id="main-content" className="site-main" tabIndex={-1}>
+      <main ref={mainRef} id="main-content" className="site-main" tabIndex={-1}>
         {children}
       </main>
       <SiteFooter />

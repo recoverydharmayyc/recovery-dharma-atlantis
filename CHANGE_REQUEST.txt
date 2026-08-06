@@ -10,7 +10,7 @@ APPROVED FACTS
 [Copy only facts approved in MY_WEBSITE_FACTS.txt.]
 
 REQUESTED VISUAL OR BEHAVIORAL CHANGES
-[For example: adjust the semantic colours in src/styles/tokens.css while preserving the light Ocean Civic grid, system sans-serif typography, ripple motif, shape roles, and meeting rules.]
+[For example: adjust the semantic colours in src/styles/tokens.css while preserving the light Ocean Civic grid, system sans-serif typography, ripple motif, shape roles, viewport-first single-scroll shell, and meeting rules.]
 [For example: add a verified temporary meeting through src/content/announcements.ts so it appears in the community bulletin and meeting ledger, then expires automatically.]
 
 THINGS NOT TO CHANGE

@@ -1,15 +1,17 @@
 .page-shell--home {
-  padding-top: clamp(1.75rem, 3.5vw, 3rem);
+  min-height: 100%;
+  padding-block: var(--main-padding-block);
 }
 
 .home-stage {
   position: relative;
+  overflow: clip;
 }
 
 .home-hero {
   position: relative;
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--section-gap-compact);
 }
 
 .home-hero::before {
@@ -90,7 +92,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .next-ledger__label {
@@ -154,7 +156,7 @@
 .home-practice {
   display: grid;
   gap: var(--space-4);
-  padding: var(--surface-padding-compact);
+  padding: clamp(1rem, 1.7vw, 1.35rem);
   border: var(--border-normal) solid var(--line);
   border-radius: var(--radius-surface);
   background: var(--canvas-subtle);
@@ -197,32 +199,6 @@
   font-size: var(--text-small);
 }
 
-.home-invitation-band {
-  padding-block: var(--space-5);
-  border-top: var(--border-normal) solid var(--line);
-  background: var(--canvas-raised);
-}
-
-.newcomer-invitation {
-  display: grid;
-  gap: var(--space-4);
-  align-items: center;
-}
-
-.newcomer-invitation__copy {
-  max-width: 46rem;
-}
-
-.newcomer-invitation__copy h2 {
-  margin-top: var(--space-2);
-  font-size: var(--text-section);
-}
-
-.newcomer-invitation__copy p:last-child {
-  margin-top: var(--space-2);
-  color: var(--ink-muted);
-}
-
 @media (min-width: 48rem) {
   .home-hero {
     grid-template-columns: minmax(0, 7fr) minmax(19rem, 5fr);
@@ -231,10 +207,6 @@
 
   .home-practice {
     grid-column: 1 / -1;
-  }
-
-  .newcomer-invitation {
-    grid-template-columns: minmax(0, 1fr) auto;
   }
 }
 
@@ -266,6 +238,36 @@
   .practice-sequence li {
     border-top: 0;
     border-left: var(--border-normal) solid var(--line-strong);
+  }
+}
+
+@media (min-width: 64rem) and (min-height: 42rem) {
+  .home-page {
+    display: grid;
+    align-items: center;
+  }
+}
+
+@media (min-width: 64rem) and (max-height: 49.9375rem) {
+  .home-hero__summary {
+    font-size: var(--text-body);
+  }
+
+  .home-hero__body {
+    font-size: var(--text-small);
+  }
+
+  .next-ledger__header {
+    margin-bottom: var(--space-3);
+  }
+
+  .next-ledger__meta,
+  .next-ledger .button-link {
+    margin-top: var(--space-3);
+  }
+
+  .practice-sequence li {
+    padding-block: 0.8rem;
   }
 }
 

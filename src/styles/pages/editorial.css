@@ -8,6 +8,10 @@
   gap: var(--section-gap-compact);
 }
 
+.editorial-page {
+  min-height: 100%;
+}
+
 .about-layout > .page-intro,
 .newcomers-layout > .page-intro,
 .connect-layout > .page-intro,
@@ -18,7 +22,7 @@
 .prose-section {
   display: grid;
   gap: var(--space-4);
-  padding: var(--surface-padding-compact);
+  padding: clamp(1rem, 1.8vw, 1.35rem);
 }
 
 .prose-section h2 {
@@ -42,7 +46,7 @@
 .about-rhythm {
   display: grid;
   gap: var(--space-4);
-  padding: var(--surface-padding-compact);
+  padding: clamp(1rem, 1.8vw, 1.35rem);
 }
 
 .about-rhythm .section-label,
@@ -290,6 +294,11 @@
 }
 
 @media (min-width: 64rem) {
+  .editorial-page {
+    display: grid;
+    align-items: center;
+  }
+
   .about-layout,
   .newcomers-layout,
   .connect-layout {
@@ -337,8 +346,22 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .resource-group:last-child {
-    grid-column: 1 / -1;
+  .resources-layout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(1.25rem, 2vw, 2rem);
+    align-items: start;
+  }
+
+  .resources-layout > .page-intro {
+    grid-column: 1 / 5;
+  }
+
+  .resource-chapters {
+    grid-column: 5 / 13;
+  }
+
+  .resource-index__item {
+    padding-block: calc(var(--row-padding-block) - 0.125rem);
   }
 }
 
@@ -353,5 +376,31 @@
 
   .newcomer-guide li:nth-child(n + 3) {
     grid-column: span 2;
+  }
+}
+
+@media (min-width: 64rem) and (max-height: 49.9375rem) {
+  .about-layout,
+  .newcomers-layout,
+  .resources-layout,
+  .connect-layout,
+  .not-found-layout {
+    gap: var(--space-3);
+  }
+
+  .prose-section,
+  .about-rhythm,
+  .connect-empty,
+  .not-found-action {
+    padding: 1rem;
+  }
+
+  .field-guide li,
+  .resource-index__item {
+    padding-block: 0.85rem;
+  }
+
+  .newcomer-closing {
+    padding-block: 0.85rem;
   }
 }

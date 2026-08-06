@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { access, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:net";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -8,7 +9,7 @@ const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
 const GLOBAL_ENDPOINT = "https://recoverydharma.org/wp-admin/admin-ajax.php?action=meetings";
 const CACHE_KEY = "recovery-dharma-atlantis-global-meetings-v2";
 const ROUTE_BUDGET_MS = Number(process.env.MEETINGS_ROUTE_BUDGET_MS || 120);
-const BROWSER_PROFILE_PARENT = process.env.BROWSER_PROFILE_PARENT || PROJECT_ROOT;
+const BROWSER_PROFILE_PARENT = process.env.BROWSER_PROFILE_PARENT || tmpdir();
 const BROWSER_TEMP_PARENT = process.env.BROWSER_TEMP_PARENT || BROWSER_PROFILE_PARENT;
 const SOURCE_ROUTES = ["/", "/about", "/newcomers", "/resources", "/connect"];
 const OUTPUT_ARGUMENT = process.argv.find((argument) => argument.startsWith("--output="));
@@ -270,6 +271,7 @@ try {
       `${baseUrl}/`,
     ],
     {
+      cwd: browserProfile,
       detached: process.platform !== "win32",
       env: { ...process.env, TMPDIR: BROWSER_TEMP_PARENT },
       stdio: ["ignore", "pipe", "pipe"],
@@ -491,7 +493,7 @@ try {
   })()`);
   await waitUntil(
     "document.querySelectorAll('.schedule-row__select')[1]?.getAttribute('aria-pressed') === 'true'",
-    "The Sunday meeting could not be selected",
+    "The second local meeting could not be selected",
   );
   await waitUntil("window.__meetingsRouteRoot && true", "Meetings route root was not captured");
   await waitUntil(
@@ -523,7 +525,7 @@ try {
   );
   const afterGlobalResolution = await evaluate(`({
     routeRootRetained: window.__meetingsRouteRoot === document.querySelector('.meetings-page'),
-    sundayStillSelected: document.querySelectorAll('.schedule-row__select')[1]?.getAttribute('aria-pressed') === 'true',
+    secondMeetingStillSelected: document.querySelectorAll('.schedule-row__select')[1]?.getAttribute('aria-pressed') === 'true',
     selectedTitle: document.querySelector('#selected-meeting-details h3')?.textContent,
     globalState: document.querySelector('[data-global-state]')?.dataset.globalState,
   })`);
@@ -532,7 +534,7 @@ try {
     "Global resolution remounted the Meetings route root",
   );
   invariant(
-    afterGlobalResolution.sundayStillSelected,
+    afterGlobalResolution.secondMeetingStillSelected,
     "Global resolution reset the local selection",
   );
 

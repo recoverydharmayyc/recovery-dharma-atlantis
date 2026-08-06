@@ -29,6 +29,14 @@ All public regions align to one `--page-max` / `--page-gutter` grid. Major infor
 
 Meeting information belongs in the reading path, especially on Home and Meetings. Prefer integrated horizontal fields, shared rules, and compact lists over dashboard grids or a collection of unrelated cards. Keep enough padding inside useful objects while avoiding empty stage-setting space between sections.
 
+## Viewport-first shell
+
+At ordinary desktop sizes, the shell gives the remaining viewport height to `.site-main`. That is the only vertical scroll surface: routes that fit have no scrollbar, while longer or expanded content scrolls there. The document/body must not scroll at the same time, and child panels must never introduce another vertical scrollbar. Route changes reset `.site-main` to the top before paint.
+
+Narrow layouts, short windows, and zoomed/reflowed layouts return to normal document scrolling so content and focus targets cannot be clipped. Do not force a route to fit by hiding facts, shrinking body text, scaling the page, or adding an internal list scrollbar.
+
+Home, About, New Here, Connect, 404, and the default Meetings composition are intentionally compact on standard desktop viewports. Extra Global records appear only after the visitor chooses “Show more worldwide meetings”; expansion may make the single main surface scroll.
+
 ## Safe changes
 
 Factual edits belong in `src/content/` and must not rewrite the visual system. Visual edits must not weaken meeting timing, Recovery Dharma Global sanitization, cache, timeout, attribution, or fallback behavior in `src/meetings/`. Preserve responsive navigation, keyboard focus, reduced motion, fictional mode, and every route.

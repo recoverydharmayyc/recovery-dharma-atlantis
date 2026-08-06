@@ -63,10 +63,12 @@ function LocalMeetingDetail({ item, now }: { item: LocalMeetingItem; now: Date }
       aria-labelledby={`meeting-${item.id}`}
     >
       <div className="meeting-detail__copy">
-        <StatusLabel status={getMeetingStatus(item.startsAt, now)} />
-        <p className="meeting-detail__timing">
-          {formatMeetingStartLabel(item.startsAt, now, item.timeZone)}
-        </p>
+        <div className="meeting-detail__statusline">
+          <StatusLabel status={getMeetingStatus(item.startsAt, now)} />
+          <p className="meeting-detail__timing">
+            {formatMeetingStartLabel(item.startsAt, now, item.timeZone)}
+          </p>
+        </div>
         <h3 id={`meeting-${item.id}`}>{item.title}</h3>
         <p className="meeting-detail__description">{item.description}</p>
         {item.publicLink && (
@@ -77,29 +79,19 @@ function LocalMeetingDetail({ item, now }: { item: LocalMeetingItem; now: Date }
         <div>
           <dt>Schedule</dt>
           <dd>
-            {item.dayLabel}, {item.timeLabel}
+            {item.dayLabel}, {item.timeLabel} · {item.timeZoneLabel}
           </dd>
         </div>
         <div>
-          <dt>Time zone</dt>
-          <dd>{item.timeZoneLabel}</dd>
-        </div>
-        <div>
-          <dt>Format and venue</dt>
+          <dt>Place</dt>
           <dd>
             {item.eyebrow} · {item.venueLabel}
           </dd>
         </div>
-        {item.newcomerNote && (
+        {(item.newcomerNote || item.registrationNote) && (
           <div>
-            <dt>Newcomers</dt>
-            <dd>{item.newcomerNote}</dd>
-          </div>
-        )}
-        {item.registrationNote && (
-          <div>
-            <dt>Registration</dt>
-            <dd>{item.registrationNote}</dd>
+            <dt>Welcome</dt>
+            <dd>{[item.newcomerNote, item.registrationNote].filter(Boolean).join(" · ")}</dd>
           </div>
         )}
       </dl>

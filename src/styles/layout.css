@@ -81,3 +81,45 @@
   color: var(--ink-muted);
   font-size: var(--text-small);
 }
+
+@media (min-width: 70rem) and (min-height: 42rem) {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  .site-shell {
+    display: grid;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+  }
+
+  .site-header {
+    grid-row: 1;
+  }
+
+  .announcement-bulletin {
+    grid-row: 2;
+  }
+
+  .site-main {
+    grid-row: 3;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .site-footer {
+    grid-row: 4;
+  }
+}
