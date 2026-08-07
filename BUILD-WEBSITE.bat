@@ -8,6 +8,8 @@ where node >nul 2>nul
 if errorlevel 1 goto :node_missing
 where npm >nul 2>nul
 if errorlevel 1 goto :node_missing
+node -e "const [major, minor] = process.versions.node.split('.').map(Number); process.exit(major > 22 || (major === 22 && minor >= 22) ? 0 : 1)"
+if errorlevel 1 goto :node_old
 
 if not exist "node_modules\" (
   echo.
@@ -38,6 +40,13 @@ exit /b 0
 echo.
 echo Building this website needs Node.js LTS installed once on this computer.
 echo Download and install the current LTS version from https://nodejs.org/, then try again.
+pause
+exit /b 1
+
+:node_old
+echo.
+echo This computer has an older Node.js version that this website no longer supports.
+echo Install the current Node.js LTS version from https://nodejs.org/, then try again.
 pause
 exit /b 1
 

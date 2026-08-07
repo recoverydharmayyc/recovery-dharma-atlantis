@@ -379,9 +379,8 @@ try {
       const main = document.querySelector('#main-content');
       const collect = (observedBy) => {
         const heading = document.querySelector('#meetings-heading');
-        const controls = document.querySelectorAll('.schedule-row__select');
-        const detail = document.querySelector('#selected-meeting-details');
-        if (!heading || controls.length !== 2 || !detail) return false;
+        const localMeetings = document.querySelectorAll('.local-meeting-card');
+        if (!heading || localMeetings.length !== 2) return false;
         performance.mark('local-content-ready');
         performance.measure('route-click-to-local-content', 'route-click', 'local-content-ready');
         const pageStyle = getComputedStyle(document.querySelector('.meetings-page'));
@@ -391,8 +390,9 @@ try {
           observedBy,
           localContentMs: performance.getEntriesByName('route-click-to-local-content').at(-1)?.duration,
           activeRoute: Boolean(document.querySelector('a[href="/meetings"][aria-current="page"]')),
-          controls: controls.length,
-          selectedTitle: detail.querySelector('h3')?.textContent,
+          localMeetings: localMeetings.length,
+          localTitles: [...localMeetings].map((item) => item.querySelector('h3')?.textContent),
+          nextMarkerVisible: Boolean(document.querySelector('.local-meeting-card .status-label')),
           globalState: document.querySelector('[data-global-state]')?.dataset.globalState,
           opacity: pageStyle.opacity,
           visibility: pageStyle.visibility,
@@ -409,8 +409,8 @@ try {
         window.__atlantisFirstFrame = {
           elapsedMs: performance.now() - startedAt,
           headingVisible: Boolean(document.querySelector('#meetings-heading')),
-          controlsVisible: document.querySelectorAll('.schedule-row__select').length === 2,
-          detailVisible: Boolean(document.querySelector('#selected-meeting-details')),
+          localMeetingsVisible: document.querySelectorAll('.local-meeting-card').length === 2,
+          nextMarkerVisible: Boolean(document.querySelector('.local-meeting-card .status-label')),
         };
         collect('first-frame');
       });
@@ -430,20 +430,16 @@ try {
       `${sourcePath}: active Meetings route did not update with content`,
     );
     invariant(
-      result.controls === 2,
-      `${sourcePath}: both local meeting controls were not available`,
+      result.localMeetings === 2,
+      `${sourcePath}: both complete local meeting objects were not available`,
     );
     invariant(
       result.firstFrame.headingVisible,
       `${sourcePath}: heading missed the first rendered frame`,
     );
     invariant(
-      result.firstFrame.controlsVisible,
-      `${sourcePath}: local rows missed the first rendered frame`,
-    );
-    invariant(
-      result.firstFrame.detailVisible,
-      `${sourcePath}: selected detail missed the first rendered frame`,
+      result.firstFrame.localMeetingsVisible,
+      `${sourcePath}: local meeting objects missed the first rendered frame`,
     );
     invariant(
       result.globalState === "loading",
@@ -484,17 +480,13 @@ try {
   measurements.push(await measureNavigation("/", "corrupt-max"));
 
   await waitUntil(
-    "document.querySelectorAll('.schedule-row__select').length === 2",
-    "Local rows missing",
+    "document.querySelectorAll('.local-meeting-card').length === 2",
+    "Local meeting objects missing",
   );
   await evaluate(`(() => {
     window.__meetingsRouteRoot = document.querySelector('.meetings-page');
-    document.querySelectorAll('.schedule-row__select')[1].click();
+    window.__localMeetingTitles = [...document.querySelectorAll('.local-meeting-card h3')].map((item) => item.textContent);
   })()`);
-  await waitUntil(
-    "document.querySelectorAll('.schedule-row__select')[1]?.getAttribute('aria-pressed') === 'true'",
-    "The second local meeting could not be selected",
-  );
   await waitUntil("window.__meetingsRouteRoot && true", "Meetings route root was not captured");
   await waitUntil(
     "document.querySelector('[data-global-state]')?.dataset.globalState === 'loading'",
@@ -525,8 +517,9 @@ try {
   );
   const afterGlobalResolution = await evaluate(`({
     routeRootRetained: window.__meetingsRouteRoot === document.querySelector('.meetings-page'),
-    secondMeetingStillSelected: document.querySelectorAll('.schedule-row__select')[1]?.getAttribute('aria-pressed') === 'true',
-    selectedTitle: document.querySelector('#selected-meeting-details h3')?.textContent,
+    localMeetingCount: document.querySelectorAll('.local-meeting-card').length,
+    localMeetingTitlesRetained: JSON.stringify(window.__localMeetingTitles) === JSON.stringify([...document.querySelectorAll('.local-meeting-card h3')].map((item) => item.textContent)),
+    nextMarkerRetained: Boolean(document.querySelector('.local-meeting-card .status-label')),
     globalState: document.querySelector('[data-global-state]')?.dataset.globalState,
   })`);
   invariant(
@@ -534,8 +527,10 @@ try {
     "Global resolution remounted the Meetings route root",
   );
   invariant(
-    afterGlobalResolution.secondMeetingStillSelected,
-    "Global resolution reset the local selection",
+    afterGlobalResolution.localMeetingCount === 2 &&
+      afterGlobalResolution.localMeetingTitlesRetained &&
+      afterGlobalResolution.nextMarkerRetained,
+    "Global resolution changed the local meeting objects",
   );
 
   const report = {

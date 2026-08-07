@@ -37,7 +37,7 @@
 }
 
 .home-hero__title {
-  max-width: 11ch;
+  max-width: 16ch;
   font-size: var(--hero-size);
   font-weight: 820;
   line-height: 0.94;
@@ -242,13 +242,25 @@
 }
 
 @media (min-width: 64rem) and (min-height: 42rem) {
+  .page-shell--home {
+    padding-bottom: 0.625rem;
+  }
+
   .home-page {
     display: grid;
     align-items: center;
   }
+
+  .home-practice {
+    padding-block: 1.25rem;
+  }
 }
 
 @media (min-width: 64rem) and (max-height: 49.9375rem) {
+  .home-hero__title {
+    max-width: 17ch;
+  }
+
   .home-hero__summary {
     font-size: var(--text-body);
   }
@@ -267,7 +279,7 @@
   }
 
   .practice-sequence li {
-    padding-block: 0.8rem;
+    padding-block: 0.7rem;
   }
 }
 

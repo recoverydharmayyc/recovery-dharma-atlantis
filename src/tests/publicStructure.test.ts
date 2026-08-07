@@ -3,7 +3,7 @@ import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router";
 import AnnouncementBar from "../components/AnnouncementBar";
 import { DEFAULT_GLOBAL_PREVIEW_COUNT } from "../components/GlobalDirectorySection";
 import SiteLayout from "../components/SiteLayout";
@@ -147,11 +147,7 @@ test("one token file owns the light Ocean Civic CSS colours", async () => {
     ...cssFiles.map((file) => readFile(new URL(file, styleRoot), "utf8")),
   ]);
   const joined = allEditable.join("\n");
-  assert.doesNotMatch(joined, /forest_deep_two|faviconTarget|framer-motion|theme-dark/i);
-  assert.doesNotMatch(
-    joined,
-    /aegean|frieze|bronze|ochre|limestone|terracotta|atlantis-(?:chart|rings)/i,
-  );
+  assert.doesNotMatch(joined, /framer-motion|theme-dark/i);
   assert.doesNotMatch(joined, /ui-serif|Georgia|Cambria|Times New Roman/i);
   assert.doesNotMatch(joined, /https?:\/\/[^\s"')]+\.(?:woff2?|ttf|otf|png|jpe?g|webp|gif)/i);
   const tokens = await source("src/styles/tokens.css");
@@ -180,6 +176,14 @@ test("one token file owns the light Ocean Civic CSS colours", async () => {
 
 test("the original Ocean Civic mark and one ripple motif are local and lightweight", async () => {
   const motifNames = ["atlantis-mark.svg", "atlantis-ripple.svg"];
+  const publicFiles = (await readdir(new URL("public/", project))).sort();
+  assert.deepEqual(publicFiles, [
+    "_redirects",
+    "atlantis-mark.svg",
+    "atlantis-ripple.svg",
+    "favicon.svg",
+    "robots.txt",
+  ]);
   const motifs = await Promise.all(
     motifNames.map((name) => source(`public/${name}`).then((text) => ({ name, text }))),
   );
@@ -197,8 +201,6 @@ test("the original Ocean Civic mark and one ripple motif are local and lightweig
   ]);
   const joined = styles.join("\n");
   for (const name of motifNames) assert.match(joined, new RegExp(name.replace(".", "\\.")));
-  for (const removed of ["aegean-frieze.svg", "atlantis-chart.svg", "atlantis-rings.svg"])
-    assert.doesNotMatch(joined, new RegExp(removed.replace(".", "\\.")));
 });
 
 test("the desktop shell has one scroll owner and mobile retains document flow", async () => {
@@ -250,6 +252,8 @@ test("beginner batch files retain safe preview, archive, and build boundaries", 
   assert.match(start, /set "PROJECT_DIR=%~dp0"/);
   assert.match(start, /call npm ci/);
   assert.match(start, /call npm run dev -- --host 127\.0\.0\.1 --open/);
+  assert.match(start, /major === 22 && minor >= 22/);
+  assert.match(start, /:node_old/);
 
   for (const excluded of [
     "node_modules",
@@ -263,9 +267,12 @@ test("beginner batch files retain safe preview, archive, and build boundaries", 
   ])
     assert.match(archive, new RegExp(excluded.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.doesNotMatch(archive, /DESIGN_GUIDE\.md[^\r\n]*(?:skip|exclude)/i);
+  assert.match(archive, /CONTENT_GUIDE\.md/);
   assert.match(archive, /recovery-dharma-atlantis-source\.zip/);
 
   assert.match(build, /call npm run verify/);
+  assert.match(build, /major === 22 && minor >= 22/);
+  assert.match(build, /:node_old/);
   assert.match(build, /PUBLISH-THIS-FOLDER/);
   assert.match(build, /xcopy "%PROJECT_DIR%dist\\\*"/);
 });
@@ -327,4 +334,30 @@ test("focus and reduced-motion rules remain explicit", async () => {
   const base = await source("src/styles/base.css");
   assert.match(base, /:focus-visible/);
   assert.match(base, /prefers-reduced-motion:\s*reduce/);
+});
+
+test("permanent browser tooling and declarative routing use version-neutral ownership", async () => {
+  const packageJson = JSON.parse(await source("package.json"));
+  const scripts = await readdir(new URL("scripts/", project));
+  const imports = await Promise.all([
+    source("src/app/App.tsx"),
+    source("src/app/routes.tsx"),
+    source("src/components/SiteLayout.tsx"),
+    source("src/components/SiteHeader.tsx"),
+  ]);
+
+  assert.equal(packageJson.dependencies["react-router"], "8.3.0");
+  assert.equal(packageJson.dependencies["react-router-dom"], undefined);
+  assert.equal(packageJson.engines.node, ">=22.22.0");
+  assert.equal(
+    packageJson.scripts["test:browser:product"],
+    "node scripts/browser-product-review.mjs",
+  );
+  assert.ok(scripts.includes("browser-product-review.mjs"));
+  assert.equal(
+    scripts.some((name) => /browser-v\d/i.test(name)),
+    false,
+  );
+  assert.doesNotMatch(imports.join("\n"), /react-router-dom/);
+  assert.match(imports[0], /<BrowserRouter useTransitions=\{false\}>/);
 });

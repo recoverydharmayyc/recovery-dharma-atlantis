@@ -7,7 +7,6 @@ import { MEETINGS_PAGE_CONTENT } from "../content/meetings";
 import useMinuteClock from "../hooks/useMinuteClock";
 import {
   buildLocalMeetings,
-  formatMeetingStartLabel,
   getNearestLocalMeeting,
   type LocalMeetingItem,
 } from "../meetings/localMeetings";
@@ -15,12 +14,10 @@ import {
 function LocalMeetingCard({
   item,
   index,
-  now,
   nearest,
 }: {
   item: LocalMeetingItem;
   index: number;
-  now: Date;
   nearest: boolean;
 }) {
   return (
@@ -39,12 +36,6 @@ function LocalMeetingCard({
         </p>
         <p className="local-meeting-card__timezone">{item.timeZoneLabel}</p>
       </div>
-
-      {nearest && (
-        <p className="local-meeting-card__next-time">
-          {formatMeetingStartLabel(item.startsAt, now, item.timeZone)}
-        </p>
-      )}
 
       <dl className="local-meeting-card__facts">
         <div>
@@ -79,12 +70,15 @@ export default function Meetings() {
   return (
     <div className="page-shell meetings-page">
       <div className="site-container meetings-local-stage">
-        <PageIntro
-          eyebrow={MEETINGS_PAGE_CONTENT.hero.kicker}
-          title={MEETINGS_PAGE_CONTENT.hero.title}
-          lede={MEETINGS_PAGE_CONTENT.hero.lede}
-          headingId="meetings-heading"
-        />
+        <div className="meetings-intro">
+          <PageIntro
+            eyebrow={MEETINGS_PAGE_CONTENT.hero.kicker}
+            title={MEETINGS_PAGE_CONTENT.hero.title}
+            lede={MEETINGS_PAGE_CONTENT.hero.lede}
+            headingId="meetings-heading"
+          />
+          <p className="meetings-qualification">{MEETINGS_PAGE_CONTENT.local.qualification}</p>
+        </div>
 
         <section className="local-schedule" id="local-schedule" aria-labelledby="local-heading">
           <div className="section-heading">
@@ -98,13 +92,10 @@ export default function Meetings() {
                 key={meeting.id}
                 item={meeting}
                 index={index}
-                now={now}
                 nearest={meeting.id === nearestMeeting?.id}
               />
             ))}
           </ol>
-
-          <p className="meetings-qualification">{MEETINGS_PAGE_CONTENT.local.qualification}</p>
         </section>
       </div>
       <GlobalDirectorySection now={now} />

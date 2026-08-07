@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import SiteLayout from "../components/SiteLayout";
 import AppRoutes from "./routes";
 

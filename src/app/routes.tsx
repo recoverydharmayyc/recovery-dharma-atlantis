@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { ROUTE_PATHS } from "../config/site";
 import About from "../pages/About";
 import Connect from "../pages/Connect";

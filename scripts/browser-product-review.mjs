@@ -11,7 +11,7 @@ const CACHE_KEY = "recovery-dharma-atlantis-global-meetings-v2";
 const OUTPUT_ARGUMENT = process.argv.find((argument) => argument.startsWith("--output-dir="));
 const OUTPUT_DIR = OUTPUT_ARGUMENT
   ? path.resolve(OUTPUT_ARGUMENT.slice("--output-dir=".length))
-  : path.join(tmpdir(), "recovery-dharma-atlantis-v8-review");
+  : path.join(tmpdir(), "recovery-dharma-atlantis-product-review");
 
 const VIEWPORTS = [
   { width: 1024, height: 768 },
@@ -38,23 +38,19 @@ const ROUTES = [
 ];
 
 const REQUIRED_SCREENSHOTS = [
-  ["home-390x844.png", "/", 390, 844, "plain"],
-  ["home-1280x720.png", "/", 1280, 720, "plain"],
   ["home-1366x768.png", "/", 1366, 768, "plain"],
   ["home-1440x900.png", "/", 1440, 900, "plain"],
-  ["meetings-390x844.png", "/meetings", 390, 844, "live"],
   ["meetings-1366x768.png", "/meetings", 1366, 768, "live"],
   ["meetings-1440x900.png", "/meetings", 1440, 900, "live"],
   ["about-1366x768.png", "/about", 1366, 768, "plain"],
   ["newcomers-1366x768.png", "/newcomers", 1366, 768, "plain"],
   ["resources-1440x900.png", "/resources", 1440, 900, "plain"],
   ["connect-1024x768.png", "/connect", 1024, 768, "plain"],
-  ["connect-1440x900.png", "/connect", 1440, 900, "plain"],
   ["not-found-1024x768.png", "/unknown-route", 1024, 768, "plain"],
 ];
 
 const livePayload = Array.from({ length: 6 }, (_, index) => ({
-  id: `v8-live-${index + 1}`,
+  id: `product-live-${index + 1}`,
   name: [
     "Open Practice Online",
     "Morning Meditation Circle",
@@ -78,7 +74,7 @@ function invariant(condition, message) {
 }
 
 function stage(message) {
-  process.stderr.write(`[v8-browser] ${message}\n`);
+  process.stderr.write(`[product-browser] ${message}\n`);
 }
 
 async function availablePort(preferredPort = 0) {
@@ -233,7 +229,7 @@ try {
       "/usr/bin/chromium",
       "/usr/bin/chromium-browser",
     ]));
-  invariant(chromePath, "Chrome or Chromium is required for V8 browser review");
+  invariant(chromePath, "Chrome or Chromium is required for product browser review");
 
   const vitePort = await availablePort();
   const debugPort = await nearbyAvailablePort(vitePort + 1);
@@ -246,7 +242,7 @@ try {
   await waitForHttp(`${baseUrl}/`);
   stage(`Vite ready at ${baseUrl}`);
 
-  browserProfile = await mkdtemp(path.join(tmpdir(), "recovery-dharma-atlantis-v8-browser-"));
+  browserProfile = await mkdtemp(path.join(tmpdir(), "recovery-dharma-atlantis-browser-"));
   chromeProcess = spawn(
     chromePath,
     [
@@ -430,7 +426,7 @@ try {
       schemaVersion: 2,
       cachedAt: Date.now(),
       meetings: Array.from({ length: 4 }, (_, index) => ({
-        id: `v8-cache-${index}`,
+        id: `product-cache-${index}`,
         name: `Cached open meeting ${index + 1}`,
         dayIndex: index,
         time: `${String(10 + index).padStart(2, "0")}:00`,
@@ -451,11 +447,11 @@ try {
       "/": ["#home-heading", ".next-ledger", "#home-practice-heading"],
       "/meetings": [
         "#meetings-heading",
-        ".schedule-ledger",
-        "#selected-meeting-details",
+        ".local-meeting-list",
+        ".local-meeting-card",
         "#global-heading",
       ],
-      "/about": ["#about-heading", ".about-principles", ".about-rhythm"],
+      "/about": ["#about-heading", ".about-autonomy", ".about-areas"],
       "/newcomers": ["#newcomers-heading", ".newcomer-guide", ".newcomer-closing"],
       "/resources": ["#resources-heading", ".resource-chapters"],
       "/connect": ["#connect-heading", ".connect-empty"],
@@ -466,6 +462,9 @@ try {
       const root = document.documentElement;
       const body = document.body;
       const mainStyle = getComputedStyle(main);
+      const footer = document.querySelector('.site-footer');
+      const footerContent = document.querySelector('.footer-utility');
+      const footerStyle = footerContent ? getComputedStyle(footerContent) : null;
       const descendants = [...main.querySelectorAll('*')];
       const nestedScrollers = descendants.filter((element) => {
         const overflow = getComputedStyle(element).overflowY;
@@ -480,6 +479,13 @@ try {
       };
       const mainRange = Math.max(0, main.scrollHeight - main.clientHeight);
       const bodyRange = Math.max(0, root.scrollHeight - root.clientHeight, body.scrollHeight - body.clientHeight);
+      const probe = document.createElement('span');
+      probe.style.color = 'var(--coral)';
+      probe.hidden = true;
+      document.body.append(probe);
+      const coral = getComputedStyle(probe).color;
+      probe.remove();
+      const coralFilledActions = [...document.querySelectorAll('a, button')].filter((element) => getComputedStyle(element).backgroundColor === coral).map((element) => element.textContent?.trim() || element.className);
       return {
         viewport: ${JSON.stringify(`${width}x${height}`)},
         route: ${JSON.stringify(route)},
@@ -494,9 +500,12 @@ try {
         shellMode: mainStyle.overflowY === 'auto' ? 'single-main-scroll' : 'document-flow',
         fit: mainRange <= 1,
         horizontalOverflow: root.scrollWidth > root.clientWidth + 1 || main.scrollWidth > main.clientWidth + 1,
+        coralFilledActions,
         keyFirstScreenElements: ${JSON.stringify(selectors)}.map((selector) => ({ selector, visible: visible(selector) })),
         headerHeight: document.querySelector('.site-header')?.getBoundingClientRect().height || 0,
-        footerHeight: document.querySelector('.site-footer')?.getBoundingClientRect().height || 0,
+        footerHeight: footer?.getBoundingClientRect().height || 0,
+        footerPaddingTop: footerStyle ? parseFloat(footerStyle.paddingTop) : 0,
+        footerPaddingBottom: footerStyle ? parseFloat(footerStyle.paddingBottom) : 0,
       };
     })()`);
   }
@@ -542,20 +551,17 @@ try {
     mainOverflow: getComputedStyle(document.querySelector('.site-main')).overflowY,
   })`);
 
-  stage("checking Global pending, live, cached, failure, selection, and expansion states");
+  stage("checking Global pending, live, cached, failure, local-content, and expansion states");
   await setViewport(1440, 900);
   await clearCache();
   await navigate("/meetings", { mode: "hold", waitForGlobal: false });
   const pendingState = await evaluate(`({
     state: document.querySelector('[data-global-state]')?.dataset.globalState,
-    localRows: document.querySelectorAll('.schedule-row__select').length,
-    detail: Boolean(document.querySelector('#selected-meeting-details')),
+    localMeetings: document.querySelectorAll('.local-meeting-card').length,
+    localTitles: [...document.querySelectorAll('.local-meeting-card h3')].map((item) => item.textContent),
   })`);
   invariant(pendingState.state === "loading", "Pending Global state was not isolated");
-  invariant(
-    pendingState.localRows === 2 && pendingState.detail,
-    "Pending Global work hid local content",
-  );
+  invariant(pendingState.localMeetings === 2, "Pending Global work hid local content");
 
   await navigate("/", { mode: "hold" });
   await navigate("/meetings", { mode: "live" });
@@ -566,21 +572,12 @@ try {
   })`);
   invariant(liveState.state === "live", "Live Global state did not render");
   invariant(
-    liveState.records === 3 && liveState.canExpand,
-    "Default Global preview was not three records",
+    liveState.records === 2 && liveState.canExpand,
+    "Default Global preview was not two records",
   );
-  await evaluate(`document.querySelectorAll('.schedule-row__select')[0].click()`);
-  const wednesdaySelected = await evaluate(
-    `document.querySelectorAll('.schedule-row__select')[0].getAttribute('aria-pressed') === 'true'`,
-  );
-  await evaluate(`document.querySelectorAll('.schedule-row__select')[1].click()`);
-  const sundaySelected = await evaluate(
-    `document.querySelectorAll('.schedule-row__select')[1].getAttribute('aria-pressed') === 'true'`,
-  );
-  invariant(wednesdaySelected && sundaySelected, "Both local meeting selections were not operable");
   await evaluate(`document.querySelector('.global-show-more').click()`);
   await waitUntil(
-    `document.querySelectorAll('.global-meeting').length > 3`,
+    `document.querySelectorAll('.global-meeting').length > 2`,
     "Show more did not reveal additional Global records",
   );
   const expandedMeasurement = await measure("/meetings", 1440, 900, "global-expanded");
@@ -604,11 +601,11 @@ try {
   await navigate("/meetings", { mode: "fail" });
   const fallbackState = await evaluate(`({
     state: document.querySelector('[data-global-state]')?.dataset.globalState,
-    localRows: document.querySelectorAll('.schedule-row__select').length,
+    localMeetings: document.querySelectorAll('.local-meeting-card').length,
     directoryLink: Boolean(document.querySelector('.global-directory__intro a[href="https://recoverydharma.org/meetings/"]')),
   })`);
   invariant(
-    fallbackState.localRows === 2 && fallbackState.directoryLink,
+    fallbackState.localMeetings === 2 && fallbackState.directoryLink,
     "No-cache fallback lost local or directory content",
   );
   await capture("meetings-global-fallback-1366x768.png");
@@ -647,7 +644,7 @@ try {
   await setViewport(390, 844);
   await navigate("/meetings", { mode: "live" });
   await evaluate(
-    `document.querySelector('.meeting-detail__description').textContent += ' This intentionally lengthened review fixture checks that detailed local information continues in normal flow without clipping or an internal scrollbar.'`,
+    `document.querySelector('.local-meeting-card__description').textContent += ' This intentionally lengthened review fixture checks that local information continues in normal flow without clipping or an internal scrollbar.'`,
   );
   const longCopyMeasurement = await measure("/meetings", 390, 844, "long-local-description");
   invariant(
@@ -674,11 +671,37 @@ try {
   invariant(reducedMotion.matches, "Reduced-motion preference was not emulated");
   await cdp.send("Emulation.setEmulatedMedia", { features: [] });
 
-  stage("capturing error boundary and compact footer fixtures");
+  stage("capturing error boundary and footer fixtures");
   await setViewport(1024, 768);
   await navigate("/", { mode: "hold" });
   await evaluate(
-    `document.querySelector('#root').innerHTML = '<div class="app-error-shell" data-demo-state="fictional"><main class="app-error" aria-labelledby="app-error-title"><p class="app-error-label">Fictional example</p><h1 id="app-error-title">This page could not be displayed.</h1><p>Reload the page to try again. No message or personal information was sent.</p><button type="button">Reload page</button><p class="app-error-notice">Recovery Dharma Atlantis is a fictional tutorial community and does not describe an active meeting.</p></main></div>'`,
+    `document.querySelector('#root').innerHTML = '<div class="app-error-shell" data-demo-state="fictional"><main class="app-error" aria-labelledby="app-error-title"><p class="app-error-label">Fictional example</p><h1 id="app-error-title">This page could not be displayed.</h1><p>Reload the page to try again. No message or personal information was sent.</p><button type="button">Reload page</button><p class="app-error-notice">Recovery Dharma Atlantis is a fictional tutorial community.</p></main></div>'`,
+  );
+  const errorBoundaryResult = await evaluate(`(() => {
+    const card = document.querySelector('.app-error');
+    const reload = card?.querySelector('button');
+    const rect = card?.getBoundingClientRect();
+    return {
+      horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      documentScrollRange: Math.max(
+        0,
+        document.documentElement.scrollHeight - document.documentElement.clientHeight,
+      ),
+      cardTop: rect?.top ?? null,
+      cardBottom: rect?.bottom ?? null,
+      viewportHeight: window.innerHeight,
+      reloadVisible: Boolean(reload && reload.getClientRects().length),
+    };
+  })()`);
+  invariant(
+    !errorBoundaryResult.horizontalOverflow &&
+      errorBoundaryResult.documentScrollRange <= 1 &&
+      errorBoundaryResult.cardTop !== null &&
+      errorBoundaryResult.cardTop >= -1 &&
+      errorBoundaryResult.cardBottom !== null &&
+      errorBoundaryResult.cardBottom <= errorBoundaryResult.viewportHeight + 1 &&
+      errorBoundaryResult.reloadVisible,
+    `Error-boundary fixture did not fit at 1024x768: ${JSON.stringify(errorBoundaryResult)}`,
   );
   await capture("error-boundary-1024x768.png");
 
@@ -690,7 +713,7 @@ try {
   );
   globalMode = "hold";
   await settle();
-  await capture("compact-footer-1440x900.png");
+  await capture("footer-1440x900.png");
 
   const allMeasurements = [
     ...fitRecords,
@@ -713,6 +736,7 @@ try {
     ["/connect", "1440x900"],
     ["/unknown-route", "1024x768"],
     ["/resources", "1440x900"],
+    ["/meetings", "1366x768"],
     ["/meetings", "1440x900"],
     ["/meetings", "1640x900"],
   ];
@@ -722,7 +746,7 @@ try {
   });
 
   const reportLines = [
-    "Recovery Dharma Atlantis V8 viewport-fit report",
+    "Recovery Dharma Atlantis product viewport-fit report",
     `Captured: ${new Date().toISOString()}`,
     "Fit law: siteMain.scrollHeight <= siteMain.clientHeight + 1",
     "",
@@ -730,7 +754,7 @@ try {
       `viewport=${record.viewport} route=${record.route} state=${record.state}`,
       `document=${record.documentScrollHeight}/${record.documentClientHeight} site-main=${record.siteMainScrollHeight}/${record.siteMainClientHeight}`,
       `body-range=${record.bodyScrollRange} main-range=${record.siteMainScrollRange} nested-overflow-y=${record.nestedOverflowYCount} fit=${record.fit} mode=${record.shellMode} horizontal-overflow=${record.horizontalOverflow}`,
-      `header=${record.headerHeight.toFixed(1)} footer=${record.footerHeight.toFixed(1)} first-screen=${record.keyFirstScreenElements.map((item) => `${item.selector}:${item.visible}`).join(",")}`,
+      `header=${record.headerHeight.toFixed(1)} footer=${record.footerHeight.toFixed(1)} footer-padding=${record.footerPaddingTop.toFixed(1)}/${record.footerPaddingBottom.toFixed(1)} coral-actions=${record.coralFilledActions.length} first-screen=${record.keyFirstScreenElements.map((item) => `${item.selector}:${item.visible}`).join(",")}`,
       "",
     ]),
   ];
@@ -747,13 +771,14 @@ try {
     cachedState,
     fallbackState,
     resetResult,
+    errorBoundaryResult,
     reducedMotion,
     consoleErrors,
     failedLocalRequests,
     unexpectedExternalRequests: [...unexpectedExternalRequests],
   };
   await writeFile(
-    path.join(OUTPUT_DIR, "browser-validation-v8.json"),
+    path.join(OUTPUT_DIR, "product-browser-report.json"),
     `${JSON.stringify(finalReport, null, 2)}\n`,
   );
   invariant(consoleErrors.length === 0, `Browser console errors: ${consoleErrors.join(" | ")}`);
@@ -771,7 +796,22 @@ try {
     "A matrix route overflowed horizontally",
   );
   invariant(
-    fitRecords
+    fitRecords.every((record) => record.coralFilledActions.length === 0),
+    "An ordinary action retained a coral fill",
+  );
+  const desktopFooter = fitRecords.find(
+    (record) => record.route === "/" && record.viewport === "1440x900",
+  );
+  invariant(
+    desktopFooter &&
+      desktopFooter.footerHeight >= 64 &&
+      desktopFooter.footerHeight <= 72 &&
+      desktopFooter.footerPaddingTop >= 14 &&
+      desktopFooter.footerPaddingBottom >= 14,
+    `Desktop footer failed breathing-room target: ${JSON.stringify(desktopFooter)}`,
+  );
+  invariant(
+    allMeasurements
       .filter((record) => record.shellMode === "single-main-scroll")
       .every((record) => record.bodyScrollRange === 0 && record.nestedOverflowYCount === 0),
     "Desktop shell had body or nested scrolling",

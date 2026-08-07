@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router";
 import { NAVIGATION_ROUTES, ROUTE_PATHS } from "../config/site";
 import { SITE } from "../content/site";
 import BrandMark from "./BrandMark";

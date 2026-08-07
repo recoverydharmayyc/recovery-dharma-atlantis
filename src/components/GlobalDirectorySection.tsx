@@ -123,17 +123,32 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
           <ExternalLink href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}>
             {MEETINGS_PAGE_CONTENT.global.directoryLabel}
           </ExternalLink>
-          <p
-            className="global-directory__status"
-            aria-live="polite"
-            aria-atomic="true"
-            data-global-state={status}
-          >
-            {getGlobalStatusMessage(status, meetings.length > 0)}
-          </p>
         </div>
 
         <div className="global-directory__results">
+          <div className="global-directory__utility">
+            <p
+              className="global-directory__status"
+              aria-live="polite"
+              aria-atomic="true"
+              data-global-state={status}
+            >
+              {getGlobalStatusMessage(status, meetings.length > 0)}
+            </p>
+            {canExpand && (
+              <button
+                className="global-show-more"
+                type="button"
+                aria-expanded={expanded}
+                aria-controls="global-meeting-preview"
+                onClick={() => setExpanded((value) => !value)}
+              >
+                {expanded
+                  ? MEETINGS_PAGE_CONTENT.global.showFewerLabel
+                  : MEETINGS_PAGE_CONTENT.global.showMoreLabel}
+              </button>
+            )}
+          </div>
           {meetings.length > 0 && (
             <ol className="global-meeting-list" id="global-meeting-preview">
               {visibleMeetings.map((meeting) => (
@@ -155,19 +170,6 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
             <div className="global-directory__empty">
               <p>{MEETINGS_PAGE_CONTENT.global.emptyLabel}</p>
             </div>
-          )}
-          {canExpand && (
-            <button
-              className="global-show-more"
-              type="button"
-              aria-expanded={expanded}
-              aria-controls="global-meeting-preview"
-              onClick={() => setExpanded((value) => !value)}
-            >
-              {expanded
-                ? MEETINGS_PAGE_CONTENT.global.showFewerLabel
-                : MEETINGS_PAGE_CONTENT.global.showMoreLabel}
-            </button>
           )}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import type { ActiveAnnouncement } from "../announcements/announcementTiming";
 
 export default function AnnouncementBar({ announcement }: { announcement: ActiveAnnouncement }) {

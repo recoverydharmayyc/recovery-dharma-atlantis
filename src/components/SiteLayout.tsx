@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { getActiveAnnouncement } from "../announcements/announcementTiming";
 import { SITE_CONFIG } from "../config/site";
 import AnnouncementBar from "./AnnouncementBar";
