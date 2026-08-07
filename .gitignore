@@ -1,8 +1,6 @@
 # Dependencies and generated website files
 node_modules/
 dist/
-PUBLISH-THIS-FOLDER/
-AI-COPY/
 .browser-test-*/
 
 # Local or private configuration

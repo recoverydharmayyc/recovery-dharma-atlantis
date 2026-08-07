@@ -244,37 +244,40 @@ test("the compact footer does not duplicate primary navigation", async () => {
   assert.match(components, /\.footer-utility\s*\{[^}]*padding-block:\s*0\.875rem/is);
 });
 
-test("beginner batch files retain safe preview, archive, and build boundaries", async () => {
-  const start = await source("START-WEBSITE.bat");
-  const archive = await source("MAKE-AI-COPY.bat");
-  const build = await source("BUILD-WEBSITE.bat");
-
-  assert.match(start, /set "PROJECT_DIR=%~dp0"/);
-  assert.match(start, /call npm ci/);
-  assert.match(start, /call npm run dev -- --host 127\.0\.0\.1 --open/);
-  assert.match(start, /major === 22 && minor >= 22/);
-  assert.match(start, /:node_old/);
-
-  for (const excluded of [
-    "node_modules",
+test("canonical repository retains a conventional product interface", async () => {
+  const rootEntries = await readdir(project, { withFileTypes: true });
+  const rootFiles = rootEntries.filter((entry) => entry.isFile()).map((entry) => entry.name);
+  assert.equal(
+    rootFiles.some((name) => /\.bat$/i.test(name)),
+    false,
+  );
+  assert.equal(
+    rootFiles.some((name) => /\.txt$/i.test(name) && /start|facts|request|read/i.test(name)),
+    false,
+  );
+  const packageJson = JSON.parse(await source("package.json"));
+  assert.deepEqual(
+    Object.keys(packageJson.scripts).sort(),
+    [
+      "build",
+      "dev",
+      "format",
+      "format:check",
+      "lint",
+      "lint:fix",
+      "preview",
+      "test",
+      "test:browser:meetings",
+      "test:browser:product",
+      "test:content",
+      "typecheck",
+      "verify",
+    ].sort(),
+  );
+  assert.deepEqual((await source(".prettierignore")).trim().split(/\r?\n/), [
     "dist",
-    "PUBLISH-THIS-FOLDER",
-    "AI-COPY",
-    ".git",
-    ".env*",
-    "screenshots",
-    "review-artifacts",
-  ])
-    assert.match(archive, new RegExp(excluded.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  assert.doesNotMatch(archive, /DESIGN_GUIDE\.md[^\r\n]*(?:skip|exclude)/i);
-  assert.match(archive, /CONTENT_GUIDE\.md/);
-  assert.match(archive, /recovery-dharma-atlantis-source\.zip/);
-
-  assert.match(build, /call npm run verify/);
-  assert.match(build, /major === 22 && minor >= 22/);
-  assert.match(build, /:node_old/);
-  assert.match(build, /PUBLISH-THIS-FOLDER/);
-  assert.match(build, /xcopy "%PROJECT_DIR%dist\\\*"/);
+    "node_modules",
+  ]);
 });
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {

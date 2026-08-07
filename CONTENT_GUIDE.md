@@ -9,7 +9,7 @@ Avoid vague recovery language, quasi-spiritual filler, medical claims, promises 
 ## Ownership
 
 - Public facts and wording live in `src/content/`.
-- Local community facts must come from `MY_WEBSITE_FACTS.txt` or another owner-approved source.
+- Local community facts must come from an owner-approved source.
 - Factual edits should not alter layout components, style files, or meeting-domain code.
 - Public copy must not invent local practices, contacts, addresses, access details, affiliations, or policies.
 - General Recovery Dharma facts and links must come from Recovery Dharma Global’s public website and be paraphrased in original wording.

@@ -1,50 +1,46 @@
 # Recovery Dharma Atlantis
 
-Recovery Dharma Atlantis is an independent, fictional community-website starter. It is the worked example for **How to Make Your Own Community Website — No Coding Experience Required**.
+Recovery Dharma Atlantis is a complete fictional community website and a concrete, reusable community-site template. It is independent of Recovery Dharma YYC, contains no YYC operations or private information, and is not an official Recovery Dharma Global product.
 
-It is not the Recovery Dharma YYC website, contains no YYC meeting operations or private information, and is not an official Recovery Dharma Global product. No individualized technical support is promised.
+The application provides Home, Meetings, About, New Here, Resources, Connect, and not-found routes. It includes two structured fictional recurring meetings, temporary-announcement support, and a bounded preview of Recovery Dharma Global's public meeting directory.
 
-## What is included
+## Stack and requirements
 
-The public application has Home, Meetings, About, New Here, Resources, Connect, and not-found routes. It uses React, TypeScript, Vite, and React Router internally, but the entire editable project remains one owned folder.
+- React, TypeScript, Vite, and React Router
+- Node.js 22.22 or newer
+- npm
 
-Public wording and facts live in `src/content/`. The starter includes two structured fictional recurring meetings and a disabled temporary-meeting announcement configuration. Meeting timing and validation live in `src/meetings/`; presentation changes should not rewrite those rules.
-
-The Meetings route provides a bounded preview of Recovery Dharma Global’s public meeting directory. Remote records are treated as untrusted: fields are normalized, unsafe links are rejected, results are bounded, requests time out, and only sanitized public fields enter a versioned fifteen-minute browser cache. If the live source fails, a fresh cache may remain visible; otherwise the page links directly to the full directory. Local Atlantis meetings do not depend on that request.
-
-An adopter may remove the entire Global preview if they do not want an external data dependency. Do not retain the display while weakening its attribution, sanitization, cache, timeout, or fallback behavior.
-
-## Beginner workflow
-
-Start with `START_HERE.txt`.
-
-- `START-WEBSITE.bat` opens a local preview on Windows.
-- `MAKE-AI-COPY.bat` creates a clean project ZIP for a general-purpose AI tool.
-- `BUILD-WEBSITE.bat` verifies the project and creates `PUBLISH-THIS-FOLDER` for manual hosting.
-
-The model-independent instructions and factual worksheet are `AI_READ_FIRST.txt`, `MY_WEBSITE_FACTS.txt`, and `CHANGE_REQUEST.txt`. `DESIGN_GUIDE.md` explains presentation ownership; `CONTENT_GUIDE.md` explains the public voice and factual boundaries.
-
-Keep an untouched approved copy, inspect every route in a separate candidate, and publish only the version you personally approve.
-
-## Technical workflow
-
-For local development:
+Install and start local development:
 
 ```text
 npm ci
 npm run dev
 ```
 
-For a complete project check and production build:
+## Verification and build
 
 ```text
+npm run format:check
 npm run verify
 ```
 
-`npm run build` writes the static application to `dist`. Netlify uses the build command in `netlify.toml`, publishes `dist`, and applies the SPA fallback from `public/_redirects`.
+`npm run verify` runs linting, public-content and safety checks, automated tests, TypeScript checking, and a production build. Product and Meetings browser checks are available as `npm run test:browser:product` and `npm run test:browser:meetings` when Chrome or Chromium is installed.
+
+Use `npm run test` for the automated test suite, `npm run build` for a production build, and `npm run preview` to inspect that build locally. Vite writes production output to `dist/`.
+
+The built single-page application can be hosted by a conventional static host with route fallback support. `netlify.toml` builds and publishes `dist/`; `public/_redirects` supplies the Netlify SPA fallback.
+
+## Project ownership
+
+- `src/content/` owns public wording and community facts.
+- `src/config/` owns site and external-source configuration.
+- `src/announcements/` and `src/meetings/` own timing, validation, sanitization, cache, timeout, and fallback behavior.
+- `src/components/`, `src/pages/`, and `src/styles/` own presentation and route composition.
+
+See `CONTENT_GUIDE.md` for public-language and factual boundaries, `DESIGN_GUIDE.md` for the Ocean Civic Light system, and `AGENTS.md` for repository-wide engineering constraints.
 
 ## Safety and independence
 
-The untouched starter is fictional, contains no real local address or contact method, and is blocked from search indexing through `index.html` and `public/robots.txt`. It has no backend, contact form, analytics, newsletter, payment system, Netlify Function, remote font, or environment-variable requirement.
+The default site is fictional, has no real local address or contact method, and is blocked from search indexing through `index.html` and `public/robots.txt`. It has no backend, contact form, analytics, newsletter, payment system, Netlify Function, remote font, or environment-variable requirement.
 
-Adopters are responsible for verifying every public fact before knowingly converting the starter into a real community site. Recovery Dharma Atlantis does not imply endorsement by Recovery Dharma Global.
+Remote directory records are normalized, bounded, sanitized, and cached briefly in the browser; unsafe links are rejected, requests time out, and failure falls back to the full directory. Local Atlantis meetings remain available independently. Any conversion to a real community site requires verified public facts and deliberate review.
