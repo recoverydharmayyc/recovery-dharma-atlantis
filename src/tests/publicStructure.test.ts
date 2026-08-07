@@ -55,8 +55,10 @@ test("local meeting content renders in the initial shell before Global retrieval
   const markup = renderToStaticMarkup(createElement(MemoryRouter, null, createElement(Meetings)));
   assert.match(markup, /Wednesday Evening/);
   assert.match(markup, /Sunday Morning/);
+  assert.equal((markup.match(/class="local-meeting-card(?: |")/g) ?? []).length, 2);
   assert.match(markup, /Loading a small preview/);
   assert.match(markup, /Recovery Dharma Global/);
+  assert.doesNotMatch(markup, /Details shown|View details|selected-meeting-details/);
 });
 
 test("Global resolution is section-scoped and does not own the Meetings page shell", async () => {
@@ -120,7 +122,7 @@ test("Connect has no form or active endpoint and Global attribution remains visi
   const connectPage = await source("src/pages/Connect.tsx");
   const meetingContent = await source("src/content/meetings.ts");
   assert.doesNotMatch(connectPage, /<form|action=|mailto:|tel:/i);
-  assert.match(CONNECT_CONTENT.emptyState.body, /does not accept messages/i);
+  assert.match(CONNECT_CONTENT.hero.lede, /No public contact method is active/i);
   assert.match(meetingContent, /Recovery Dharma Global’s public meeting directory/);
 });
 
@@ -220,20 +222,24 @@ test("the desktop shell has one scroll owner and mobile retains document flow", 
   assert.doesNotMatch(allCss, /\.meeting-detail\s*\{[^}]*overflow-y/is);
 });
 
-test("Global preview defaults to three records and expands accessibly", async () => {
+test("Global preview defaults to two records and expands accessibly", async () => {
   const globalSection = await source("src/components/GlobalDirectorySection.tsx");
-  assert.equal(DEFAULT_GLOBAL_PREVIEW_COUNT, 3);
+  assert.equal(DEFAULT_GLOBAL_PREVIEW_COUNT, 2);
   assert.match(globalSection, /meetings\.slice\(0, DEFAULT_GLOBAL_PREVIEW_COUNT\)/);
   assert.match(globalSection, /aria-expanded=\{expanded\}/);
   assert.match(globalSection, /aria-controls="global-meeting-preview"/);
-  assert.match(globalSection, /Show more worldwide meetings/);
+  assert.equal(MEETINGS_PAGE_CONTENT.global.showMoreLabel, "Show more worldwide meetings");
 });
 
 test("the compact footer does not duplicate primary navigation", async () => {
   const footer = await source("src/components/SiteFooter.tsx");
+  const tokens = await source("src/styles/tokens.css");
+  const components = await source("src/styles/components.css");
   assert.match(footer, /footer-utility/);
   assert.doesNotMatch(footer, /NAVIGATION_ROUTES|<nav|BrandMark/);
   assert.match(footer, /Recovery Dharma Global/);
+  assert.match(tokens, /--footer-height:\s*4\.25rem/);
+  assert.match(components, /\.footer-utility\s*\{[^}]*padding-block:\s*0\.875rem/is);
 });
 
 test("beginner batch files retain safe preview, archive, and build boundaries", async () => {
@@ -276,11 +282,45 @@ test("meeting layout uses document flow without fixed-height or nested-scroll pa
   assert.doesNotMatch(css, /overflow-y:\s*(?:auto|scroll)/i);
   assert.doesNotMatch(css, /height:\s*\d+(?:px|rem|vh)/i);
   assert.doesNotMatch(css, /opacity:\s*0\s*;|visibility:\s*hidden/i);
-  assert.doesNotMatch(css, /\.meeting-detail__(?:copy|facts)[^{]*\{[^}]*position:\s*absolute/is);
+  assert.doesNotMatch(css, /\.meeting-detail|\.schedule-row|selected-meeting-details/i);
+  assert.doesNotMatch(
+    appSources.join("\n"),
+    /selectedMeetingId|selectedId|aria-pressed|View details|Details shown/,
+  );
   assert.doesNotMatch(
     appSources.join("\n"),
     /startViewTransition|viewTransition|startTransition|Suspense|lazy\(/,
   );
+});
+
+test("ordinary actions use ocean colours and coral remains a small accent", async () => {
+  const components = await source("src/styles/components.css");
+  const layout = await source("src/styles/layout.css");
+  const tokens = await source("src/styles/tokens.css");
+  assert.match(components, /\.button-link--primary\s*\{[^}]*background:\s*var\(--ocean\)/is);
+  assert.doesNotMatch(components, /\.button-link--primary\s*\{[^}]*var\(--coral(?:-strong)?\)/is);
+  assert.match(layout, /\.app-error button\s*\{[^}]*background:\s*var\(--ocean\)/is);
+  assert.doesNotMatch(tokens, /--ink-on-coral/);
+});
+
+test("public prose remains in content modules rather than page composition", async () => {
+  const pageSources = await Promise.all([
+    source("src/pages/Home.tsx"),
+    source("src/pages/About.tsx"),
+    source("src/pages/Newcomers.tsx"),
+    source("src/pages/Resources.tsx"),
+    source("src/pages/Connect.tsx"),
+    source("src/pages/Meetings.tsx"),
+  ]);
+  const pages = pageSources.join("\n");
+  for (const phrase of [
+    "Recovery through meditation",
+    "Local sangha groups are autonomous",
+    "A Recovery Dharma meeting may include",
+    "No public contact method is active",
+    "Worldwide listings are loaded",
+  ])
+    assert.doesNotMatch(pages, new RegExp(phrase, "i"));
 });
 
 test("focus and reduced-motion rules remain explicit", async () => {

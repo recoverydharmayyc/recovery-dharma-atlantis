@@ -57,7 +57,7 @@ export const LOCAL_MEETINGS: readonly LocalMeeting[] = [
     format: "In person",
     venue: "Atlantis Community Room",
     verifiedPublicLink: null,
-    description: "A fictional peer-led hour for meditation, reading, and voluntary sharing.",
+    description: "A weekly in-person Recovery Dharma meeting.",
     recurrence: "weekly",
     newcomerNote: "Newcomers welcome",
     registrationNote: "No registration required",
@@ -76,7 +76,7 @@ export const LOCAL_MEETINGS: readonly LocalMeeting[] = [
     format: "In person",
     venue: "Atlantis Community Room",
     verifiedPublicLink: null,
-    description: "A fictional peer-led morning practice with space to listen or share.",
+    description: "A weekly in-person Recovery Dharma meeting.",
     recurrence: "weekly",
     newcomerNote: "Newcomers welcome",
     registrationNote: "No registration required",
@@ -85,21 +85,27 @@ export const LOCAL_MEETINGS: readonly LocalMeeting[] = [
 
 export const MEETINGS_PAGE_CONTENT = {
   hero: {
-    kicker: "Atlantis gatherings",
-    title: "Find a time to sit together.",
-    lede: "Two weekly gatherings make room for meditation, reflection, and voluntary sharing. Newcomers can begin with either meeting.",
+    kicker: "Local and worldwide listings",
+    title: "Meetings",
+    lede: "Choose a weekly local time, or use the worldwide directory preview to look for an online meeting.",
   },
   local: {
-    kicker: "Local schedule",
-    title: "Two ways into the week.",
+    kicker: "Local meetings",
+    title: "Weekly schedule",
+    nextLabel: "Next meeting",
     qualification:
       "Recovery Dharma Atlantis is a fictional example. These listings do not describe active meetings.",
   },
   global: {
-    kicker: "Worldwide online meetings",
-    title: "Explore Recovery Dharma Global listings.",
+    kicker: "Recovery Dharma Global",
+    title: "Worldwide online meetings",
     disclosure:
       "Worldwide listings are loaded from Recovery Dharma Global’s public meeting directory. This preview may be incomplete, delayed, or unavailable. Verify meeting details in the full directory before attending.",
     directoryLabel: "Open the full Recovery Dharma Global directory",
+    openMeetingLabel: "Open meeting",
+    sourceDetailsLabel: "Source details",
+    showMoreLabel: "Show more worldwide meetings",
+    showFewerLabel: "Show fewer worldwide meetings",
+    emptyLabel: "No preview records are available. The full directory remains available.",
   },
 } as const;

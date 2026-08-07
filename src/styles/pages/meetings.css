@@ -1,11 +1,14 @@
 .meetings-page {
   min-height: 100%;
-  padding-bottom: 0;
 }
 
 .meetings-local-stage {
   display: grid;
   gap: var(--section-gap-compact);
+}
+
+.meetings-local-stage > .page-intro {
+  margin-bottom: 0;
 }
 
 .meetings-local-stage > .page-intro h1 {
@@ -14,10 +17,6 @@
 
 .meetings-local-stage > .page-intro .page-intro__lede {
   font-size: var(--text-body);
-}
-
-.meetings-local-stage > .page-intro {
-  margin-bottom: 0;
 }
 
 .local-schedule {
@@ -29,173 +28,117 @@
 }
 
 .local-schedule .section-heading h2 {
-  font-size: var(--text-section);
+  font-size: var(--text-component);
 }
 
-.schedule-ledger {
-  overflow: hidden;
-  border: var(--border-normal) solid var(--line-strong);
-  border-radius: var(--radius-surface);
-  background: var(--canvas-raised);
-  box-shadow: var(--shadow);
+.local-meeting-list {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-3);
   list-style: none;
 }
 
-.schedule-row {
-  display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  gap: var(--space-3);
-  padding: var(--row-padding-block) var(--row-padding-inline);
-  border-bottom: var(--border-normal) solid var(--line);
-  background: var(--canvas-raised);
-}
-
-.schedule-row:last-child {
-  border-bottom: 0;
-}
-
-.schedule-row--selected {
-  background: var(--ocean-soft);
-  box-shadow: inset 0.22rem 0 var(--ocean);
-}
-
-.schedule-row__index {
-  color: var(--ocean-strong);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.schedule-row__body {
+.local-meeting-card {
   display: grid;
   min-width: 0;
-  gap: var(--space-2);
-}
-
-.schedule-row__heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2) var(--space-3);
-}
-
-.schedule-row h3 {
-  font-size: var(--text-component);
-  line-height: 1.14;
-}
-
-.schedule-row__summary {
-  color: var(--ink-muted);
-  font-size: var(--text-small);
-  line-height: 1.45;
-}
-
-.schedule-row__select {
-  width: fit-content;
-  min-height: 2.75rem;
-  padding: 0.45rem 0;
-  border: 0;
-  background: transparent;
-  color: var(--ocean-strong);
-  cursor: pointer;
-  font-size: var(--text-small);
-  font-weight: 750;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.meeting-detail {
-  position: relative;
-  display: grid;
-  min-width: 0;
-  overflow: hidden;
   gap: var(--space-3);
   align-content: start;
-  padding: var(--surface-padding);
-  border: var(--border-normal) solid var(--ocean-strong);
+  padding: var(--surface-padding-compact);
+  border: var(--border-normal) solid var(--line-strong);
+  border-top: 0.25rem solid var(--ocean);
   border-radius: var(--radius-surface);
-  background: var(--ocean-strong);
-  color: var(--ink-on-ocean);
+  background: var(--canvas-raised);
+  box-shadow: var(--shadow);
 }
 
-.meeting-detail::after {
-  position: absolute;
-  right: -6rem;
-  top: -6rem;
-  width: 15rem;
-  aspect-ratio: 1;
-  background: var(--ink-on-ocean);
-  content: "";
-  opacity: 0.14;
-  pointer-events: none;
-  -webkit-mask: url("/atlantis-ripple.svg") center / contain no-repeat;
-  mask: url("/atlantis-ripple.svg") center / contain no-repeat;
+.local-meeting-card.is-temporary {
+  border-top-color: var(--coral);
+  background: var(--canvas-subtle);
 }
 
-.meeting-detail__copy,
-.meeting-detail__facts {
-  position: relative;
-  z-index: 1;
-}
-
-.meeting-detail__copy {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.meeting-detail__statusline {
+.local-meeting-card__topline {
   display: flex;
-  flex-wrap: wrap;
+  min-width: 0;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
 }
 
-.meeting-detail__timing {
-  color: var(--ocean-muted);
+.local-meeting-card__index {
+  color: var(--ocean-strong);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.local-meeting-card__heading {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.local-meeting-card__heading h3 {
+  font-size: var(--text-component);
+}
+
+.local-meeting-card__heading > p:not(.local-meeting-card__timezone) {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.local-meeting-card__timezone,
+.local-meeting-card__description,
+.local-meeting-card__next-time {
+  color: var(--ink-muted);
   font-size: var(--text-small);
-  font-weight: 750;
 }
 
-.meeting-detail h3 {
-  color: var(--ink-on-ocean);
-  font-size: var(--text-section);
+.local-meeting-card__next-time {
+  padding-block: var(--space-2);
+  border-block: var(--border-normal) solid var(--line);
+  color: var(--ocean-strong);
+  font-weight: 700;
 }
 
-.meeting-detail__description {
-  color: var(--ocean-muted);
-  font-size: var(--text-small);
-}
-
-.meeting-detail .external-link {
-  color: var(--ink-on-ocean);
-}
-
-.meeting-detail__facts {
+.local-meeting-card__facts {
   display: grid;
   margin: 0;
-  border-top: var(--border-normal) solid var(--line-on-ocean);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: var(--border-normal) solid var(--line);
 }
 
-.meeting-detail__facts div {
-  display: grid;
-  gap: 0.15rem;
-  padding-block: 0.68rem;
-  border-bottom: var(--border-normal) solid var(--line-on-ocean);
+.local-meeting-card__facts div {
+  min-width: 0;
+  padding: var(--space-2) var(--space-2) var(--space-2) 0;
+  border-bottom: var(--border-normal) solid var(--line);
 }
 
-.meeting-detail__facts dt {
-  color: var(--ocean-muted);
+.local-meeting-card__facts div:nth-child(even) {
+  padding-right: 0;
+  padding-left: var(--space-2);
+  border-left: var(--border-normal) solid var(--line);
+}
+
+.local-meeting-card__facts div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.local-meeting-card__facts dt {
+  color: var(--ink-muted);
   font-size: 0.68rem;
   font-weight: 750;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.meeting-detail__facts dd {
-  color: var(--ink-on-ocean);
+.local-meeting-card__facts dd {
+  margin-top: 0.15rem;
+  color: var(--ink);
   font-size: var(--text-small);
-  font-weight: 600;
+  font-weight: 650;
+}
+
+.local-meeting-card > .external-link {
+  width: fit-content;
 }
 
 .meetings-qualification {
@@ -207,16 +150,11 @@
 .global-directory {
   margin-top: var(--section-gap-compact);
   padding-block: var(--surface-padding-compact);
-  background: var(--ocean-strong);
-  color: var(--ink-on-ocean);
+  border-block: var(--border-normal) solid var(--line);
+  background: var(--canvas-subtle);
 }
 
 .global-directory__inner {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.global-directory__header {
   display: grid;
   gap: var(--space-3);
 }
@@ -227,35 +165,27 @@
   gap: var(--space-2);
 }
 
-.global-directory .section-label {
-  color: var(--ocean-muted);
-}
-
-.global-directory h2 {
-  max-width: 18ch;
-  color: var(--ink-on-ocean);
-}
-
 .global-directory__intro h2 {
-  font-size: var(--text-section);
+  max-width: 20ch;
+  font-size: var(--text-component);
 }
 
 .global-directory__intro > p:not(.section-label) {
-  color: var(--ocean-muted);
+  color: var(--ink-muted);
   font-size: var(--text-small);
 }
 
 .global-directory__intro > .external-link {
   width: fit-content;
-  color: var(--ink-on-ocean);
+  font-size: var(--text-small);
 }
 
 .global-directory__status {
-  align-self: end;
-  padding: 0.8rem 1rem;
-  border: var(--border-normal) solid var(--line-on-ocean);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-normal) solid var(--line);
   border-radius: var(--radius-control);
-  color: var(--ink-on-ocean);
+  background: var(--canvas-raised);
+  color: var(--ink);
   font-size: var(--text-small);
 }
 
@@ -265,7 +195,8 @@
   gap: var(--space-3);
 }
 
-.global-meeting-list {
+.global-meeting-list,
+.global-loading-records {
   display: grid;
   gap: var(--space-3);
   list-style: none;
@@ -273,22 +204,21 @@
 
 .global-meeting {
   display: grid;
+  min-width: 0;
   gap: var(--space-2);
   align-content: start;
-  padding: 1rem;
-  border: var(--border-normal) solid var(--line);
+  padding: var(--surface-padding-compact);
+  border: var(--border-normal) solid var(--line-strong);
   border-radius: var(--radius-surface);
   background: var(--canvas-raised);
-  color: var(--ink);
 }
 
 .global-meeting__topline {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  padding-bottom: var(--space-2);
-  border-bottom: var(--border-normal) solid var(--line);
 }
 
 .global-meeting__time,
@@ -299,12 +229,14 @@
 
 .global-meeting__region {
   color: var(--ocean-strong);
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .global-meeting h3 {
+  padding-top: var(--space-2);
+  border-top: var(--border-normal) solid var(--line);
   font-size: var(--text-body);
-  line-height: 1.18;
+  line-height: 1.2;
 }
 
 .global-meeting__actions {
@@ -317,8 +249,27 @@
 }
 
 .global-meeting__actions .button-link {
-  min-height: 2.65rem;
-  padding: 0.55rem 0.8rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.global-loading-records span {
+  display: block;
+  padding-block: 3.75rem;
+  border: var(--border-normal) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--canvas-raised);
+}
+
+.global-directory__empty {
+  display: grid;
+  align-content: center;
+  padding: var(--surface-padding);
+  border: var(--border-normal) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--canvas-raised);
+  color: var(--ink-muted);
+  font-size: var(--text-small);
 }
 
 .global-show-more {
@@ -326,119 +277,38 @@
   min-height: var(--control-height);
   padding: 0.6rem 0;
   border: 0;
-  border-bottom: var(--border-emphasis) solid var(--ink-on-ocean);
+  border-bottom: var(--border-emphasis) solid var(--ocean-strong);
   background: transparent;
-  color: var(--ink-on-ocean);
+  color: var(--ocean-strong);
   cursor: pointer;
   font-size: var(--text-small);
   font-weight: 750;
 }
 
 @media (min-width: 48rem) {
-  .meetings-local-stage {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .meetings-local-stage > .page-intro {
-    grid-column: 1 / -1;
-  }
-
-  .global-directory__header {
-    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.6fr);
-    align-items: end;
-  }
-
-  .global-meeting-list {
+  .local-meeting-list,
+  .global-meeting-list,
+  .global-loading-records {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 74rem) {
-  .meetings-local-stage {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(1.25rem, 2vw, 2rem);
-    align-items: start;
-  }
-
-  .meetings-local-stage > .page-intro {
-    grid-column: 1 / 4;
-  }
-
-  .local-schedule {
-    grid-column: 4 / 9;
-  }
-
-  .meeting-detail {
-    grid-column: 9 / 13;
-  }
-}
-
-@media (min-width: 74rem) {
+  .meetings-local-stage,
   .global-directory__inner {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: clamp(1.25rem, 2vw, 2rem);
     align-items: start;
   }
 
-  .global-directory__header {
-    grid-column: 1 / 5;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
+  .meetings-local-stage > .page-intro,
+  .global-directory__intro {
+    grid-column: 1 / 4;
   }
 
+  .local-schedule,
   .global-directory__results {
-    grid-column: 5 / 13;
-  }
-
-  .global-meeting-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 74rem) {
-  .local-schedule .section-heading h2 {
-    font-size: var(--text-component);
-  }
-
-  .schedule-row__body {
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: var(--space-3);
-  }
-
-  .schedule-row__heading,
-  .schedule-row__summary {
-    grid-column: 1;
-  }
-
-  .schedule-row__select {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    align-self: center;
-  }
-
-  .meeting-detail__copy {
-    gap: var(--space-2);
-  }
-
-  .meeting-detail {
-    padding: var(--surface-padding-compact);
-  }
-
-  .meeting-detail__facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .meeting-detail__facts div:first-child {
-    grid-column: 1 / -1;
-  }
-
-  .meeting-detail__facts div:nth-child(2) {
-    padding-right: var(--space-3);
-    border-right: var(--border-normal) solid var(--line-on-ocean);
-  }
-
-  .meeting-detail__facts div:nth-child(3) {
-    padding-left: var(--space-3);
+    grid-column: 4 / 13;
   }
 
   .global-directory {
@@ -446,28 +316,23 @@
     padding-block: 1rem;
   }
 
-  .global-directory__intro h2 {
-    max-width: none;
-    font-size: 1.45rem;
-  }
-
-  .global-directory__status {
-    padding-block: 0.65rem;
-  }
-
+  .local-meeting-card,
   .global-meeting {
-    gap: var(--space-1);
-    padding: 0.85rem;
+    padding: 1rem;
   }
 
-  .global-meeting__actions .button-link {
-    min-height: 2.35rem;
-    padding-block: 0.4rem;
+  .local-meeting-card {
+    gap: var(--space-2);
+  }
+
+  .local-meeting-card__facts div {
+    padding-block: 0.5rem;
   }
 }
 
 @media (min-width: 64rem) and (max-height: 49.9375rem) {
-  .meetings-local-stage {
+  .meetings-local-stage,
+  .global-directory__inner {
     gap: var(--space-3);
   }
 
@@ -475,33 +340,12 @@
     margin-bottom: var(--space-2);
   }
 
-  .schedule-row {
+  .local-meeting-card,
+  .global-meeting {
     padding-block: 0.8rem;
   }
 
-  .schedule-row__select {
-    min-height: 2.4rem;
-    padding-block: 0.3rem;
-  }
-
-  .meeting-detail {
-    padding: var(--surface-padding-compact);
-  }
-
-  .meeting-detail__facts div {
-    padding-block: 0.48rem;
-  }
-
-  .global-directory {
-    margin-top: var(--space-3);
-    padding-block: 1rem;
-  }
-
-  .global-directory__status {
-    padding-block: 0.65rem;
-  }
-
-  .global-meeting {
-    padding: 0.85rem;
+  .global-loading-records span {
+    padding-block: 3rem;
   }
 }

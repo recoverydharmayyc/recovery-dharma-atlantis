@@ -68,12 +68,16 @@
 .app-error button {
   min-height: var(--control-height);
   padding: 0.7rem 1rem;
-  border: var(--border-emphasis) solid var(--coral-strong);
+  border: var(--border-emphasis) solid var(--ocean-strong);
   border-radius: var(--radius-control);
-  background: var(--coral);
-  color: var(--ink-on-coral);
+  background: var(--ocean);
+  color: var(--ink-on-ocean);
   cursor: pointer;
   font-weight: 750;
+}
+
+.app-error button:hover {
+  background: var(--ocean-strong);
 }
 
 .app-error-label,

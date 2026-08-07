@@ -1,14 +1,14 @@
 export const CONNECT_CONTENT = {
   hero: {
     eyebrow: "Connect",
-    title: "Stay connected.",
-    lede: "Meeting information and a first-visit guide are available even when no contact channel is active.",
+    title: "Contact",
+    lede: "No public contact method is active in this fictional example.",
   },
   emptyState: {
-    heading: "No public contact channel is active.",
-    body: "Recovery Dharma Atlantis is a fictional example, so it does not accept messages. Meeting information and the first-visit guide remain available here.",
+    heading: "Contact information for a real community",
+    body: "A real community should publish one verified contact method that someone is prepared to monitor.",
     note: "Contact details are not configured for this example.",
-    meetingsAction: "View meeting information",
-    newcomersAction: "Read what to expect",
+    meetingsAction: "View local meetings",
+    newcomersAction: "Your first meeting",
   },
 } as const;

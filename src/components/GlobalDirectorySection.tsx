@@ -17,7 +17,7 @@ import ExternalLink from "./ExternalLink";
 import StatusLabel from "./StatusLabel";
 
 type GlobalViewStatus = "loading" | "live" | "cached" | "empty" | "unavailable" | "error";
-export const DEFAULT_GLOBAL_PREVIEW_COUNT = 3;
+export const DEFAULT_GLOBAL_PREVIEW_COUNT = 2;
 
 function scheduleAfterLocalPaint(callback: () => void): () => void {
   let workFrameId = 0;
@@ -78,9 +78,11 @@ function GlobalMeeting({ meeting, now }: { meeting: GlobalMeetingOccurrence; now
       <p className="global-meeting__time">{formatListedLocalTime(meeting)}</p>
       <div className="global-meeting__actions">
         <ExternalLink className="button-link button-link--primary" href={meeting.conferenceUrl}>
-          Open meeting
+          {MEETINGS_PAGE_CONTENT.global.openMeetingLabel}
         </ExternalLink>
-        <ExternalLink href={meeting.sourceUrl}>View source details</ExternalLink>
+        <ExternalLink href={meeting.sourceUrl}>
+          {MEETINGS_PAGE_CONTENT.global.sourceDetailsLabel}
+        </ExternalLink>
       </div>
     </li>
   );
@@ -114,16 +116,13 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
   return (
     <section className="global-directory" aria-labelledby="global-heading">
       <div className="site-container global-directory__inner">
-        <div className="global-directory__header">
-          <div className="global-directory__intro">
-            <p className="section-label">{MEETINGS_PAGE_CONTENT.global.kicker}</p>
-            <h2 id="global-heading">{MEETINGS_PAGE_CONTENT.global.title}</h2>
-            <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
-            <ExternalLink href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}>
-              {MEETINGS_PAGE_CONTENT.global.directoryLabel}
-            </ExternalLink>
-          </div>
-
+        <div className="global-directory__intro">
+          <p className="section-label">{MEETINGS_PAGE_CONTENT.global.kicker}</p>
+          <h2 id="global-heading">{MEETINGS_PAGE_CONTENT.global.title}</h2>
+          <p>{MEETINGS_PAGE_CONTENT.global.disclosure}</p>
+          <ExternalLink href={GLOBAL_DIRECTORY_SOURCE.directoryUrl}>
+            {MEETINGS_PAGE_CONTENT.global.directoryLabel}
+          </ExternalLink>
           <p
             className="global-directory__status"
             aria-live="polite"
@@ -146,6 +145,17 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
               ))}
             </ol>
           )}
+          {status === "loading" && meetings.length === 0 && (
+            <div className="global-loading-records" aria-hidden="true">
+              <span />
+              <span />
+            </div>
+          )}
+          {status !== "loading" && meetings.length === 0 && (
+            <div className="global-directory__empty">
+              <p>{MEETINGS_PAGE_CONTENT.global.emptyLabel}</p>
+            </div>
+          )}
           {canExpand && (
             <button
               className="global-show-more"
@@ -154,7 +164,9 @@ export default function GlobalDirectorySection({ now }: { now: Date }) {
               aria-controls="global-meeting-preview"
               onClick={() => setExpanded((value) => !value)}
             >
-              {expanded ? "Show fewer worldwide meetings" : "Show more worldwide meetings"}
+              {expanded
+                ? MEETINGS_PAGE_CONTENT.global.showFewerLabel
+                : MEETINGS_PAGE_CONTENT.global.showMoreLabel}
             </button>
           )}
         </div>

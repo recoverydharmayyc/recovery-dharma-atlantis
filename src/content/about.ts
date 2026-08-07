@@ -1,43 +1,29 @@
-import { ROUTE_PATHS } from "../config/site";
-
 export const ABOUT_CONTENT = {
   hero: {
-    eyebrow: "About the practice",
-    title: "Recovery is something we practice together.",
-    lede: "Recovery Dharma communities use meditation, reflection, and shared inquiry as supports for recovery. The practice is peer-led and participation is voluntary.",
+    eyebrow: "About",
+    title: "About Recovery Dharma",
+    lede: "Recovery Dharma is a peer-led approach to recovery based on Buddhist principles and practices.",
   },
-  sections: [
+  overview:
+    "Its public program includes meditation, meetings, the Four Noble Truths and Eightfold Path, inquiry, and participation in a recovery community.",
+  autonomy: {
+    title: "Local groups set their own format",
+    body: "Local sangha groups are autonomous, so meeting formats and local practices can differ.",
+  },
+  areas: [
     {
-      kicker: "Peer-led",
-      title: "No gurus. No hierarchy of recovery.",
-      paragraphs: [
-        "People meet as equals and speak from lived experience. No participant acts as a guru or holds authority over another person’s recovery.",
-        "The community does not make medical claims or promise particular outcomes.",
-      ],
-      actionRow: undefined,
+      title: "Practice",
+      body: "Meditation, ethical reflection, and inquiry are used to examine addictive patterns and develop different responses.",
     },
     {
-      kicker: "Practice",
-      title: "Meditation, reading, and honest reflection.",
-      paragraphs: [
-        "A meeting can include quiet meditation, readings, and discussion rooted in lived experience.",
-        "The practice leaves room for each person to decide what supports are right for their own circumstances.",
-      ],
-      actionRow: {
-        secondaryHref: ROUTE_PATHS.resources,
-        secondaryLabel: "Explore Recovery Dharma resources",
-      },
+      title: "Meetings",
+      body: "Meetings may include meditation, Recovery Dharma readings, inquiry, and discussion.",
+    },
+    {
+      title: "Community",
+      body: "Participation can include listening, speaking, reading, facilitating, or other forms of service according to the local group.",
     },
   ],
-  rhythm: {
-    kicker: "A meeting rhythm",
-    title: "A calm, ordinary sequence.",
-    steps: [
-      "Arrive and settle in.",
-      "Sit together for a short meditation.",
-      "Read, reflect, and share if you wish.",
-      "Leave with no pressure to do more than you are ready for.",
-    ],
-    actionLabel: "View meeting times",
-  },
+  limitation:
+    "This website describes no active Atlantis group and makes no medical or recovery-outcome claims.",
 } as const;

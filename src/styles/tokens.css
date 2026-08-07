@@ -17,7 +17,6 @@
   --focus: #c83c2c;
   --shadow: 0 1.125rem 3.125rem rgb(11 48 68 / 13%);
   --ink-on-ocean: #f7fbfc;
-  --ink-on-coral: #082b3d;
   --ocean-muted: #cee3e8;
   --line-on-ocean: rgb(247 251 252 / 20%);
   --footer-canvas: #062d40;
@@ -43,7 +42,7 @@
   --space-7: 3.5rem;
 
   --header-height: 4.3125rem;
-  --footer-height: 3rem;
+  --footer-height: 4.25rem;
   --page-max: 75rem;
   --page-reading: 43rem;
   --page-narrow: 34rem;

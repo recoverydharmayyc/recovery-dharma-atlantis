@@ -37,7 +37,7 @@ export default function Home() {
             <aside className="next-ledger" aria-labelledby="next-gathering-heading">
               <div className="next-ledger__header">
                 <p className="next-ledger__label" id="next-gathering-heading">
-                  Next gathering
+                  {HOME_CONTENT.nextMeeting.heading}
                 </p>
                 <StatusLabel status={getMeetingStatus(nextMeeting.startsAt, now)} />
               </div>
@@ -52,7 +52,7 @@ export default function Home() {
                     {nextMeeting.registrationNote && ` · ${nextMeeting.registrationNote}`}
                   </p>
                   <ButtonLink to={ROUTE_PATHS.meetings} variant="secondary">
-                    View all meetings
+                    {HOME_CONTENT.nextMeeting.actionLabel}
                   </ButtonLink>
                 </div>
               </div>

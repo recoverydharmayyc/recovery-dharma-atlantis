@@ -1,29 +1,34 @@
 export const HOME_CONTENT = {
   hero: {
-    eyebrow: "Atlantis peer recovery",
-    heroText: "Connect. Meditate. Recover.",
+    eyebrow: "Recovery Dharma community",
+    heroText: "Recovery through meditation, inquiry, and community.",
     subText:
-      "A fictional peer-led community for people exploring recovery through meditation, reflection, and shared practice.",
+      "Recovery Dharma Atlantis is a fictional example of a local peer-led group for people recovering from addiction.",
     blurb:
-      "People sit together, meditate, read, and share as equals. There are no gurus and no pressure to speak.",
+      "Meetings include meditation, Recovery Dharma readings, inquiry, and optional discussion. Newcomers may attend either weekly meeting.",
   },
-  primaryButtonLabel: "See Meetings",
-  secondaryButtonLabel: "What to Expect",
+  primaryButtonLabel: "View local meetings",
+  secondaryButtonLabel: "Your first meeting",
+  nextMeeting: {
+    heading: "Next local meeting",
+    actionLabel: "View meeting details",
+  },
   practice: {
-    kicker: "What happens here",
-    heading: "A shared practice, one ordinary step at a time.",
+    kicker: "Meeting format",
+    heading: "What a meeting may include",
     features: [
       {
-        title: "Sit",
-        description: "Begin with meditation—guided, quiet, or simply a chance to arrive.",
+        title: "Meditation",
+        description: "Guided or silent practice is used to develop attention and steadiness.",
       },
       {
-        title: "Reflect",
-        description: "Readings offer a starting point for honest attention and inquiry.",
+        title: "Reading and inquiry",
+        description:
+          "Recovery Dharma material provides a starting point for reflection and investigation.",
       },
       {
-        title: "Share",
-        description: "Speak from your own experience, or listen quietly. Both are welcome.",
+        title: "Discussion",
+        description: "Participants may speak about their experience or take part by listening.",
       },
     ],
   },

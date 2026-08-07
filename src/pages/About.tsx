@@ -1,6 +1,4 @@
-import { NavLink } from "react-router-dom";
 import PageIntro from "../components/PageIntro";
-import { ROUTE_PATHS } from "../config/site";
 import { ABOUT_CONTENT } from "../content/about";
 
 export default function About() {
@@ -15,44 +13,23 @@ export default function About() {
         />
 
         <div className="editorial-page__body about-page__body">
-          <div className="about-principles">
-            {ABOUT_CONTENT.sections.map((section) => (
-              <section className="prose-section info-surface" key={section.title}>
-                <div>
-                  <p className="section-label">{section.kicker}</p>
-                  <h2>{section.title}</h2>
-                </div>
-                <div className="prose-section__copy">
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                  {section.actionRow && (
-                    <NavLink className="text-link" to={section.actionRow.secondaryHref}>
-                      {section.actionRow.secondaryLabel}
-                    </NavLink>
-                  )}
-                </div>
+          <p className="about-overview">{ABOUT_CONTENT.overview}</p>
+
+          <section className="about-autonomy subtle-surface" aria-labelledby="autonomy-heading">
+            <h2 id="autonomy-heading">{ABOUT_CONTENT.autonomy.title}</h2>
+            <p>{ABOUT_CONTENT.autonomy.body}</p>
+          </section>
+
+          <div className="about-areas">
+            {ABOUT_CONTENT.areas.map((area) => (
+              <section className="about-area" key={area.title}>
+                <h2>{area.title}</h2>
+                <p>{area.body}</p>
               </section>
             ))}
           </div>
 
-          <section className="about-rhythm ocean-surface">
-            <div className="about-rhythm__heading">
-              <p className="section-label">{ABOUT_CONTENT.rhythm.kicker}</p>
-              <h2>{ABOUT_CONTENT.rhythm.title}</h2>
-            </div>
-            <ol className="about-rhythm__steps">
-              {ABOUT_CONTENT.rhythm.steps.map((step, index) => (
-                <li key={step}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <p>{step}</p>
-                </li>
-              ))}
-            </ol>
-            <NavLink className="text-link" to={ROUTE_PATHS.meetings}>
-              {ABOUT_CONTENT.rhythm.actionLabel}
-            </NavLink>
-          </section>
+          <p className="about-limitation">{ABOUT_CONTENT.limitation}</p>
         </div>
       </div>
     </div>
