@@ -40,6 +40,9 @@ npm run test:browser:product
 npm run test:browser:meetings
 ```
 
+These acceptance checks depend on local Chrome rendering and host timing, so hosted CI keeps to
+the deterministic `npm run verify` contract. Include the local browser results in the pull request.
+
 Pull requests should explain the user-visible outcome, list the checks that ran, and identify any
 facts or behavior that could not be verified. Include screenshots only when they materially help
 review a visual change.

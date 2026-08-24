@@ -87,7 +87,8 @@ npm run verify
 ```
 
 Run both browser checks when behavior or layout changes. Chrome or Chromium must be installed for
-those checks. GitHub Actions runs the same complete gate for pushes and pull requests.
+those host-sensitive acceptance checks. GitHub Actions runs the portable clean-install,
+formatting, and `verify` gate for pushes and pull requests.
 
 ## External data and fictional safety
 

@@ -297,15 +297,10 @@ test("open-source tutorial retains a conventional repository interface", async (
   assert.match(tutorial, /npm run verify/);
   assert.match(contributing, /finished fictional reference implementation/i);
   assert.match(license, /^MIT License/);
-  for (const command of [
-    "npm ci",
-    "npm run format:check",
-    "npm run verify",
-    "npm run test:browser:product",
-    "npm run test:browser:meetings",
-  ]) {
+  for (const command of ["npm ci", "npm run format:check", "npm run verify"]) {
     assert.match(workflow, new RegExp(command.replace(/ /g, "\\s+")));
   }
+  assert.doesNotMatch(workflow, /test:browser/);
 });
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {

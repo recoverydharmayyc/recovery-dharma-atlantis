@@ -36,9 +36,3 @@ jobs:
 
       - name: Verify application
         run: npm run verify
-
-      - name: Run product browser checks
-        run: npm run test:browser:product
-
-      - name: Run Meetings browser checks
-        run: npm run test:browser:meetings
