@@ -1,5 +1,4 @@
 export const SITE_CONFIG = {
-  demoMode: true,
   demoState: "fictional",
   clockRefreshMs: 60_000,
 } as const;

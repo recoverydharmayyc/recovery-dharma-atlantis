@@ -17,8 +17,7 @@ export type ScheduledCommunityAnnouncement = {
   expiresAt: ScheduledAnnouncementTime | null;
 };
 
-// This starter intentionally ships with no dated temporary meeting. In the
-// tutorial, an owner can enable this object and add a verified future occurrence.
+// Keeping this example disabled guarantees that no placeholder meeting is rendered.
 export const TEMPORARY_MEETING_ANNOUNCEMENT: TemporaryMeeting = {
   enabled: false,
   derivedFromMeetingId: null,

@@ -1,46 +1,124 @@
 # Recovery Dharma Atlantis
 
-Recovery Dharma Atlantis is a complete fictional community website and a concrete, reusable community-site template. It is independent of Recovery Dharma YYC, contains no YYC operations or private information, and is not an official Recovery Dharma Global product.
+Recovery Dharma Atlantis is a finished, fictional community website and a worked tutorial for
+customizing a small React application with an AI coding assistant. Clone it, run it locally, and
+use its repository guidance as the starting context for your own site.
 
-The application provides Home, Meetings, About, New Here, Resources, Connect, and not-found routes. It includes two structured fictional recurring meetings, temporary-announcement support, and a bounded preview of Recovery Dharma Global's public meeting directory.
+**This is not a live meeting website.** Atlantis is fictional, its local listings are examples,
+and there is no hosted demo. The project is independent of Recovery Dharma YYC and is not an
+official Recovery Dharma Global product.
 
-## Stack and requirements
+## What this example demonstrates
 
-- React, TypeScript, Vite, and React Router
-- Node.js 22.22 or newer
-- npm
+- A conventional React, TypeScript, Vite, and React Router application.
+- Clear ownership between public content, technical configuration, domain rules, components,
+  pages, and styles.
+- Accessible navigation, focus handling, reduced-motion support, a real not-found route, and a
+  safe application error boundary.
+- Structured recurring meetings and automatically expiring announcements.
+- Defensive use of an untrusted public directory: bounded parsing, URL checks, sanitization,
+  timeout, short-lived browser cache, attribution, and a direct fallback link.
+- A repository-level `AGENTS.md` that gives an AI coding assistant durable project constraints.
+- Automated content, unit, type, build, and browser checks.
 
-Install and start local development:
+The public application remains a believable fictional website. Tutorial instructions stay in the
+repository documentation instead of leaking into visitor-facing pages.
 
-```text
+## Quick start
+
+You need Git, npm, and Node.js 22.22 or newer.
+
+```bash
+git clone https://github.com/recoverydharmayyc/recovery-dharma-atlantis.git
+cd recovery-dharma-atlantis
 npm ci
 npm run dev
 ```
 
-## Verification and build
+Vite prints the local address to open in your browser. No environment variables, account
+credentials, backend, or remote font are required.
 
-```text
+Read [TUTORIAL.md](TUTORIAL.md) before replacing the fictional example. It provides a complete,
+beginner-friendly workflow for preparing verified facts, asking an AI coding assistant for a
+change, reviewing the result, and deciding whether to keep it.
+
+## Repository map
+
+| Path                 | Responsibility                                                             |
+| -------------------- | -------------------------------------------------------------------------- |
+| `src/content/`       | Visitor-facing wording and fictional community facts                       |
+| `src/config/`        | Site settings and external-source limits                                   |
+| `src/announcements/` | Announcement timing and activation rules                                   |
+| `src/meetings/`      | Meeting validation, time calculations, fetching, caching, and sanitization |
+| `src/components/`    | Reusable presentation components                                           |
+| `src/pages/`         | Route-level page composition                                               |
+| `src/styles/`        | Design tokens, shared styles, layout, and page styles                      |
+| `src/app/routes.tsx` | Authoritative route table                                                  |
+| `src/tests/`         | Fast automated behavior and repository checks                              |
+| `scripts/`           | Content validation and browser product checks                              |
+| `public/`            | Static artwork, crawler rules, and static-host route fallback              |
+
+Before changing public wording, read [CONTENT_GUIDE.md](CONTENT_GUIDE.md). Before changing
+presentation, read [DESIGN_GUIDE.md](DESIGN_GUIDE.md). [AGENTS.md](AGENTS.md) records the
+repository-wide constraints for humans and coding agents.
+
+## Commands
+
+| Command                         | Purpose                                                                  |
+| ------------------------------- | ------------------------------------------------------------------------ |
+| `npm run dev`                   | Start the local development server                                       |
+| `npm run format`                | Format supported files with Prettier                                     |
+| `npm run format:check`          | Check formatting without changing files                                  |
+| `npm run lint`                  | Run ESLint                                                               |
+| `npm run test:content`          | Check fictional mode, public copy, and required safety content           |
+| `npm test`                      | Run the Node-based automated test suite                                  |
+| `npm run typecheck`             | Check TypeScript without emitting files                                  |
+| `npm run build`                 | Create a production build in `dist/`                                     |
+| `npm run verify`                | Run lint, content checks, tests, type checking, and the production build |
+| `npm run test:browser:product`  | Review routes, viewports, navigation, focus, and fallback states         |
+| `npm run test:browser:meetings` | Check Meetings rendering and local-first latency                         |
+| `npm run preview`               | Serve the production build locally                                       |
+
+For a normal change, run:
+
+```bash
 npm run format:check
 npm run verify
 ```
 
-`npm run verify` runs linting, public-content and safety checks, automated tests, TypeScript checking, and a production build. Product and Meetings browser checks are available as `npm run test:browser:product` and `npm run test:browser:meetings` when Chrome or Chromium is installed.
+Run both browser checks when behavior or layout changes. Chrome or Chromium must be installed for
+those checks. GitHub Actions runs the same complete gate for pushes and pull requests.
 
-Use `npm run test` for the automated test suite, `npm run build` for a production build, and `npm run preview` to inspect that build locally. Vite writes production output to `dist/`.
+## External data and fictional safety
 
-The built single-page application can be hosted by a conventional static host with route fallback support. `netlify.toml` builds and publishes `dist/`; `public/_redirects` supplies the Netlify SPA fallback.
+Local Atlantis meetings render without waiting for the external request. Recovery Dharma Global
+records are treated as untrusted public input and are never rendered as HTML. Unsafe, incomplete,
+closed, specialty-access, or access-gated records are excluded from the small preview. A failed
+request never removes the local schedule or the full-directory fallback.
 
-## Project ownership
+The example remains blocked from search indexing through `index.html` and `public/robots.txt`.
+It has no real address, contact method, form, analytics, payments, newsletter, or private
+configuration. Do not remove those safeguards until every replacement fact has been verified and
+the conversion is an explicit, reviewed change.
 
-- `src/content/` owns public wording and community facts.
-- `src/config/` owns site and external-source configuration.
-- `src/announcements/` and `src/meetings/` own timing, validation, sanitization, cache, timeout, and fallback behavior.
-- `src/components/`, `src/pages/`, and `src/styles/` own presentation and route composition.
+## Building and hosting your copy
 
-See `CONTENT_GUIDE.md` for public-language and factual boundaries, `DESIGN_GUIDE.md` for the Ocean Civic Light system, and `AGENTS.md` for repository-wide engineering constraints.
+`npm run build` writes a static single-page application to `dist/`. It can be hosted by a static
+host that supports route fallback to `index.html`. `netlify.toml` and `public/_redirects` show one
+conventional Netlify configuration; they do not connect this repository to a hosted site.
 
-## Safety and independence
+Publishing is deliberately a human decision. Preview the exact build, verify every public fact,
+and confirm the fictional safeguards have only been changed when that was intentional.
 
-The default site is fictional, has no real local address or contact method, and is blocked from search indexing through `index.html` and `public/robots.txt`. It has no backend, contact form, analytics, newsletter, payment system, Netlify Function, remote font, or environment-variable requirement.
+## Project status
 
-Remote directory records are normalized, bounded, sanitized, and cached briefly in the browser; unsafe links are rejected, requests time out, and failure falls back to the full directory. Local Atlantis meetings remain available independently. Any conversion to a real community site requires verified public facts and deliberate review.
+This repository is a complete reference implementation, not a live service or a product roadmap.
+Maintenance is limited to correctness, accessibility, security, dependency compatibility, and
+clearer teaching material. See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change.
+
+## License
+
+The repository source and documentation are available under the [MIT License](LICENSE). External
+websites, directory records, names, and marks remain the property of their respective owners.
+The `"private": true` package setting only prevents accidental publication to the npm registry; it
+does not restrict the repository's MIT-licensed use.

@@ -12,6 +12,7 @@ import {
   formatClockInZone,
   formatRelativeDay,
   getTimeZoneShortName,
+  isValidTimeZone,
   parseClockTime,
   parsePlainDate,
   zonedTimeToUtc,
@@ -40,7 +41,7 @@ function makeDatedTime(value: ScheduledAnnouncementTime | null): Date | null {
   if (!value) return null;
   const date = parsePlainDate(value.date);
   const time = parseClockTime(value.time);
-  if (!date || !time || !value.timeZone) return null;
+  if (!date || !time || !isValidTimeZone(value.timeZone)) return null;
   try {
     return zonedTimeToUtc({ ...date, hour: time.hour, minute: time.minute }, value.timeZone);
   } catch {
@@ -52,7 +53,8 @@ export function findTemporaryMeetingOccurrence(
   now: Date,
   temporaryMeeting: TemporaryMeeting = TEMPORARY_MEETING_ANNOUNCEMENT,
 ): DatedTemporaryOccurrence | null {
-  if (validateTemporaryMeeting(temporaryMeeting).length > 0) return null;
+  if (!temporaryMeeting.enabled || validateTemporaryMeeting(temporaryMeeting).length > 0)
+    return null;
 
   return (
     temporaryMeeting.occurrences

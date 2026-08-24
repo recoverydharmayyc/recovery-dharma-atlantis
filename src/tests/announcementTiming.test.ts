@@ -12,6 +12,22 @@ test("disabled starter announcement leaves no banner state", () => {
   assert.equal(getActiveAnnouncement(now), null);
 });
 
+test("a disabled temporary meeting stays hidden even when occurrences remain", () => {
+  const disabled: TemporaryMeeting = {
+    enabled: false,
+    derivedFromMeetingId: null,
+    title: "Disabled community meeting",
+    shortBannerLabel: "Extra meeting",
+    shortBannerText: "This must remain hidden.",
+    occurrences: [{ date: "2030-01-05", startTime: "13:00", endTime: "14:00", timeZone: "UTC" }],
+    format: "In person",
+    venueOrOnlineDescription: "Verified venue",
+    verifiedPublicLink: null,
+    note: "",
+  };
+  assert.equal(getActiveAnnouncement(now, { temporaryMeeting: disabled }), null);
+});
+
 test("temporary meeting announcement appears before its meeting and expires after it", () => {
   const temporary: TemporaryMeeting = {
     enabled: true,
@@ -47,6 +63,19 @@ test("malformed and unsafe announcements fail closed", () => {
   };
   assert.equal(isScheduledAnnouncementActive(now, malformed), false);
   assert.equal(getActiveAnnouncement(now, { communityAnnouncement: malformed }), null);
+});
+
+test("scheduled announcements reject invalid time zones", () => {
+  const invalidTimeZone = {
+    enabled: true,
+    label: "Notice",
+    title: "Invalid time zone",
+    text: "This should not render.",
+    href: "/meetings",
+    startsAt: { date: "2030-01-05", time: "11:30", timeZone: "Not/A_Time_Zone" },
+    expiresAt: { date: "2030-01-05", time: "13:30", timeZone: "Not/A_Time_Zone" },
+  };
+  assert.equal(isScheduledAnnouncementActive(now, invalidTimeZone), false);
 });
 
 test("scheduled announcement respects both its start and expiry", () => {

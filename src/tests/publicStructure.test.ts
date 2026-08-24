@@ -244,7 +244,7 @@ test("the compact footer does not duplicate primary navigation", async () => {
   assert.match(components, /\.footer-utility\s*\{[^}]*padding-block:\s*0\.875rem/is);
 });
 
-test("canonical repository retains a conventional product interface", async () => {
+test("open-source tutorial retains a conventional repository interface", async () => {
   const rootEntries = await readdir(project, { withFileTypes: true });
   const rootFiles = rootEntries.filter((entry) => entry.isFile()).map((entry) => entry.name);
   assert.equal(
@@ -256,6 +256,13 @@ test("canonical repository retains a conventional product interface", async () =
     false,
   );
   const packageJson = JSON.parse(await source("package.json"));
+  assert.equal(packageJson.private, true);
+  assert.equal(packageJson.version, "1.0.0");
+  assert.equal(packageJson.license, "MIT");
+  assert.equal(
+    packageJson.repository.url,
+    "https://github.com/recoverydharmayyc/recovery-dharma-atlantis.git",
+  );
   assert.deepEqual(
     Object.keys(packageJson.scripts).sort(),
     [
@@ -278,6 +285,27 @@ test("canonical repository retains a conventional product interface", async () =
     "dist",
     "node_modules",
   ]);
+  const [readme, tutorial, contributing, license, workflow] = await Promise.all([
+    source("README.md"),
+    source("TUTORIAL.md"),
+    source("CONTRIBUTING.md"),
+    source("LICENSE"),
+    source(".github/workflows/ci.yml"),
+  ]);
+  assert.match(readme, /there is no hosted demo/i);
+  assert.match(tutorial, /AGENTS\.md/);
+  assert.match(tutorial, /npm run verify/);
+  assert.match(contributing, /finished fictional reference implementation/i);
+  assert.match(license, /^MIT License/);
+  for (const command of [
+    "npm ci",
+    "npm run format:check",
+    "npm run verify",
+    "npm run test:browser:product",
+    "npm run test:browser:meetings",
+  ]) {
+    assert.match(workflow, new RegExp(command.replace(/ /g, "\\s+")));
+  }
 });
 
 test("meeting layout uses document flow without fixed-height or nested-scroll panels", async () => {

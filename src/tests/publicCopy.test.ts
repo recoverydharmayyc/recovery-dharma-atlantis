@@ -10,7 +10,6 @@ import { RESOURCES_CONTENT } from "../content/resources";
 import { SITE } from "../content/site";
 
 test("starter facts remain fictional and contain two recurring local meetings", () => {
-  assert.equal(SITE_CONFIG.demoMode, true);
   assert.equal(SITE_CONFIG.demoState, "fictional");
   assert.match(SITE.footerNotice, /fictional tutorial community/i);
   assert.equal(LOCAL_MEETINGS.length, 2);
